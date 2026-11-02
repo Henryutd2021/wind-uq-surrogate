@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below, and cite the methods it builds on (references in docs/)."
+type: software
+title: "Wind UQ surrogate framework: UQ metrics and surrogate models for plant-level wind power uncertainty"
+abstract: "UQ metrics for wind time series (temporal, data-source, ensemble and spatial) and a surrogate workflow that maps them to calibrated plant-level wind power uncertainty: pinball-loss-optimal scale targets at observed plants, Gaussian process and other surrogates, validation on held-out plants, and predictive quantiles at unobserved plants. Documented framework with synthetic examples and tests."
+version: "1.0.0"
+repository-code: "https://github.com/Henryutd2021/wind-uq-surrogate"
+license: MIT
+authors:
+  - family-names: Li
+    given-names: Honglin
+    orcid: "https://orcid.org/0000-0002-8405-3032"
+keywords:
+  - wind energy
+  - uncertainty quantification
+  - surrogate model
+  - Gaussian process regression
+  - probabilistic forecasting
+  - pinball loss
+  - ensemble spread
+  - variogram
