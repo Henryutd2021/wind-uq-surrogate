@@ -43,7 +43,7 @@ def test_nested_recalibration_does_not_use_test_plant_labels():
 
 
 def test_time_split_purges_rows_whose_targets_see_the_test_period():
-    fl = synthetic_fleet(n_plants=2, n_unobserved=0, n_steps=120, n_members=3, seed=7)
+    fl = synthetic_fleet(n_plants=2, n_unobserved=0, n_steps=130, n_members=3, seed=7)
     tab = training_table(fl.observed, SPEC, LEVELS, target_window=9)
     assert tab.attrs["target_reach"] == 4
     (tr, te), = time_split(tab, 0.25)
