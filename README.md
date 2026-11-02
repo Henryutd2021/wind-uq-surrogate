@@ -1,5 +1,7 @@
 # Wind UQ surrogate framework: UQ metrics and surrogate models for plant-level wind power uncertainty
 
+Author: [Honglin Li](https://henryutd2021.github.io/)
+
 A documented, runnable framework for two linked tasks:
 
 1. **UQ metrics.** Quantify the uncertainty of the inputs of a wind power model: the variability of a series over time, the disagreement between data sources, the spread of an ensemble, and the spatial variability across the turbines of a plant.
