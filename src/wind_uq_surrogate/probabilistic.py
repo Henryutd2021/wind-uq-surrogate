@@ -28,7 +28,7 @@ def check_levels(levels) -> np.ndarray:
     tau = np.asarray(levels, dtype=float)
     if tau.ndim != 1 or len(tau) == 0:
         raise ValueError("levels must be a non-empty 1-D array")
-    if np.any(tau <= 0) or np.any(tau >= 1) or np.any(np.diff(tau) <= 0):
+    if not np.isfinite(tau).all() or np.any(tau <= 0) or np.any(tau >= 1) or np.any(np.diff(tau) <= 0):
         raise ValueError("levels must be increasing and strictly between 0 and 1")
     return tau
 
@@ -42,6 +42,8 @@ def quantiles(loc, scale, levels, dist: str) -> np.ndarray:
     """Predictive quantiles, shape ``(n, len(levels))``: ``q_tau = m + s z_tau``."""
     m = np.atleast_1d(np.asarray(loc, dtype=float))
     s = np.broadcast_to(np.asarray(scale, dtype=float), m.shape)
+    if not np.isfinite(m).all():
+        raise ValueError("loc must be finite")
     if np.any(~np.isfinite(s)) or np.any(s <= 0):
         raise ValueError("scale must be positive and finite")
     z = standard_quantiles(levels, dist)
@@ -57,6 +59,18 @@ def cdf(y, loc, scale, dist: str) -> np.ndarray:
     return _family(dist).cdf((y - np.asarray(loc, dtype=float)) / s)
 
 
+def _check_obs_quantiles(y, qpred, n_levels):
+    y = np.asarray(y, dtype=float)
+    q = np.asarray(qpred, dtype=float)
+    if y.ndim != 1:
+        raise ValueError("y must be one-dimensional")
+    if q.shape != (len(y), n_levels):
+        raise ValueError(f"qpred must have shape ({len(y)}, {n_levels}), got {q.shape}")
+    if not (np.isfinite(y).all() and np.isfinite(q).all()):
+        raise ValueError("y and qpred must be finite")
+    return y, q
+
+
 def pinball_loss(y, qpred, levels, average: bool = True):
     """Pinball (quantile) loss ``rho_tau(u) = max(tau u, (tau - 1) u)`` with ``u = y - q_tau``.
 
@@ -64,10 +78,7 @@ def pinball_loss(y, qpred, levels, average: bool = True):
     ``average=False`` returns the mean over samples for each level (an array).
     """
     tau = check_levels(levels)
-    y = np.asarray(y, dtype=float)
-    q = np.asarray(qpred, dtype=float)
-    if q.shape != (len(y), len(tau)):
-        raise ValueError(f"qpred must have shape ({len(y)}, {len(tau)}), got {q.shape}")
+    y, q = _check_obs_quantiles(y, qpred, len(tau))
     u = y[:, None] - q
     loss = np.maximum(tau * u, (tau - 1.0) * u)
     per_level = loss.mean(axis=0)
@@ -109,10 +120,7 @@ def reliability(y, qpred, levels) -> pd.DataFrame:
     A calibrated prediction has ``observed`` close to ``level`` for every level (reliability diagram).
     """
     tau = check_levels(levels)
-    y = np.asarray(y, dtype=float)
-    q = np.asarray(qpred, dtype=float)
-    if q.shape != (len(y), len(tau)):
-        raise ValueError("qpred must have shape (n, len(levels))")
+    y, q = _check_obs_quantiles(y, qpred, len(tau))
     observed = (y[:, None] <= q).mean(axis=0)
     return pd.DataFrame({"level": tau, "observed": observed, "deviation": observed - tau})
 
@@ -142,8 +150,7 @@ def available_coverages(levels, coverages) -> tuple:
 
 def interval_scores(y, qpred, levels, coverages) -> pd.DataFrame:
     """Coverage (share of observations inside) and sharpness (mean width) of central prediction intervals."""
-    y = np.asarray(y, dtype=float)
-    q = np.asarray(qpred, dtype=float)
+    y, q = _check_obs_quantiles(y, qpred, len(check_levels(levels)))
     rows = []
     for c, i, j in central_intervals(levels, coverages):
         inside = (y >= q[:, i]) & (y <= q[:, j])

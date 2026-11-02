@@ -145,9 +145,10 @@ def test_surrogate_beats_constant_when_signal_present():
 
 
 def test_negative_control_no_gain_without_signal():
-    fl = synthetic_fleet(n_plants=6, n_unobserved=0, n_steps=24 * 30, n_members=8, signal=0.0, seed=4)
-    pin, _ = _cv_pinball(fl, ("ridge", "constant"))
-    assert pin["ridge"] > 0.97 * pin["constant"]   # no material improvement over the constant baseline
+    fl = synthetic_fleet(n_plants=6, n_unobserved=0, n_steps=24 * 30, n_members=8, signal=0.0, clip=False, seed=4)
+    pin, _ = _cv_pinball(fl, ("ridge", "random_forest", "constant"))
+    # nothing to learn: no surrogate improves materially on the constant baseline
+    assert pin["ridge"] > 0.98 * pin["constant"] and pin["random_forest"] > 0.98 * pin["constant"]
 
 
 def test_run_workflow_end_to_end(fleet, tmp_path):

@@ -1,10 +1,10 @@
-"""Predictive distributions, scores, pinball-loss calibration and isotonic recalibration."""
+"""Predictive distributions, scores, pinball-loss calibration and PIT recalibration."""
 
 import numpy as np
 import pytest
 from scipy import integrate, stats
 
-from wind_uq_surrogate.calibration import (CRPS_SCALE_CONSTANT, IsotonicRecalibrator, block_labels,
+from wind_uq_surrogate.calibration import (CRPS_SCALE_CONSTANT, PITRecalibrator, block_labels,
                                            crps_optimal_scale, optimal_scale)
 from wind_uq_surrogate.probabilistic import (cdf, crps, crps_gaussian, crps_laplace, default_levels,
                                              interval_scores, pinball_loss, quantiles, reliability)
@@ -125,18 +125,18 @@ def test_block_labels():
         block_labels(5, 0)
 
 
-def test_isotonic_recalibration_fixes_overconfident_scale():
+def test_recalibration_fixes_overconfident_scale():
     rng = np.random.default_rng(11)
     n = 20000
     m = np.zeros(n)
     y = rng.laplace(0.0, 1.0, n)
     too_small = np.full(n, 0.4)     # overconfident predictive scale
     before = reliability(y[n // 2:], quantiles(m[n // 2:], too_small[n // 2:], LEVELS, "laplace"), LEVELS)
-    rec = IsotonicRecalibrator("laplace").fit(y[:n // 2], m[:n // 2], too_small[:n // 2])
+    rec = PITRecalibrator("laplace").fit(y[:n // 2], m[:n // 2], too_small[:n // 2])
     after = reliability(y[n // 2:], rec.quantiles(m[n // 2:], too_small[n // 2:], LEVELS), LEVELS)
     assert before["deviation"].abs().mean() > 0.1
     assert after["deviation"].abs().mean() < 0.01
     lv = rec.calibrated_levels(LEVELS)
     assert np.all(np.diff(lv) >= 0) and lv.min() > 0 and lv.max() < 1
     with pytest.raises(RuntimeError):
-        IsotonicRecalibrator("laplace").calibrated_levels(LEVELS)
+        PITRecalibrator("laplace").calibrated_levels(LEVELS)

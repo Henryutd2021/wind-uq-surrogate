@@ -12,15 +12,21 @@ from __future__ import annotations
 
 import numpy as np
 from scipy.optimize import brentq
-from sklearn.isotonic import IsotonicRegression
 
 from .probabilistic import _family, cdf, check_levels, standard_quantiles
+
+
+def _identifiable(z: np.ndarray) -> None:
+    if not np.any(np.abs(z) > 1e-12):
+        raise ValueError("the levels must include at least one level other than 0.5: with the median alone the "
+                         "scale does not affect the loss and is not identifiable")
 
 
 def default_bounds(errors, levels, dist: str) -> tuple[float, float]:
     """Bounds that contain every per-sample optimum: from a tiny positive value to ``max|e| / min|z_tau|``."""
     e = np.abs(np.asarray(errors, dtype=float))
     z = np.abs(standard_quantiles(levels, dist))
+    _identifiable(z)
     z = z[z > 1e-12]
     emax = float(np.nanmax(e)) if e.size else 0.0
     hi = 1.01 * max(emax, 1e-12) / z.min()
@@ -47,7 +53,8 @@ def _per_sample(e, z, tau, lo, hi, chunk=20000):
         cand = np.sort(np.concatenate([np.full((len(ee), 1), lo), bp, np.full((len(ee), 1), hi)], axis=1), axis=1)
         obj = _objective(ee, cand, z, tau)
         best = obj.min(axis=1, keepdims=True)
-        first = np.argmax(obj <= best + 1e-12 * (1.0 + np.abs(best)), axis=1)  # smallest minimizing scale
+        tol = 64.0 * np.finfo(float).eps * (np.abs(ee)[:, None] + hi * np.abs(z).max())
+        first = np.argmax(obj <= best + tol, axis=1)  # smallest minimizing scale
         rows = np.arange(len(ee))
         out[start:start + chunk] = cand[rows, first]
         loss[start:start + chunk] = obj[rows, first]
@@ -61,6 +68,11 @@ def _slope(e, s, z, tau):
     return float((-z[None, :] * psi).sum())
 
 
+def _slope_tolerance(e, z) -> float:
+    """Rounding tolerance of :func:`_slope`: a slope this close to zero is a flat stretch of the objective."""
+    return 64.0 * np.finfo(float).eps * len(e) * float(np.abs(z).sum())
+
+
 def _group(e, z, tau, lo, hi):
     zz = z[np.abs(z) > 1e-12]
     bp = (e[:, None] / zz[None, :]).ravel()
@@ -69,10 +81,11 @@ def _group(e, z, tau, lo, hi):
         s = cand[0]
     else:
         mids = 0.5 * (cand[:-1] + cand[1:])
-        a, b = 0, len(mids)  # first interval with non-negative slope
+        tol = _slope_tolerance(e, z)
+        a, b = 0, len(mids)  # first interval with non-negative slope; its left end is the smallest minimizer
         while a < b:
             k = (a + b) // 2
-            if _slope(e, mids[k], z, tau) >= 0:
+            if _slope(e, mids[k], z, tau) >= -tol:
                 b = k
             else:
                 a = k + 1
@@ -105,6 +118,7 @@ def optimal_scale(actual, forecast, levels, dist: str = "laplace", bounds=None, 
         raise ValueError("actual and forecast must be finite (drop or fill missing values first)")
     tau = check_levels(levels)
     z = standard_quantiles(tau, dist)
+    _identifiable(z)
     e = y - m
     lo, hi = default_bounds(e, tau, dist) if bounds is None else (float(bounds[0]), float(bounds[1]))
     if not (0 < lo < hi and np.isfinite(hi)):
@@ -140,6 +154,7 @@ def rolling_optimal_scale(actual, forecast, levels, dist: str = "laplace", windo
         raise ValueError("window must be a positive odd integer")
     tau = check_levels(levels)
     z = standard_quantiles(tau, dist)
+    _identifiable(z)
     e = y - m
     lo, hi = default_bounds(e, tau, dist) if bounds is None else (float(bounds[0]), float(bounds[1]))
     if not (0 < lo < hi and np.isfinite(hi)):
@@ -177,43 +192,57 @@ def crps_optimal_scale(actual, forecast, dist: str = "laplace", floor: float = 0
     return np.maximum(e / CRPS_SCALE_CONSTANT[dist], floor)
 
 
-class IsotonicRecalibrator:
-    """Recalibrate predictive distributions with an isotonic map of their PIT values (Kuleshov et al., 2018).
+class PITRecalibrator:
+    """Recalibrate predictive distributions with the distribution of their PIT values (Kuleshov et al., 2018).
 
-    Fit on held-out observations: ``R(p)`` = share of PIT values at or below ``p``, made monotone by isotonic
-    regression. To predict the ``tau``-quantile, query the original distribution at the level ``R^{-1}(tau)``.
+    Fit on held-out observations ``y`` with predictive CDFs ``F``: the PIT values ``u = F(y)`` have the empirical
+    CDF ``R(p)`` = share of ``u`` at or below ``p``. ``R`` is the recalibration map of Kuleshov et al. (2018): at the
+    PIT values their isotonic regression of ``R(u)`` on ``u`` returns ``R`` itself, which is already non-decreasing. A
+    recalibrated ``tau``-quantile is the original quantile at the level ``R^{-1}(tau)``, the ``tau``-quantile of the
+    PIT values. ``interpolation="inverted_cdf"`` uses the generalized inverse ``inf{p : R(p) >= tau}``; the default
+    ``"linear"`` interpolates between order statistics (a continuous version). Ties are handled by both: if all PIT
+    values are equal, every recalibrated level equals that value. Levels are kept inside ``[eps, 1 - eps]`` so that
+    quantiles stay finite.
     """
 
-    def __init__(self, dist: str, grid_size: int = 2001, eps: float = 1e-6):
+    def __init__(self, dist: str, interpolation: str = "linear", eps: float = 1e-6):
         _family(dist)
+        if interpolation not in ("linear", "inverted_cdf"):
+            raise ValueError("interpolation must be 'linear' or 'inverted_cdf'")
+        if not 0 < eps < 0.5:
+            raise ValueError("eps must be between 0 and 0.5")
         self.dist = dist
-        self.grid_size = int(grid_size)
+        self.interpolation = interpolation
         self.eps = float(eps)
-        self._grid = None
-        self._mapped = None
+        self.pit_ = None
 
-    def fit(self, y, loc, scale) -> "IsotonicRecalibrator":
-        p = np.sort(np.asarray(cdf(y, loc, scale, self.dist), dtype=float).ravel())
-        if len(p) < 2:
+    def fit(self, y, loc, scale) -> "PITRecalibrator":
+        y = np.asarray(y, dtype=float)
+        s = np.asarray(scale, dtype=float)
+        m = np.asarray(loc, dtype=float)
+        if not (np.isfinite(y).all() and np.isfinite(m).all() and np.isfinite(s).all()):
+            raise ValueError("y, loc and scale must be finite")
+        if np.any(s <= 0):
+            raise ValueError("scale must be positive")
+        pit = np.asarray(cdf(y, m, s, self.dist), dtype=float).ravel()
+        if len(pit) < 2:
             raise ValueError("at least two observations are needed")
-        emp = np.arange(1, len(p) + 1) / len(p)
-        iso = IsotonicRegression(y_min=0.0, y_max=1.0, increasing=True, out_of_bounds="clip").fit(p, emp)
-        self._grid = np.linspace(0.0, 1.0, self.grid_size)
-        self._mapped = np.maximum.accumulate(iso.predict(self._grid))
+        self.pit_ = np.sort(pit)
         return self
 
     def calibrated_levels(self, levels) -> np.ndarray:
         """Levels ``R^{-1}(tau)`` at which to query the original distribution (non-decreasing)."""
-        if self._grid is None:
+        if self.pit_ is None:
             raise RuntimeError("fit the recalibrator first")
         tau = check_levels(levels)
-        r, idx = np.unique(self._mapped, return_index=True)
-        new = np.interp(tau, r, self._grid[idx])
+        new = np.quantile(self.pit_, tau, method=self.interpolation)
         return np.clip(np.maximum.accumulate(new), self.eps, 1.0 - self.eps)
 
     def quantiles(self, loc, scale, levels) -> np.ndarray:
         """Recalibrated predictive quantiles, shape ``(n, len(levels))``."""
         m = np.atleast_1d(np.asarray(loc, dtype=float))
         s = np.broadcast_to(np.asarray(scale, dtype=float), m.shape)
+        if not (np.isfinite(m).all() and np.isfinite(s).all()) or np.any(s <= 0):
+            raise ValueError("loc must be finite and scale positive and finite")
         z = _family(self.dist).ppf(self.calibrated_levels(levels))
         return m[:, None] + s[:, None] * z[None, :]

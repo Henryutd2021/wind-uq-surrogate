@@ -207,8 +207,11 @@ def training_table(plants, spec: FeatureSpec, levels, dist: str = "laplace", blo
         frames.append(tab.reset_index(drop=True))
     if not frames:
         raise ValueError("no observed plants")
-    table = pd.concat(frames, ignore_index=True)
-    return table.dropna().reset_index(drop=True)
+    table = pd.concat(frames, ignore_index=True).dropna().reset_index(drop=True)
+    # how many rows ahead a target may use observations (for purging time splits, validation.time_split)
+    table.attrs["target_reach"] = 0 if target_window is None and block is None else \
+        (target_window // 2 if target_window is not None else block - 1)
+    return table
 
 
 def feature_columns(table: pd.DataFrame) -> list[str]:

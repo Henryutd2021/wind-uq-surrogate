@@ -6,7 +6,7 @@ Modules: ``metrics_single``, ``metrics_pair``, ``metrics_ensemble``, ``metrics_s
 ``cli``. See README.md and docs/.
 """
 
-from .calibration import (IsotonicRecalibrator, block_labels, crps_optimal_scale, optimal_scale,
+from .calibration import (PITRecalibrator, block_labels, crps_optimal_scale, optimal_scale,
                           rolling_optimal_scale)
 from .features import (FeatureSpec, PlantSeries, SpatialSpec, build_features, calibration_targets, feature_columns,
                        prediction_table, training_table)
@@ -21,14 +21,15 @@ from .probabilistic import (available_coverages, crps, crps_gaussian, crps_lapla
                             pinball_loss, quantiles, reliability)
 from .surrogate import Surrogate, select_gpr_kernel
 from .synthetic import synthetic_fleet
-from .validation import cross_validate, plant_splits, score_predictive, score_scale, time_split
+from .validation import (cross_validate, nested_recalibrated_quantiles, plant_splits, recalibrated_scores,
+                         score_predictive, score_scale, time_split)
 from .workflow import WorkflowConfig, run_workflow, save_result
 
 __version__ = "1.0.0"
 
 __all__ = [
     "FeatureSpec",
-    "IsotonicRecalibrator",
+    "PITRecalibrator",
     "PlantSeries",
     "SpatialSpec",
     "Surrogate",
@@ -56,6 +57,7 @@ __all__ = [
     "moving_nrmse",
     "moving_spectral_entropy",
     "moving_std",
+    "nested_recalibrated_quantiles",
     "normalized_range",
     "optimal_scale",
     "pairwise_distances",
@@ -67,6 +69,7 @@ __all__ = [
     "rank_histogram",
     "rank_histogram_summary",
     "read_plants",
+    "recalibrated_scores",
     "reliability",
     "rolling_optimal_scale",
     "run_workflow",

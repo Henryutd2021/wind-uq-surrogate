@@ -21,7 +21,7 @@ Can UQ metrics of the inputs of a wind power model serve as the inputs of a surr
 | Spatial metrics | semivariogram of turbine-level values; nugget, sill and range from a weighted least-squares fit |
 | Uncertainty target | scale of a Laplace or Gaussian predictive distribution around the point forecast, chosen by pinball-loss optimization (exact solution), per step, per block or per centred window |
 | Surrogates | Gaussian process regression (with its own predictive uncertainty), support vector regression, random forest, ridge regression, constant baseline |
-| Validation | leave-one-plant-out (or plant folds); scores of the scale and of the predictive distributions (pinball loss, CRPS, reliability, interval coverage and width); isotonic recalibration |
+| Validation | leave-one-plant-out (or plant or regional folds); scores of the scale and of the predictive distributions (pinball loss, CRPS, reliability, interval coverage and width); PIT recalibration validated with nested plant folds |
 | Output | per-unit scale and predictive quantiles in MW at unobserved plants |
 | Data | any plants in the input format of [docs/data_pipeline.md](docs/data_pipeline.md); synthetic generator for examples and tests |
 
@@ -35,7 +35,7 @@ Can UQ metrics of the inputs of a wind power model serve as the inputs of a surr
 | [`docs/architecture.md`](docs/architecture.md) | modules, data flow, output tables, run time, tests |
 | [`src/wind_uq_surrogate/`](src/wind_uq_surrogate/) | the implementation (NumPy, SciPy, pandas, scikit-learn) |
 | [`examples/`](examples/) | `minimal.py` (end-to-end, about half a minute), `metrics_tour.py` (every metric family), `calibration_targets.py` (Step A in detail), `validation_design.py` (target choice and a negative control, about a minute); all on synthetic data |
-| [`tests/`](tests/) | 50 tests: metrics against direct formulas, scores against numerical integration, exact optimization against brute force, features without look-ahead, workflow, input files, command line |
+| [`tests/`](tests/) | 60 tests: metrics against direct formulas, scores against numerical integration, exact optimization against brute force, features without look-ahead, leakage guards, workflow, input files, command line |
 
 ## Quick start
 

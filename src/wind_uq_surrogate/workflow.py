@@ -16,7 +16,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from .calibration import IsotonicRecalibrator
+from .calibration import PITRecalibrator
 from .features import FeatureSpec, feature_columns, prediction_table, training_table
 from .probabilistic import available_coverages, check_levels, default_levels, quantiles
 from .surrogate import SURROGATES, Surrogate
@@ -32,9 +32,12 @@ class WorkflowConfig:
     ``dist``: predictive distribution family. ``block``: one target scale per block of consecutive steps;
     ``target_window``: one target per step from a centred window (odd length); neither: one target per step from
     that step alone. ``models``: surrogates to compare. ``gpr_max_train``: row cap for the GP surrogate.
-    ``n_splits``: plant folds (``None``: leave one plant out). ``recalibrate``: isotonic recalibration of the
-    chosen surrogate's predictive distributions. ``final_model``: surrogate used for the unobserved plants
-    (``None``: the one with the lowest cross-validated pinball loss).
+    ``n_splits``: plant folds (``None``: leave one plant out). ``split_groups``: optional mapping plant id ->
+    group (e.g. region) so that whole groups are held out. ``recalibrate``: PIT recalibration of the chosen
+    surrogate's predictive distributions, validated with nested plant folds (``inner_n_splits``).
+    ``final_model``: surrogate used for the unobserved plants (``None``: the one with the lowest cross-validated
+    pinball loss before recalibration; the choice uses the same folds as the reported scores, which makes the
+    chosen surrogate's scores slightly optimistic).
     """
 
     features: FeatureSpec
@@ -46,7 +49,9 @@ class WorkflowConfig:
     models: tuple = ("gpr", "random_forest", "svr", "ridge", "constant")
     gpr_max_train: int | None = 600
     n_splits: int | None = None
+    split_groups: dict | None = None
     recalibrate: bool = True
+    inner_n_splits: int | None = 3
     coverages: tuple = (0.5, 0.9)
     final_model: str | None = None
     random_state: int = 0
@@ -101,17 +106,23 @@ def run_workflow(observed, unobserved, config: WorkflowConfig) -> WorkflowResult
                            target_window=config.target_window, bounds=config.scale_bounds)
     if table["plant_id"].nunique() < 2:
         raise ValueError("after the window warm-up fewer than two plants have complete rows")
-    splits = plant_splits(table["plant_id"].to_numpy(), config.n_splits)
-    cv = cross_validate(table, config.factories(), splits)
+    splits = plant_splits(table["plant_id"].to_numpy(), config.n_splits, config.split_groups)
+    factories = config.factories()
+    cv = cross_validate(table, factories, splits)
     scale_scores = score_scale(cv)
     pred_scores, rel = score_predictive(cv, levels, config.dist, config.coverages)
     oracle = oracle_scores(table, levels, config.dist, config.coverages)
-    rec_scores = rec_rel = None
-    if config.recalibrate and len(splits) >= 2:
-        rec_scores, rec_rel = recalibrated_scores(cv, levels, config.dist, config.coverages)
     chosen = config.final_model or str(pred_scores.sort_values("pinball").iloc[0]["model"])
-    final = config.factories()[chosen]().fit(table[feature_columns(table)], table["target_scale"])
-    notes = [f"{chosen}: {w}" for w in final.fit_warnings_]
+    rec_scores = rec_rel = None
+    notes = []
+    if config.recalibrate and len(splits) < 3:
+        notes.append("recalibration not validated: nested plant folds need at least three plants or groups")
+    elif config.recalibrate:
+        rec_scores, rec_rel = recalibrated_scores(table, {chosen: factories[chosen]}, splits, levels, config.dist,
+                                                  config.coverages, config.inner_n_splits, cv_predictions=cv,
+                                                  groups=config.split_groups)
+    final = factories[chosen]().fit(table[feature_columns(table)], table["target_scale"])
+    notes += [f"{chosen}: {w}" for w in final.fit_warnings_]
     predictions = pd.DataFrame()
     if unobserved:
         ptab = prediction_table(unobserved, config.features)
@@ -121,9 +132,10 @@ def run_workflow(observed, unobserved, config: WorkflowConfig) -> WorkflowResult
             raise ValueError(f"unobserved plants lack features: {sorted(missing)}")
         feats = feature_columns(table)
         scale = final.predict(ptab[feats])
-        if config.recalibrate and len(splits) >= 2:
+        if config.recalibrate:
+            # out-of-fold predictions at every observed plant, each from a surrogate that did not see that plant
             sub = cv[cv["model"] == chosen]
-            rec = IsotonicRecalibrator(config.dist).fit(sub["actual_pu"], sub["forecast_pu"], sub["pred_scale"])
+            rec = PITRecalibrator(config.dist).fit(sub["actual_pu"], sub["forecast_pu"], sub["pred_scale"])
             q = rec.quantiles(ptab["forecast_pu"], scale, levels)
         else:
             q = quantiles(ptab["forecast_pu"], scale, levels, config.dist)

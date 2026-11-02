@@ -12,11 +12,12 @@ Structure of the generator (``docs/data_pipeline.md``, Section 5):
   an ensemble spreads more when ``r_t`` is high;
 * the point forecast is the power curve applied to one data product;
 * the observed power is the forecast plus Laplace noise with scale
-  ``capacity * base * exp(signal * gain * (r_t - 0.5))``, clipped to ``[0, capacity]``.
+  ``capacity * base * exp(signal * gain * (r_t - 0.5))``, clipped to ``[0, capacity]`` unless ``clip=False``.
 
-``signal`` sets how strongly the forecast-error scale follows the regime. With ``signal=0`` the metrics still vary
-with the regime, but the error scale does not: a negative control in which no surrogate should beat the constant
-baseline.
+``signal`` sets how strongly the forecast-error scale follows the regime. With ``signal=0`` and ``clip=False`` the
+metrics still vary with the regime, but the error distribution does not depend on anything: a negative control in
+which no surrogate should beat the constant baseline. (With clipping, the error distribution near zero and full
+power depends on the forecast level, which a surrogate can legitimately learn.)
 """
 
 from __future__ import annotations
@@ -68,13 +69,14 @@ class SyntheticFleet:
 
 def synthetic_fleet(n_plants: int = 8, n_unobserved: int = 2, n_steps: int = 24 * 42, n_members: int = 10,
                     n_turbines: int = 0, signal: float = 1.0, base: float = 0.035, gain: float = 3.0,
-                    seed: int = 0) -> SyntheticFleet:
+                    clip: bool = True, seed: int = 0) -> SyntheticFleet:
     """Generate an invented fleet of wind plants with hourly series.
 
     Columns of every plant's ``data``: ``forecast`` (MW), ``ws_a`` and ``ws_b`` (two invented wind-speed data
     products, m/s), ``ens_00`` ... (ensemble members of wind speed, m/s) and, at observed plants, ``actual`` (MW).
     With ``n_turbines > 0`` each plant also gets a turbine-level wind-speed field for the spatial metrics.
-    The last ``n_unobserved`` plants have no ``actual`` column.
+    The last ``n_unobserved`` plants have no ``actual`` column. ``clip=False`` leaves the observed power
+    unclipped (not physical, but needed for a clean negative control).
     """
     if n_plants < 2 or not 0 <= n_unobserved < n_plants:
         raise ValueError("need at least two plants and at least one observed plant")
@@ -113,7 +115,9 @@ def synthetic_fleet(n_plants: int = 8, n_unobserved: int = 2, n_steps: int = 24 
         cap = float(capacity[p])
         fc = cap * power_curve(ws_a[:, p])
         true_scale = cap * base * np.exp(signal * gain * (regime[:, p] - 0.5))
-        actual = np.clip(fc + rng.laplace(0.0, true_scale), 0.0, cap)
+        actual = fc + rng.laplace(0.0, true_scale)
+        if clip:
+            actual = np.clip(actual, 0.0, cap)
         data = {"forecast": fc, "ws_a": ws_a[:, p], "ws_b": ws_b[:, p]}
         if n_members:
             spread = 0.3 + 1.6 * regime[:, p]
@@ -135,7 +139,8 @@ def synthetic_fleet(n_plants: int = 8, n_unobserved: int = 2, n_steps: int = 24 
     plant_table = pd.DataFrame({"plant_id": [p.plant_id for p in plants], "x_km": xy[:, 0], "y_km": xy[:, 1],
                                 "capacity_mw": capacity, "observed": [p.observed for p in plants]})
     settings = {"n_plants": n_plants, "n_unobserved": n_unobserved, "n_steps": n_steps, "n_members": n_members,
-                "n_turbines": n_turbines, "signal": signal, "base": base, "gain": gain, "seed": seed}
+                "n_turbines": n_turbines, "signal": signal, "base": base, "gain": gain, "clip": clip,
+                "seed": seed}
     return SyntheticFleet(plants, plant_table, pd.concat(truth, ignore_index=True), settings)
 
 

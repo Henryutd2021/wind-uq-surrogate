@@ -59,10 +59,16 @@ def _spectral_entropy_rows(win: np.ndarray, detrend: str) -> np.ndarray:
         y = win - win.mean(axis=1, keepdims=True) - slope * t
     else:
         raise ValueError("detrend must be 'mean' or 'linear'")
+    # rescale each window by its largest absolute deviation: the entropy is invariant to shifts and scaling
+    dev = np.abs(y).max(axis=1, keepdims=True)
+    # a window counts as constant when its variation is at the level of floating-point rounding of its values
+    floor = 64.0 * np.finfo(float).eps * np.abs(win).max(axis=1, keepdims=True)
+    ok = (dev > floor)[:, 0]
+    y = np.divide(y, dev, out=np.zeros_like(y), where=dev > 0)
     power = np.abs(np.fft.rfft(y, axis=1)[:, 1:]) ** 2  # drop the zero frequency
     total = power.sum(axis=1, keepdims=True)
     out = np.full(win.shape[0], np.nan)
-    ok = total[:, 0] > 1e-12 * np.maximum(1.0, (win**2).sum(axis=1))
+    ok &= total[:, 0] > 0
     p = power[ok] / total[ok]
     with np.errstate(divide="ignore", invalid="ignore"):
         h = -np.where(p > 0, p * np.log(p), 0.0).sum(axis=1)

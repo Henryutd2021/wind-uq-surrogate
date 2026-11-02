@@ -1,4 +1,4 @@
-"""Step A in detail: pinball-loss-optimal scales, their CRPS limit, and isotonic recalibration (a few seconds)."""
+"""Step A in detail: pinball-loss-optimal scales, their CRPS limit, and PIT recalibration (a few seconds)."""
 
 import numpy as np
 import pandas as pd
@@ -33,7 +33,7 @@ fit_days = (np.arange(len(a)) // 24) % 2 == 0
 chk = ~fit_days
 scale = np.full(len(a), 0.5 * np.median(true_pu))
 before = w.reliability(a[chk], w.quantiles(f[chk], scale[chk], levels, "laplace"), levels)
-rec = w.IsotonicRecalibrator("laplace").fit(a[fit_days], f[fit_days], scale[fit_days])
+rec = w.PITRecalibrator("laplace").fit(a[fit_days], f[fit_days], scale[fit_days])
 after = w.reliability(a[chk], rec.quantiles(f[chk], scale[chk], levels), levels)
 print("Reliability (observed share below each quantile) before and after recalibration:")
 print(pd.DataFrame({"level": levels, "before": before["observed"], "after": after["observed"]}).round(3)

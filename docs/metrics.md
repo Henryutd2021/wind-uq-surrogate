@@ -39,7 +39,7 @@ For a window $`W_t = (x_{t-w+1}, \dots, x_t)`$ with mean $`\bar{x}_t`$:
 H_t = -\frac{1}{\ln K} \sum_{k=1}^{K} p_k \ln p_k \in [0, 1].
 ```
 
-$`H_t = 0`$ when all variance sits at one frequency (a regular oscillation); $`H_t = 1`$ for a flat spectrum (white-noise-like, least predictable from its own past). A window without variation gives a missing value. The zero frequency is excluded, so a constant offset does not count as information. The window needs at least four steps.
+$`H_t = 0`$ when all variance sits at one frequency (a regular oscillation); $`H_t = 1`$ for a flat spectrum (white-noise-like, least predictable from its own past). The value does not change when the window is shifted or scaled. A window whose variation is at the level of floating-point rounding of its values counts as constant and gives a missing value. The zero frequency is excluded, so a constant offset does not count as information. The window needs at least four steps.
 
 ## 3. Agreement of two series (data-source uncertainty)
 
@@ -57,7 +57,7 @@ For a reference series $`r`$ and a second series $`s`$ of the same quantity (two
 \mathrm{nMAE}_t = \frac{1}{N_t} \frac{1}{w} \sum_i |r_i - s_i|.
 ```
 
-- $`\rho_t`$ is the Pearson correlation (`moving_correlation`); it is missing when either series is constant in the window.
+- $`\rho_t`$ is the Pearson correlation (`moving_correlation`); it is missing when either series is constant in the window (variation at the level of floating-point rounding); it does not change when either series is shifted or scaled.
 - MAPE (`moving_mape`) averages over the steps $`I_t`$ where $`|r_i|`$ exceeds `min_reference`, because small reference values make relative errors explode (for wind speed a threshold near calm conditions is common, as in Fernández-González et al., 2017). A window without such steps gives a missing value.
 - The normalizer $`N_t`$ of nRMSE and nMAE (`moving_nrmse`, `moving_nmae`) is a fixed positive number (for power: the installed capacity), the range of the reference in the window (`"range"`), or its mean (`"mean"`). A zero range or a non-positive mean gives a missing value; there is no small-number fallback. These are among the standard deterministic metrics of forecast evaluation (Zhang et al., 2015).
 
@@ -89,7 +89,7 @@ $`\mathrm{PI}_t > 0`$: less spread than usual, a more predictable situation; $`\
 \mathrm{CRPS}_t = \frac{1}{M} \sum_{m=1}^{M} |x_{t,m} - y_t| - \frac{1}{2M^2} \sum_{m=1}^{M} \sum_{k=1}^{M} |x_{t,m} - x_{t,k}| .
 ```
 
-This is the CRPS of the empirical distribution of the members (lower is better; same unit as the data). With `fair=True` the second term uses $`1/(2M(M-1))`$ (Ferro, 2014). The double sum is computed from the sorted members in $`O(M \log M)`$.
+This is the CRPS of the empirical distribution of the members (lower is better; same unit as the data). With `fair=True` the second term uses $`1/(2M(M-1))`$ (Ferro, 2014); the fair version assumes that the members are a random sample of independent draws from the forecast distribution, which does not hold for correlated members or for several data products used as an ensemble. The double sum is computed from the sorted members in $`O(M \log M)`$.
 
 **Rank histogram** (`observation_rank`, `rank_histogram`, `rank_histogram_summary`; Hamill, 2001). The rank of the observation among the members (0 to $`M`$, ties broken at random) is counted over many time steps. A statistically consistent ensemble gives a flat histogram; a U shape points to too little spread or a bias, a dome to too much spread. The summary reports the chi-square statistic against a flat histogram ($`M`$ degrees of freedom) and the share of the two outer bins next to its expected value $`2/(M+1)`$. Serial correlation makes the chi-square test too liberal (Hamill, 2001); read it as a descriptive statistic.
 
@@ -140,7 +140,7 @@ with $`c_0, c_1 \ge 0`$ and $`0 < a \le a_{\max}`$ ($`a_{\max}`$ defaults to thr
 - Gneiting, T., and Raftery, A. E. (2007). Strictly proper scoring rules, prediction, and estimation. *Journal of the American Statistical Association*, 102(477), 359–378. https://doi.org/10.1198/016214506000001437
 - Hamill, T. M. (2001). Interpretation of rank histograms for verifying ensemble forecasts. *Monthly Weather Review*, 129(3), 550–560. https://doi.org/10.1175/1520-0493(2001)129<0550:IORHFV>2.0.CO;2
 - Hersbach, H. (2000). Decomposition of the continuous ranked probability score for ensemble prediction systems. *Weather and Forecasting*, 15(5), 559–570. https://doi.org/10.1175/1520-0434(2000)015<0559:DOTCRP>2.0.CO;2
-- IEC 61400-1. *Wind energy generation systems – Part 1: Design requirements*. International Electrotechnical Commission.
+- IEC 61400-1:2019. *Wind energy generation systems – Part 1: Design requirements* (edition 4.0). International Electrotechnical Commission.
 - Inouye, T., Shinosaki, K., Sakamoto, H., Toi, S., Ukai, S., Iyama, A., Katsuda, Y., and Hirano, M. (1991). Quantification of EEG irregularity by use of the entropy of the power spectrum. *Electroencephalography and Clinical Neurophysiology*, 79(3), 204–210. https://doi.org/10.1016/0013-4694(91)90138-T
 - Matheron, G. (1963). Principles of geostatistics. *Economic Geology*, 58(8), 1246–1266. https://doi.org/10.2113/gsecongeo.58.8.1246
 - Toth, Z., Zhu, Y., and Marchok, T. (2001). The use of ensembles to identify forecasts with small and large uncertainty. *Weather and Forecasting*, 16(4), 463–477. https://doi.org/10.1175/1520-0434(2001)016<0463:TUOETI>2.0.CO;2

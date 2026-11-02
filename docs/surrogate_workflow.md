@@ -14,7 +14,7 @@ observed plants                                   unobserved plants
                            C  surrogate  x ↦ ŝ  ───────────────┤
                            │                                   ▼
                            D  validation on held-out plants    ŝ_t ─► predictive quantiles
-                              (+ isotonic recalibration)
+                              (+ PIT recalibration)
 ```
 
 | Step | Function | Module |
@@ -22,7 +22,7 @@ observed plants                                   unobserved plants
 | A. Calibrated targets at observed plants | `calibration_targets`, `optimal_scale`, `rolling_optimal_scale` | `calibration`, `features` |
 | B. Features | `FeatureSpec`, `build_features`, `training_table`, `prediction_table` | `features` (metrics: [metrics.md](metrics.md)) |
 | C. Surrogates | `Surrogate`, `select_gpr_kernel` | `surrogate` |
-| D. Validation and prediction | `plant_splits`, `cross_validate`, `score_scale`, `score_predictive`, `recalibrated_scores` | `validation` |
+| D. Validation and prediction | `plant_splits`, `time_split`, `cross_validate`, `score_scale`, `score_predictive`, `nested_recalibrated_quantiles`, `recalibrated_scores` | `validation` |
 | A–D end to end | `WorkflowConfig`, `run_workflow`, `save_result` | `workflow` |
 
 ## 1. Notation
@@ -71,9 +71,9 @@ Three choices of $`S`$ are implemented:
 | `block=k` | the block of $`k`$ consecutive steps that contains $`t`$ | one target per block |
 | `target_window=k` (odd) | the centred window of $`k`$ steps around $`t`$ (cut at the ends) | one target per step, smoother |
 
-A target from a single step rests on one observation: for dense levels it is proportional to $`|e_t|`$ (see below), a very noisy estimate of the local error scale. Windows and blocks trade temporal resolution for a less noisy target; the choice is part of the validation design (`examples/validation_design.py`). The target at $`t`$ may use observations after $`t`$ (centred window): targets are labels at observed plants, not inputs, so this is not look-ahead in the features.
+A target from a single step rests on one observation: for dense levels it is proportional to $`|e_t|`$ (see below), a very noisy estimate of the local error scale. Windows and blocks trade temporal resolution for a less noisy target; the choice is part of the validation design (`examples/validation_design.py`). The target at $`t`$ may use observations up to `target_window // 2` steps after $`t`$ (centred window) or up to `block - 1` steps (blocks); `training_table` records this reach in `table.attrs["target_reach"]`. Targets are labels at observed plants, not inputs, so this is not look-ahead in the features. It matters for validation only when one plant's record is split in time (see `time_split` in Section 4); holding out whole plants is not affected.
 
-**Exact solution.** Each term $`\rho_\tau(e_t - s z_\tau)`$ is convex and piecewise linear in $`s`$, so the objective is convex and piecewise linear, with breakpoints at $`s = e_t / z_\tau`$. Its minimum lies at a breakpoint inside $`(s_{\min}, s_{\max})`$ or at a bound. `optimal_scale` evaluates all candidates for single steps and, for blocks and windows, finds the first interval between sorted candidates where the derivative is non-negative by bisection. The result is exact and deterministic (no stochastic search); among equal minima the smallest scale is returned. When $`e_t = 0`$ the optimum is the lower bound $`s_{\min}`$. Default bounds: $`s_{\min} = 10^{-9}\max(1, \max_t|e_t|)`$ and $`s_{\max} = 1.01 \max_t|e_t| / \min_{\tau}|z_\tau|`$ (over the levels with $`z_\tau \ne 0`$), which contains every single-step optimum.
+**Exact solution.** Each term $`\rho_\tau(e_t - s z_\tau)`$ is convex and piecewise linear in $`s`$, so the objective is convex and piecewise linear, with breakpoints at $`s = e_t / z_\tau`$. Its minimum lies at a breakpoint inside $`(s_{\min}, s_{\max})`$ or at a bound. `optimal_scale` evaluates all candidates for single steps and, for blocks and windows, finds the first interval between sorted candidates where the derivative is non-negative by bisection. The result is exact up to floating-point rounding and deterministic (no stochastic search); when the minimum is attained on a whole interval, the smallest scale of that interval is returned (slopes within rounding tolerance of zero count as flat). When $`e_t = 0`$ the optimum is the lower bound $`s_{\min}`$. Default bounds: $`s_{\min} = 10^{-9}\max(1, \max_t|e_t|)`$ and $`s_{\max} = 1.01 \max_t|e_t| / \min_{\tau}|z_\tau|`$ (over the levels with $`z_\tau \ne 0`$), which contains every single-step optimum. The levels must include at least one level other than 0.5; with the median alone the scale does not affect the loss and an error is raised.
 
 **Link to the CRPS.** The CRPS equals twice the pinball loss integrated over all levels, $`\mathrm{CRPS}(F, y) = 2\int_0^1 \rho_\tau(y - F^{-1}(\tau))\, d\tau`$ (Gneiting and Raftery, 2007). As the levels become dense, the single-step optimum therefore tends to the scale that minimizes the closed-form CRPS for one observation (`crps_optimal_scale`):
 
@@ -99,7 +99,7 @@ These follow from setting the derivative in $`s`$ of the closed-form CRPS (Secti
 
 Two rules keep the features honest. The measured power never enters a feature (`FeatureSpec` rejects it): it does not exist at an unobserved plant. All metrics use trailing windows, so a feature at $`t`$ uses data up to $`t`$ only. Metrics that need observations (ensemble CRPS, rank histogram) are therefore not features.
 
-**Surrogates** (`Surrogate`). Each maps the standardized features to $`\log s`$ (the scale is positive and right-skewed; `log_target=False` regresses $`s`$ itself) and returns $`\hat{s} = \exp(\widehat{\log s})`$, the median of the implied distribution of the scale:
+**Surrogates** (`Surrogate`). Each maps the standardized features to $`\log s`$ (the scale is positive and right-skewed; `log_target=False` regresses $`s`$ itself) and returns $`\hat{s} = \exp(\widehat{\log s})`$. For a regressor of the conditional mean of $`\log s`$ this is a geometric-mean-type prediction; it is the conditional median only if $`\log s`$ is symmetric around its conditional mean (for example log-normal). It is not the loss-optimal scale, which is one reason for the recalibration in Section 4. Prediction inputs given as a DataFrame are matched to the training features by column name (missing, extra or duplicated columns are errors):
 
 | Name | Model (scikit-learn; Pedregosa et al., 2011) | Note |
 |---|---|---|
@@ -113,9 +113,11 @@ Two rules keep the features honest. The measured power never enters a feature (`
 
 ## 4. Step D: validation and scores
 
-**Held-out plants.** `plant_splits` builds leave-one-plant-out folds (or $`K`$ folds of plants). Each held-out plant plays the role of an unobserved plant: its targets and observations are never used to fit the surrogate that predicts it. This measures what the workflow is for, generalization to new plants. `time_split` gives a within-plant split (last part of each plant's record) for comparison; it measures a different, easier task.
+**Held-out plants.** `plant_splits` builds leave-one-plant-out folds (or $`K`$ folds of plants). With `groups` (in the workflow `WorkflowConfig.split_groups`; on the command line an optional `group` column in `plants.csv`) whole groups of plants, for example regions, are held out together. Each held-out plant plays the role of an unobserved plant: its targets and observations are never used to fit the surrogate that predicts it. This measures what the workflow is for, generalization to new plants.
 
-**Scores of the scale** (`score_scale`): MAE and RMSE of $`\hat{s}`$ against the target, RMSE of $`\log \hat{s}`$, and the coefficient of determination of $`\log s`$. Because the targets are noisy estimates of the true scale, these numbers understate the surrogate's accuracy; the scores below judge the predictive distributions against the observations directly.
+**Within-plant split.** `time_split` holds out the last part of each plant's record, for comparison; it measures a different, easier task. Training rows whose targets reach into the test period would carry test observations into training, so `time_split` leaves out a gap of `target_reach` training rows before the test period (Section 2); a gap can also be given explicitly.
+
+**Scores of the scale** (`score_scale`): MAE and RMSE of $`\hat{s}`$ against the target, RMSE of $`\log \hat{s}`$, and the coefficient of determination of $`\log s`$. The targets are noisy proxies of the unknown error scale, so these numbers describe agreement with the proxy and can differ either way from accuracy for the true scale; the scores below judge the predictive distributions against the observations directly.
 
 **Scores of the predictive distributions** (`score_predictive`), with quantiles $`\hat{q}_{\tau,t} = m_t + \hat{s}_t z_\tau`$ at the held-out plants:
 
@@ -143,20 +145,24 @@ The closed-form CRPS is (Gneiting et al., 2005; Jordan et al., 2019), with $`z =
 
 Reliability $`\mathrm{Rel}(\tau)`$ should be close to $`\tau`$ (calibration); the summary reports the mean absolute deviation over the levels. Interval width measures sharpness, which matters only among calibrated predictions (Gneiting et al., 2007). Pinball loss and CRPS are proper scores and reward both. The constant baseline is the reference: a surrogate is useful only if it beats it on held-out plants.
 
-**Oracle reference** (`oracle_scores`): the scores of the targets themselves, in sample. With single-step targets each target minimizes its own step's pinball loss, so their mean pinball loss is a lower bound that no surrogate can reach; with blocks or windows it is only a reference.
+**Oracle reference** (`oracle_scores`): the scores of the targets themselves, in sample. With single-step targets each target minimizes its own step's pinball loss within the same family, location, levels and scale bounds, so their mean pinball loss is the smallest that any choice of scales in that setting can reach (the targets reach it). Predictions outside that setting (another family, recalibrated levels) are not bounded by it. With blocks or windows it is only a reference.
 
-**Recalibration** (`IsotonicRecalibrator`, `recalibrated_scores`; Kuleshov et al., 2018). Systematic miscalibration, for example from regressing $`\log s`$ (which predicts a median, not the loss-optimal scale) or from a distribution family that does not fit, is corrected by an isotonic map of the probability integral transform: with $`u_t = F_t(y_t)`$ on held-out data, $`R(\tau)`$ = share of $`u_t \le \tau`$, made monotone; the recalibrated $`\tau`$-quantile is the original quantile at level $`R^{-1}(\tau)`$. In validation it is cross-fitted (each fold is recalibrated with a map fitted on the other folds); for the unobserved plants the map is fitted on all held-out predictions of the chosen surrogate.
+**Recalibration** (`PITRecalibrator`; Kuleshov et al., 2018). Systematic miscalibration, for example from regressing $`\log s`$ (Section 3) or from a distribution family that does not fit, is corrected through the probability integral transform (PIT). With $`u_t = F_t(y_t)`$ on held-out data, let $`R(p)`$ be the share of $`u_t \le p`$, the empirical CDF of the PIT values; at the PIT values it coincides with the isotonic recalibration map of Kuleshov et al. (2018), since it is already non-decreasing. The recalibrated $`\tau`$-quantile is the original quantile at level $`R^{-1}(\tau)`$, the $`\tau`$-quantile of the PIT values: either the generalized inverse $`\inf\{p : R(p) \ge \tau\}`$ (`interpolation="inverted_cdf"`) or its linear interpolation between order statistics (default). Ties need no special treatment: if all PIT values are equal, all recalibrated levels equal that value. Levels are kept within $`[10^{-6}, 1 - 10^{-6}]`$ so that quantiles stay finite.
+
+**Validating recalibration without leakage** (`nested_recalibrated_quantiles`, `recalibrated_scores`). The recalibration map must not use the held-out plant either. For each outer fold, the map is fitted on inner out-of-fold predictions computed only within the outer training plants (`inner_n_splits` plant folds, default 3), and applied to the outer test plant's predictions. Changing the observations of a held-out plant therefore does not change its recalibrated quantiles (a test checks this). The workflow validates recalibration for the chosen surrogate; it needs at least three plants or groups.
+
+**Choice of the surrogate and its score.** `run_workflow` chooses the surrogate with the lowest held-out pinball loss before recalibration. The same folds give the reported scores, so the chosen surrogate's scores are slightly optimistic as an estimate of its performance; the choice is a selection rule, not an independent test. An unbiased estimate needs nested validation (the choice repeated inside each outer fold), which `cross_validate` and `plant_splits` can be combined to build.
 
 ## 5. Prediction at unobserved plants
 
-`run_workflow` chooses the surrogate with the lowest cross-validated pinball loss (or `final_model`), fits it on all observed plants, predicts $`\hat{s}_{p,t}`$ at the unobserved plants, and returns predictive quantiles in MW, $`C_p\,(m_{p,t} + \hat{s}_{p,t} z_\tau)`$ (recalibrated if `recalibrate=True`), together with all validation tables. `save_result` writes them as CSV files and a `summary.json`.
+`run_workflow` chooses the surrogate (Section 4, or `final_model`), fits it on all observed plants, predicts $`\hat{s}_{p,t}`$ at the unobserved plants, and returns predictive quantiles in MW, $`C_p\,(m_{p,t} + \hat{s}_{p,t} z_\tau)`$, together with all validation tables. With `recalibrate=True` the quantiles are recalibrated with a map fitted on the held-out predictions of the chosen surrogate at all observed plants (each from a surrogate that did not see that plant). `save_result` writes the tables as CSV files and a `summary.json`.
 
 **Scope and limits of the design.**
 
 - The surrogate transfers a relation learned at observed plants. Its predictions at an unobserved plant are as good as the observed plants are representative of it (terrain, climate, turbine type, data quality). Leave-one-plant-out scores estimate this only for plants like the observed ones.
-- Plants close to each other share weather, so neighbouring held-out plants are not independent tests; holding out spatial groups of plants (`n_splits` with a grouping by region) gives a stricter estimate.
+- Plants close to each other share weather, so neighbouring held-out plants are not independent tests; holding out spatial groups of plants (`split_groups`, for example by region) gives a stricter estimate.
 - The location-scale family fixes the shape of the predictive distribution; the bounds of power (zero and capacity) are not part of it. Recalibration corrects average miscalibration but not shape errors that vary with conditions.
-- The features describe uncertainty of the inputs. Whether they carry information about power-forecast uncertainty at a given set of plants is an empirical question that the validation answers; `examples/validation_design.py` includes a negative control in which they do not.
+- The features describe uncertainty of the inputs. Whether they carry information about power-forecast uncertainty at a given set of plants is an empirical question that the validation answers; `examples/validation_design.py` includes a negative control in which they do not. A negative control must remove every dependence of the error distribution on the features: in the synthetic generator clipping at zero and capacity alone makes the errors depend on the forecast level, so the control uses `clip=False`.
 
 ## References
 

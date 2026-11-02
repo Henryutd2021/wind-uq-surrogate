@@ -85,7 +85,8 @@ def crps_ensemble(members, obs, fair: bool = False) -> np.ndarray:
 
     ``CRPS = mean_i |x_i - y| - 1/(2 M^2) sum_i sum_j |x_i - x_j|`` (Gneiting and Raftery, 2007, Eq. 21 with the
     empirical distribution of the ``M`` members). With ``fair=True`` the second term uses ``1/(2 M (M - 1))``
-    (Ferro, 2014), which removes the dependence on the ensemble size for exchangeable members.
+    (Ferro, 2014): the fair score assumes the members are a random sample (independent draws) from the forecast
+    distribution; it does not suit correlated members or several data products used as an ensemble.
     Same units as the data; lower is better.
     """
     arr = as_members(members, min_members=1 if not fair else 2)

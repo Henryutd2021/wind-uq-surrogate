@@ -104,11 +104,15 @@ def main(argv=None) -> int:
         return 0
 
     observed, unobserved = split_observed(plants)
+    plant_table = pd.read_csv(Path(args.in_dir) / "plants.csv", dtype={"plant_id": str})
+    split_groups = None
+    if "group" in plant_table.columns:   # optional: hold out whole groups (e.g. regions) in validation
+        split_groups = dict(zip(plant_table["plant_id"], plant_table["group"].astype(str)))
     levels = default_levels(args.level_step)
     config = WorkflowConfig(features=spec, levels=tuple(levels), dist=args.dist,
                             coverages=available_coverages(levels, (0.5, 0.8, 0.9)),
                             block=args.block, target_window=args.target_window, models=tuple(m.strip() for m in args.models.split(",") if m.strip()),
-                            gpr_max_train=args.gpr_max_train, n_splits=args.n_splits,
+                            gpr_max_train=args.gpr_max_train, n_splits=args.n_splits, split_groups=split_groups,
                             recalibrate=not args.no_recalibrate)
     result = run_workflow(observed, unobserved, config)
     save_result(result, out, config)

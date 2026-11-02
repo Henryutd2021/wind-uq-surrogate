@@ -12,14 +12,23 @@ import pandas as pd
 from .windows import check_window, rolling_pair
 
 
+def _standardized_rows(a: np.ndarray):
+    """Centre each window and divide by its largest absolute deviation; flag windows whose variation is at the
+    level of floating-point rounding of their values (treated as constant)."""
+    d = a - a.mean(axis=1, keepdims=True)
+    dev = np.abs(d).max(axis=1, keepdims=True)
+    floor = 64.0 * np.finfo(float).eps * np.abs(a).max(axis=1, keepdims=True)
+    ok = (dev > floor)[:, 0]
+    return np.divide(d, dev, out=np.zeros_like(d), where=dev > 0), ok
+
+
 def _pearson_rows(a: np.ndarray, b: np.ndarray) -> np.ndarray:
-    da = a - a.mean(axis=1, keepdims=True)
-    db = b - b.mean(axis=1, keepdims=True)
+    da, ok_a = _standardized_rows(a)
+    db, ok_b = _standardized_rows(b)
     num = (da * db).sum(axis=1)
     den = np.sqrt((da**2).sum(axis=1) * (db**2).sum(axis=1))
-    scale = np.maximum(np.abs(a).max(axis=1), np.abs(b).max(axis=1))
     out = np.full(a.shape[0], np.nan)
-    ok = den > 1e-12 * np.maximum(scale, 1.0) ** 2
+    ok = ok_a & ok_b & (den > 0)
     out[ok] = num[ok] / den[ok]
     return np.clip(out, -1.0, 1.0)
 

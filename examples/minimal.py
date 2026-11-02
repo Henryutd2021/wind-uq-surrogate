@@ -32,7 +32,7 @@ print("Accuracy of the predicted scale at held-out plants (per unit of capacity)
 print(result.scale_scores.round(4).to_string(index=False), "\n")
 print("Predictive distributions at held-out plants (before recalibration):")
 print(result.predictive_scores.round(4).to_string(index=False), "\n")
-print("After cross-fitted isotonic recalibration:")
+print(f"{result.chosen_model} after PIT recalibration (nested plant folds):")
 print(result.recalibrated_scores.round(4).to_string(index=False), "\n")
 print(f"chosen surrogate: {result.chosen_model}")
 

@@ -37,7 +37,7 @@ Common preparation rules:
 
 ```
 my_inputs/
-├── plants.csv                       plant_id, capacity_mw[, x_km, y_km]
+├── plants.csv                       plant_id, capacity_mw[, x_km, y_km, group]
 ├── series/<plant_id>.csv            time, forecast[, actual], other columns
 ├── turbines/<plant_id>.csv          turbine_id, x, y                     (optional)
 └── turbine_series/<plant_id>.csv    time, one column per turbine_id      (optional)
@@ -48,6 +48,7 @@ my_inputs/
 | `plants.csv` | `plant_id` | text | unique; names the series files |
 | | `capacity_mw` | number | positive |
 | | `x_km`, `y_km` | number | optional plant location (informational) |
+| | `group` | text | optional; plants with the same group (e.g. a region) are held out together in validation (command line) |
 | `series/<plant_id>.csv` | `time` | ISO 8601 timestamps or integers | unique and increasing |
 | | `forecast` | MW | required, finite |
 | | `actual` | MW | present with values only at observed plants; an empty column means unobserved |
@@ -79,9 +80,9 @@ Applied in the workflow:
 
 - plant locations, capacities and mean wind speeds are random draws;
 - a slowly varying regime $`r_t \in (0, 1)`$ per plant (partly shared between plants) makes the wind more variable, the second data product noisier and the ensemble wider when it is high;
-- the point forecast is an invented smooth power curve applied to one data product; the observed power is the forecast plus Laplace noise with scale $`C_p \cdot \mathrm{base} \cdot \exp(\mathrm{signal} \cdot \mathrm{gain} \cdot (r_t - 0.5))`$, clipped to $`[0, C_p]`$;
+- the point forecast is an invented smooth power curve applied to one data product; the observed power is the forecast plus Laplace noise with scale $`C_p \cdot \mathrm{base} \cdot \exp(\mathrm{signal} \cdot \mathrm{gain} \cdot (r_t - 0.5))`$, clipped to $`[0, C_p]`$ (`clip=False` leaves it unclipped);
 - with `n_turbines > 0` each plant gets a turbine-level wind field with exponential spatial correlation whose amplitude follows the regime;
-- `signal = 0` keeps the metrics' dependence on the regime but removes it from the error scale: a negative control.
+- `signal = 0` with `clip=False` keeps the metrics' dependence on the regime but makes the error distribution independent of everything: a negative control. With clipping, errors near zero and full power depend on the forecast level, which a surrogate can legitimately learn.
 
 The generator also returns its ground truth (observed power and true error scale at every plant, including the unobserved ones), which only synthetic data can provide. Its numbers say nothing about any real plant, data product or forecast system.
 

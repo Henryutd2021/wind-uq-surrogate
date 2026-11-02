@@ -168,6 +168,18 @@ def variogram_over_time(field, coords, bin_edges, model: str = "exponential", ki
     xy = np.asarray(coords, dtype=float)
     if arr.ndim != 2 or xy.shape != (arr.shape[1], 2):
         raise ValueError("field must be (n_times, n_turbines) and coords (n_turbines, 2)")
+    # configuration errors are raised here; only data-dependent fit failures become missing values below
+    if model not in MODELS:
+        raise ValueError(f"model must be one of {MODELS}")
+    if weighting not in ("cressie", "pairs", "none"):
+        raise ValueError("weighting must be 'cressie', 'pairs' or 'none'")
+    if detrend not in ("none", "linear"):
+        raise ValueError("detrend must be 'none' or 'linear'")
+    if max_range is not None and not (np.isfinite(max_range) and max_range > 0):
+        raise ValueError("max_range must be positive")
+    edges = np.asarray(bin_edges, dtype=float)
+    if edges.ndim != 1 or len(edges) < 2 or np.any(np.diff(edges) <= 0) or edges[0] < 0:
+        raise ValueError("bin_edges must be at least two increasing non-negative values")
     dist = pairwise_distances(xy, kind)
     out = np.full((arr.shape[0], 4), np.nan)
     for t in range(arr.shape[0]):

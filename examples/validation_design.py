@@ -1,9 +1,10 @@
 """Validation design: targets per step vs from a window, and a negative control (about a minute).
 
 Leave-one-plant-out validation of three surrogates and the constant baseline on two invented fleets: one whose
-forecast-error scale follows the weather regime (signal = 1) and one where it does not (signal = 0). In the
-second fleet the metrics still vary with the regime, so any gain over the constant baseline there would point to
-leakage or overfitting.
+forecast-error scale follows the weather regime (signal = 1) and one where it does not (signal = 0). The observed
+power is left unclipped in both, so that with signal = 0 the error distribution depends on nothing; the metrics
+still vary with the regime, so a clear gain over the constant baseline there would point to leakage or
+overfitting.
 """
 
 import pandas as pd
@@ -20,7 +21,8 @@ models = {name: (lambda name=name: w.Surrogate(name, max_train_samples=600))
 
 rows = []
 for signal in (1.0, 0.0):
-    fleet = w.synthetic_fleet(n_plants=7, n_unobserved=0, n_steps=24 * 35, n_members=10, signal=signal, seed=3)
+    fleet = w.synthetic_fleet(n_plants=7, n_unobserved=0, n_steps=24 * 35, n_members=10, signal=signal, clip=False,
+                                 seed=3)
     for label, target_window in (("per step", None), ("window 25", 25)):
         table = training_table(fleet.observed, spec, levels, target_window=target_window)
         cv = cross_validate(table, models, plant_splits(table["plant_id"]))

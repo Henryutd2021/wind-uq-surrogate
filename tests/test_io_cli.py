@@ -81,5 +81,11 @@ def test_cli_synthetic_metrics_run(tmp_path, capsys):
     pred = pd.read_csv(out / "r" / "unobserved_predictions.csv")
     assert "q50_mw" in pred.columns and "q10_mw" in pred.columns
     assert "chosen surrogate" in capsys.readouterr().out
+    plants = pd.read_csv(inp / "plants.csv")
+    plants["group"] = ["north", "north", "south", "south"]   # P04 (unobserved) is not used in validation
+    plants.to_csv(inp / "plants.csv", index=False)
+    assert main(["run", str(inp), "--out-dir", str(out / "g"), "--window", "10", "--models", "constant"]) == 0
+    notes = json.loads((out / "g" / "summary.json").read_text())["notes"]
+    assert any("at least three plants or groups" in n for n in notes)   # two groups: recalibration not validated
     with pytest.raises(SystemExit):
         main(["run", str(inp), "--out-dir", str(out)])   # --window is required

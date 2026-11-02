@@ -68,8 +68,10 @@ class Surrogate:
     Parameters
     ----------
     name : one of :data:`SURROGATES`.
-    log_target : regress ``log(scale)``; predictions are ``exp`` of the predicted log (the median of a log-normal
-        predictive distribution of the scale).
+    log_target : regress ``log(scale)``; predictions are ``exp`` of the predicted log. For a regressor of the
+        conditional mean of ``log(scale)`` this is a geometric-mean-type prediction (the conditional median only
+        if the log scale is symmetric around its mean), not the loss-optimal scale; recalibration corrects the
+        average effect.
     max_train_samples : fit on a random subset of at most this many rows (exact GP regression costs O(n^3)).
     random_state : seed of the subset and of the estimators.
     **params : passed to the scikit-learn estimator (for ``"gpr"`` also ``kernel``, ``kernel_kind``, ``ard``,
@@ -87,6 +89,7 @@ class Surrogate:
         self.params = params
         self.pipeline_ = None
         self.feature_names_ = None
+        self.n_features_ = None
         self.fit_warnings_: list[str] = []
 
     @staticmethod
@@ -98,9 +101,36 @@ class Surrogate:
             raise ValueError("X must be finite (drop rows with missing features first)")
         return arr
 
+    def _features(self, X) -> np.ndarray:
+        """Prediction input in the training schema: a DataFrame is reordered by column name (missing, extra or
+        duplicated columns are errors); an array must have the training number of columns."""
+        if isinstance(X, pd.DataFrame):
+            if self.feature_names_ is None:
+                raise ValueError("the surrogate was fitted on an array; pass an array with the same columns")
+            cols = [str(c) for c in X.columns]
+            X = X.set_axis(cols, axis=1)
+            if len(set(cols)) != len(cols):
+                raise ValueError("X has duplicated column names")
+            missing = [c for c in self.feature_names_ if c not in cols]
+            extra = [c for c in cols if c not in self.feature_names_]
+            if missing or extra:
+                raise ValueError(f"X columns differ from the training features (missing {missing}, extra {extra})")
+            X = X[self.feature_names_]
+        arr = self._matrix(X)
+        if arr.shape[1] != self.n_features_:
+            raise ValueError(f"X has {arr.shape[1]} columns; the surrogate was fitted on {self.n_features_}")
+        return arr
+
     def fit(self, X, y) -> "Surrogate":
-        self.feature_names_ = list(X.columns) if isinstance(X, pd.DataFrame) else None
+        if isinstance(X, pd.DataFrame):
+            if X.columns.duplicated().any():
+                raise ValueError("X has duplicated column names")
+            self.feature_names_ = [str(c) for c in X.columns]
+            X = X.set_axis(self.feature_names_, axis=1)
+        else:
+            self.feature_names_ = None
         Xa = self._matrix(X)
+        self.n_features_ = Xa.shape[1]
         ya = np.asarray(y, dtype=float)
         if ya.shape != (Xa.shape[0],):
             raise ValueError("y must have one value per row of X")
@@ -128,7 +158,7 @@ class Surrogate:
     def predict(self, X) -> np.ndarray:
         """Predicted scale (same unit as the training target)."""
         self._check_fitted()
-        out = self.pipeline_.predict(self._matrix(X))
+        out = self.pipeline_.predict(self._features(X))
         return np.exp(out) if self.log_target else out
 
     def predict_log_std(self, X) -> np.ndarray:
@@ -137,7 +167,7 @@ class Surrogate:
         self._check_fitted()
         if self.name != "gpr":
             raise ValueError("only the GP surrogate returns a predictive standard deviation")
-        Xs = self.pipeline_.named_steps["scale"].transform(self._matrix(X))
+        Xs = self.pipeline_.named_steps["scale"].transform(self._features(X))
         _, std = self.pipeline_.named_steps["model"].predict(Xs, return_std=True)
         return std
 
