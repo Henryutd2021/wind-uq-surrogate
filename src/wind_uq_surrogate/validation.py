@@ -14,6 +14,19 @@ from .probabilistic import crps, interval_scores, pinball_loss, quantiles, relia
 from .surrogate import Surrogate
 
 
+def group_labels(plant_ids, groups=None) -> np.ndarray:
+    """Validation group of each row as text: the plant id, or its group from the mapping ``groups`` (plant id ->
+    group). Labels are compared as text everywhere, so ``1`` and ``"1"`` are the same group."""
+    plants = np.asarray(plant_ids).astype(str)
+    if groups is None:
+        return plants
+    mapping = {str(k): str(v) for k, v in dict(groups).items()}
+    missing = sorted(set(plants) - set(mapping))
+    if missing:
+        raise ValueError(f"groups has no label for plants {missing}")
+    return np.array([mapping[p] for p in plants])
+
+
 def plant_splits(plant_ids, n_splits: int | None = None, groups=None):
     """Train/test row indices that hold out whole plants. A held-out plant plays the role of an unobserved plant.
 
@@ -21,15 +34,7 @@ def plant_splits(plant_ids, n_splits: int | None = None, groups=None):
     region); then whole groups are held out, which avoids testing on plants that share weather with training
     plants. ``n_splits=None``: leave one plant (or group) out; otherwise ``n_splits`` folds of plants (or groups).
     """
-    plants = np.asarray(plant_ids).astype(str)
-    if groups is not None:
-        mapping = {str(k): v for k, v in dict(groups).items()}
-        missing = sorted(set(plants) - set(mapping))
-        if missing:
-            raise ValueError(f"groups has no label for plants {missing}")
-        labels = np.array([str(mapping[p]) for p in plants])
-    else:
-        labels = plants
+    labels = group_labels(plant_ids, groups)
     n_groups = len(np.unique(labels))
     if n_groups < 2:
         raise ValueError("at least two plants (or groups) are needed to hold them out")
@@ -162,11 +167,7 @@ def nested_recalibrated_quantiles(table: pd.DataFrame, factory, splits, levels, 
     out = []
     for fold, (tr, te) in enumerate(splits):
         train = table.iloc[tr].reset_index(drop=True)
-        if groups is None:
-            n_inner_groups = train["plant_id"].nunique()
-        else:
-            mapping = {str(key): v for key, v in dict(groups).items()}
-            n_inner_groups = len({mapping[p] for p in train["plant_id"].astype(str).unique()})
+        n_inner_groups = len(np.unique(group_labels(train["plant_id"], groups)))
         k = None if inner_n_splits is None or inner_n_splits >= n_inner_groups else inner_n_splits
         inner = cross_validate(train, {"m": factory}, plant_splits(train["plant_id"], k, groups), feats)
         rec = PITRecalibrator(dist).fit(inner["actual_pu"], inner["forecast_pu"], inner["pred_scale"])
@@ -199,11 +200,7 @@ def _aligned_scale(outer_predictions: pd.DataFrame, fold: int, test: pd.DataFram
 def nested_feasible(table: pd.DataFrame, splits, groups=None) -> bool:
     """True when every outer training set holds at least two plants (or groups), as nested folds need."""
     for tr, _ in splits:
-        ids = table["plant_id"].iloc[tr].astype(str).unique()
-        if groups is not None:
-            mapping = {str(key): v for key, v in dict(groups).items()}
-            ids = {mapping[p] for p in ids}
-        if len(ids) < 2:
+        if len(np.unique(group_labels(table["plant_id"].iloc[tr], groups))) < 2:
             return False
     return True
 

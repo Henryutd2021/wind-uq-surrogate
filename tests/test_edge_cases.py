@@ -81,6 +81,11 @@ def test_plant_splits_with_groups():
         assert {"A", "B"} <= set(ids[te]) or {"C", "D"} <= set(ids[te])
     with pytest.raises(ValueError):
         plant_splits(ids, groups={"A": 1})
+    # labels are compared as text: 1 and "1" are one group
+    mixed = {"A": 1, "B": "1", "C": 2, "D": "2"}
+    tab = pd.DataFrame({"plant_id": ids})
+    msplits = plant_splits(ids, groups=mixed)
+    assert len(msplits) == 2 and not nested_feasible(tab, msplits, mixed)
 
 
 def test_surrogate_uses_column_names():
