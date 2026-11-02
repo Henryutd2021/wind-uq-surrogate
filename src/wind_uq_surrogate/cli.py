@@ -76,7 +76,7 @@ def main(argv=None) -> int:
     r.add_argument("--target-window", type=int, default=None, help="one target per step from a centred window (odd)")
     r.add_argument("--models", default=",".join(SURROGATES))
     r.add_argument("--n-splits", type=int, default=None, help="plant folds (default: leave one plant out)")
-    r.add_argument("--gpr-max-train", type=int, default=1500)
+    r.add_argument("--gpr-max-train", type=int, default=600, help="row cap of the GP surrogate per fit")
     r.add_argument("--no-recalibrate", action="store_true")
 
     args = ap.parse_args(argv)
