@@ -13,7 +13,8 @@ from wind_uq_surrogate.metrics_spatial import variogram_over_time
 from wind_uq_surrogate.probabilistic import default_levels, pinball_loss, quantiles, reliability
 from wind_uq_surrogate.surrogate import Surrogate
 from wind_uq_surrogate.synthetic import synthetic_fleet
-from wind_uq_surrogate.validation import nested_recalibrated_quantiles, plant_splits, time_split
+from wind_uq_surrogate.validation import (cross_validate, nested_feasible, nested_recalibrated_quantiles, plant_splits,
+                                          time_split)
 
 LEVELS = default_levels(0.05)
 SPEC = FeatureSpec(window=8, pairs=(("ws_a", "ws_b"),), member_prefix="ens_")
@@ -45,7 +46,7 @@ def test_nested_recalibration_does_not_use_test_plant_labels():
 def test_time_split_purges_rows_whose_targets_see_the_test_period():
     fl = synthetic_fleet(n_plants=2, n_unobserved=0, n_steps=130, n_members=3, seed=7)
     tab = training_table(fl.observed, SPEC, LEVELS, target_window=9)
-    assert tab.attrs["target_reach"] == 4
+    assert (tab["target_reach"] == 4).all()
     (tr, te), = time_split(tab, 0.25)
     changed = []
     for p in fl.observed:
@@ -60,7 +61,16 @@ def test_time_split_purges_rows_whose_targets_see_the_test_period():
     assert len(tr0) == len(tr) + 2 * 4
     with pytest.raises(ValueError):
         time_split(tab, 0.25, gap=-1)
-    assert training_table(fl.observed, SPEC, LEVELS, block=6).attrs["target_reach"] == 5
+    assert (training_table(fl.observed, SPEC, LEVELS, block=6)["target_reach"] == 5).all()
+    # the reach survives a CSV round trip; without it the gap must be given
+    import io
+    buf = io.StringIO()
+    tab.to_csv(buf, index=False)
+    back = pd.read_csv(io.StringIO(buf.getvalue()))
+    (tr_back, te_back), = time_split(back, 0.25)
+    assert np.array_equal(tr_back, tr) and np.array_equal(te_back, te)
+    with pytest.raises(ValueError, match="give gap explicitly"):
+        time_split(back.drop(columns="target_reach"), 0.25)
 
 
 def test_plant_splits_with_groups():
@@ -167,3 +177,51 @@ def test_variogram_configuration_errors_are_raised():
         variogram_over_time(field, coords, [0.0, 1.0, 2.0, 3.0], weighting="robust")
     with pytest.raises(ValueError):
         variogram_over_time(field, coords, [2.0, 1.0])
+
+
+def test_cached_outer_predictions_are_matched_by_key():
+    fl = synthetic_fleet(n_plants=6, n_unobserved=0, n_steps=90, n_members=4, seed=6)
+    factory = lambda: Surrogate("ridge")   # noqa: E731
+    tab = training_table(fl.observed, SPEC, LEVELS, target_window=7)
+    splits = plant_splits(tab["plant_id"], 2)
+    cv = cross_validate(tab, {"m": factory}, splits)
+    direct = nested_recalibrated_quantiles(tab, factory, splits, LEVELS)
+    cached = nested_recalibrated_quantiles(tab, factory, splits, LEVELS, outer_predictions=cv)
+    shuffled = nested_recalibrated_quantiles(tab, factory, splits, LEVELS, outer_predictions=cv.iloc[::-1])
+    pd.testing.assert_frame_equal(direct, cached)
+    pd.testing.assert_frame_equal(direct, shuffled)
+    with pytest.raises(ValueError):
+        nested_recalibrated_quantiles(tab, factory, splits, LEVELS, outer_predictions=cv.iloc[1:])
+    with pytest.raises(ValueError):
+        nested_recalibrated_quantiles(tab, factory, splits, LEVELS, outer_predictions=pd.concat([cv, cv.iloc[:1]]))
+    assert nested_feasible(tab, splits)
+    halves = {p: p in ("P01", "P02", "P03") for p in tab["plant_id"].unique()}
+    gsplits = plant_splits(tab["plant_id"], groups=halves)
+    assert nested_feasible(tab, gsplits) and not nested_feasible(tab, gsplits, halves)   # one group per training set
+
+
+def test_pit_recalibrator_shapes_and_bins():
+    with pytest.raises(ValueError):
+        PITRecalibrator("gaussian").fit(np.array([0.0, 10.0]), np.array([0.0, 10.0])[:, None], np.ones(2))
+    with pytest.raises(ValueError):
+        PITRecalibrator("gaussian").fit(np.array([0.0, 10.0]), np.zeros(3), 1.0)
+    rec = PITRecalibrator("gaussian").fit(np.array([0.0, 10.0]), np.array([0.0, 10.0]), 1.0)
+    assert np.allclose(rec.calibrated_levels([0.1, 0.9]), 0.5)
+    field = np.random.default_rng(11).standard_normal((2, 12))
+    coords = np.random.default_rng(12).uniform(0, 5, (12, 2))
+    with pytest.raises(ValueError):
+        variogram_over_time(field, coords, [0.0, 1.0, 2.0, np.nan, 5.0])
+
+
+def test_per_sample_optimum_is_not_disturbed_by_a_huge_upper_bound():
+    e = np.array([1.0])
+    s1, l1 = optimal_scale(e, np.zeros(1), [0.1, 0.9], "gaussian", bounds=(1e-6, 1e14))
+    s2, l2 = optimal_scale(e, np.zeros(1), [0.1, 0.9], "gaussian", bounds=(1e-6, 1e14), groups=[0])
+    assert s1[0] == pytest.approx(1.0 / stats.norm.ppf(0.9)) and s1[0] == pytest.approx(s2[0])
+    assert l1[0] == pytest.approx(l2[0])
+
+
+def test_column_names_must_stay_unique_as_text():
+    X = pd.DataFrame([[1.0, 2.0], [2.0, 1.0], [3.0, 0.5]], columns=[1, "1"])
+    with pytest.raises(ValueError, match="duplicated"):
+        Surrogate("ridge").fit(X, np.ones(3))

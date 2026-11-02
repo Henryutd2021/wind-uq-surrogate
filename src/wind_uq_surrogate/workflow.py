@@ -20,8 +20,8 @@ from .calibration import PITRecalibrator
 from .features import FeatureSpec, feature_columns, prediction_table, training_table
 from .probabilistic import available_coverages, check_levels, default_levels, quantiles
 from .surrogate import SURROGATES, Surrogate
-from .validation import (cross_validate, oracle_scores, plant_splits, recalibrated_scores, score_predictive,
-                         score_scale)
+from .validation import (cross_validate, nested_feasible, oracle_scores, plant_splits, recalibrated_scores,
+                         score_predictive, score_scale)
 
 
 @dataclass
@@ -115,8 +115,9 @@ def run_workflow(observed, unobserved, config: WorkflowConfig) -> WorkflowResult
     chosen = config.final_model or str(pred_scores.sort_values("pinball").iloc[0]["model"])
     rec_scores = rec_rel = None
     notes = []
-    if config.recalibrate and len(splits) < 3:
-        notes.append("recalibration not validated: nested plant folds need at least three plants or groups")
+    if config.recalibrate and not nested_feasible(table, splits, config.split_groups):
+        notes.append("recalibration not validated: nested plant folds need at least two plants or groups in every "
+                      "outer training set")
     elif config.recalibrate:
         rec_scores, rec_rel = recalibrated_scores(table, {chosen: factories[chosen]}, splits, levels, config.dist,
                                                   config.coverages, config.inner_n_splits, cv_predictions=cv,

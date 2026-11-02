@@ -123,9 +123,10 @@ class Surrogate:
 
     def fit(self, X, y) -> "Surrogate":
         if isinstance(X, pd.DataFrame):
-            if X.columns.duplicated().any():
-                raise ValueError("X has duplicated column names")
-            self.feature_names_ = [str(c) for c in X.columns]
+            names = [str(c) for c in X.columns]
+            if len(set(names)) != len(names):
+                raise ValueError("X has duplicated column names (after conversion to text)")
+            self.feature_names_ = names
             X = X.set_axis(self.feature_names_, axis=1)
         else:
             self.feature_names_ = None

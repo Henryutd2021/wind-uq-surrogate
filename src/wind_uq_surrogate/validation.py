@@ -46,14 +46,20 @@ def time_split(table: pd.DataFrame, test_fraction: float = 0.25, gap: int | None
     and the ``gap`` training rows just before the test period are left out.
 
     The gap removes training rows whose target depends on test-period observations (centred-window or block
-    targets reach ``target_reach`` rows ahead; :func:`training_table` stores it in ``table.attrs``). ``gap=None``
-    uses that value (0 for single-step targets). Test-row features use trailing windows that may start in the
+    targets reach ``target_reach`` rows ahead; :func:`training_table` stores it in the column ``target_reach``,
+    which survives a CSV round trip). ``gap=None`` uses that column and raises an error if it is missing. Test-row features use trailing windows that may start in the
     training period; that is information available at prediction time, not leakage.
     """
     if not 0 < test_fraction < 1:
         raise ValueError("test_fraction must be strictly between 0 and 1")
     if gap is None:
-        gap = int(table.attrs.get("target_reach", 0))
+        if "target_reach" in table.columns:
+            gap = int(table["target_reach"].max())
+        elif "target_reach" in table.attrs:
+            gap = int(table.attrs["target_reach"])
+        else:
+            raise ValueError("the table does not record how far its targets reach (column 'target_reach'); "
+                             "give gap explicitly")
     if gap < 0:
         raise ValueError("gap must be non-negative")
     train, test = [], []
@@ -143,6 +149,8 @@ def nested_recalibrated_quantiles(table: pd.DataFrame, factory, splits, levels, 
                                   groups=None) -> pd.DataFrame:
     """Recalibrated predictive quantiles at the held-out plants, without information from those plants.
 
+    The guarantee holds for a fixed surrogate ``factory``; a surrogate chosen by comparing scores over all folds
+    has used every fold's labels for the choice.
     For each outer fold, the recalibrator (:class:`PITRecalibrator`) is fitted on inner out-of-fold predictions
     that are computed within the outer training plants only (``inner_n_splits`` plant folds, ``None`` = leave one
     plant out); it is then applied to the outer test predictions. ``outer_predictions`` (rows of
@@ -164,10 +172,7 @@ def nested_recalibrated_quantiles(table: pd.DataFrame, factory, splits, levels, 
         rec = PITRecalibrator(dist).fit(inner["actual_pu"], inner["forecast_pu"], inner["pred_scale"])
         test = table.iloc[te]
         if outer_predictions is not None:
-            part = outer_predictions[outer_predictions["fold"] == fold]
-            if len(part) != len(te):
-                raise ValueError("outer_predictions do not match the splits")
-            scale = part["pred_scale"].to_numpy()
+            scale = _aligned_scale(outer_predictions, fold, test)
         else:
             scale = factory().fit(train[feats], train["target_scale"]).predict(test[feats])
         q = rec.quantiles(test["forecast_pu"].to_numpy(), scale, tau)
@@ -177,6 +182,30 @@ def nested_recalibrated_quantiles(table: pd.DataFrame, factory, splits, levels, 
             part[f"q_{j}"] = q[:, j]
         out.append(part)
     return pd.concat(out, ignore_index=True)
+
+
+def _aligned_scale(outer_predictions: pd.DataFrame, fold: int, test: pd.DataFrame) -> np.ndarray:
+    """Predicted scales of one outer fold matched to the test rows by plant and time (not by position)."""
+    part = outer_predictions.loc[outer_predictions["fold"] == fold, ["plant_id", "time", "pred_scale"]]
+    keys = ["plant_id", "time"]
+    if part.duplicated(keys).any():
+        raise ValueError(f"outer_predictions has duplicated (plant_id, time) rows in fold {fold}")
+    merged = test[keys].merge(part, on=keys, how="left", validate="one_to_one")
+    if len(part) != len(test) or merged["pred_scale"].isna().any():
+        raise ValueError(f"outer_predictions do not match the test rows of fold {fold}")
+    return merged["pred_scale"].to_numpy()
+
+
+def nested_feasible(table: pd.DataFrame, splits, groups=None) -> bool:
+    """True when every outer training set holds at least two plants (or groups), as nested folds need."""
+    for tr, _ in splits:
+        ids = table["plant_id"].iloc[tr].astype(str).unique()
+        if groups is not None:
+            mapping = {str(key): v for key, v in dict(groups).items()}
+            ids = {mapping[p] for p in ids}
+        if len(ids) < 2:
+            return False
+    return True
 
 
 def recalibrated_scores(table: pd.DataFrame, models: dict, splits, levels, dist: str = "laplace",

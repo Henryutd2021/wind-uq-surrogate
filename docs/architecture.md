@@ -51,7 +51,7 @@ observed plants ── calibration_targets (Step A) ──┐     unobserved pla
 
 | File | One row per | Columns |
 |---|---|---|
-| `training_table.csv` | observed plant and time step | `plant_id`, `time`, features, `forecast_pu`, `actual_pu`, `target_scale`, `target_loss` |
+| `training_table.csv` | observed plant and time step | `plant_id`, `time`, features, `forecast_pu`, `actual_pu`, `target_scale`, `target_loss`, `target_reach` |
 | `cv_predictions.csv` | held-out row and surrogate | `model`, `fold`, `plant_id`, `time`, `forecast_pu`, `actual_pu`, `target_scale`, `pred_scale`, `pred_log_std` (GP only) |
 | `scale_scores.csv` | surrogate | `n`, `scale_mae`, `scale_rmse`, `log_scale_rmse`, `log_scale_r2` |
 | `predictive_scores.csv` | surrogate | `n`, `pinball`, `crps`, `reliability_mad`, `coverage_<c>`, `width_<c>` |

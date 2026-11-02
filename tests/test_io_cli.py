@@ -86,6 +86,6 @@ def test_cli_synthetic_metrics_run(tmp_path, capsys):
     plants.to_csv(inp / "plants.csv", index=False)
     assert main(["run", str(inp), "--out-dir", str(out / "g"), "--window", "10", "--models", "constant"]) == 0
     notes = json.loads((out / "g" / "summary.json").read_text())["notes"]
-    assert any("at least three plants or groups" in n for n in notes)   # two groups: recalibration not validated
+    assert any("at least two plants or groups" in n for n in notes)   # one group left in training: not validated
     with pytest.raises(SystemExit):
         main(["run", str(inp), "--out-dir", str(out)])   # --window is required

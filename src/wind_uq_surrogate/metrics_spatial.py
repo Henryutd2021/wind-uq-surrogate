@@ -53,6 +53,14 @@ def _detrend(values: np.ndarray, coords: np.ndarray, detrend: str) -> np.ndarray
     raise ValueError("detrend must be 'none' or 'linear'")
 
 
+def _check_edges(bin_edges) -> np.ndarray:
+    edges = np.asarray(bin_edges, dtype=float)
+    if edges.ndim != 1 or len(edges) < 2 or not np.isfinite(edges).all() or np.any(np.diff(edges) <= 0) \
+            or edges[0] < 0:
+        raise ValueError("bin_edges must be at least two finite, increasing, non-negative values")
+    return edges
+
+
 def empirical_variogram(values, coords, bin_edges, kind: str = "euclidean", detrend: str = "none",
                         min_pairs: int = 1, distances=None) -> pd.DataFrame:
     """Matheron's estimator ``gamma(h_k) = 1 / (2 N_k) sum_{pairs in bin k} (z_i - z_j)^2``.
@@ -67,9 +75,7 @@ def empirical_variogram(values, coords, bin_edges, kind: str = "euclidean", detr
     xy = np.asarray(coords, dtype=float)
     if z.ndim != 1 or xy.shape != (len(z), 2):
         raise ValueError("values must be 1-D and coords of shape (len(values), 2)")
-    edges = np.asarray(bin_edges, dtype=float)
-    if edges.ndim != 1 or len(edges) < 2 or np.any(np.diff(edges) <= 0) or edges[0] < 0:
-        raise ValueError("bin_edges must be at least two increasing non-negative values")
+    edges = _check_edges(bin_edges)
     dist = pairwise_distances(xy, kind) if distances is None else np.asarray(distances, dtype=float)
     keep = np.isfinite(z)
     z, xy, dist = z[keep], xy[keep], dist[np.ix_(keep, keep)]
@@ -177,9 +183,7 @@ def variogram_over_time(field, coords, bin_edges, model: str = "exponential", ki
         raise ValueError("detrend must be 'none' or 'linear'")
     if max_range is not None and not (np.isfinite(max_range) and max_range > 0):
         raise ValueError("max_range must be positive")
-    edges = np.asarray(bin_edges, dtype=float)
-    if edges.ndim != 1 or len(edges) < 2 or np.any(np.diff(edges) <= 0) or edges[0] < 0:
-        raise ValueError("bin_edges must be at least two increasing non-negative values")
+    _check_edges(bin_edges)
     dist = pairwise_distances(xy, kind)
     out = np.full((arr.shape[0], 4), np.nan)
     for t in range(arr.shape[0]):

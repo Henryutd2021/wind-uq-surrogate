@@ -192,7 +192,8 @@ def calibration_targets(plant: PlantSeries, levels, dist: str = "laplace", block
 
 def training_table(plants, spec: FeatureSpec, levels, dist: str = "laplace", block: int | None = None,
                    target_window: int | None = None, bounds=None) -> pd.DataFrame:
-    """Long table for the observed plants: ``plant_id``, ``time``, features, per-unit forecast and actual, target.
+    """Long table for the observed plants: ``plant_id``, ``time``, features, per-unit forecast and actual, target
+    (``target_scale``, ``target_loss``) and ``target_reach`` (how many rows ahead a target may use observations).
 
     Rows with a missing feature or target are dropped.
     """
@@ -208,15 +209,16 @@ def training_table(plants, spec: FeatureSpec, levels, dist: str = "laplace", blo
     if not frames:
         raise ValueError("no observed plants")
     table = pd.concat(frames, ignore_index=True).dropna().reset_index(drop=True)
-    # how many rows ahead a target may use observations (for purging time splits, validation.time_split)
-    table.attrs["target_reach"] = 0 if target_window is None and block is None else \
+    # how many rows ahead a target may use observations (for purging time splits, validation.time_split);
+    # a column, so that it survives saving and reading the table
+    table["target_reach"] = 0 if target_window is None and block is None else \
         (target_window // 2 if target_window is not None else block - 1)
     return table
 
 
 def feature_columns(table: pd.DataFrame) -> list[str]:
     """Feature columns of a table made by :func:`training_table` or :func:`prediction_table`."""
-    skip = {"plant_id", "time", "forecast_pu", "actual_pu", "target_scale", "target_loss"}
+    skip = {"plant_id", "time", "forecast_pu", "actual_pu", "target_scale", "target_loss", "target_reach"}
     return [c for c in table.columns if c not in skip]
 
 

@@ -35,7 +35,7 @@ Can UQ metrics of the inputs of a wind power model serve as the inputs of a surr
 | [`docs/architecture.md`](docs/architecture.md) | modules, data flow, output tables, run time, tests |
 | [`src/wind_uq_surrogate/`](src/wind_uq_surrogate/) | the implementation (NumPy, SciPy, pandas, scikit-learn) |
 | [`examples/`](examples/) | `minimal.py` (end-to-end, about half a minute), `metrics_tour.py` (every metric family), `calibration_targets.py` (Step A in detail), `validation_design.py` (target choice and a negative control, about a minute); all on synthetic data |
-| [`tests/`](tests/) | 60 tests: metrics against direct formulas, scores against numerical integration, exact optimization against brute force, features without look-ahead, leakage guards, workflow, input files, command line |
+| [`tests/`](tests/) | 64 tests: metrics against direct formulas, scores against numerical integration, exact optimization against brute force, features without look-ahead, leakage guards, workflow, input files, command line |
 
 ## Quick start
 

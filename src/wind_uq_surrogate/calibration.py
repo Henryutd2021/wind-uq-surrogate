@@ -53,7 +53,9 @@ def _per_sample(e, z, tau, lo, hi, chunk=20000):
         cand = np.sort(np.concatenate([np.full((len(ee), 1), lo), bp, np.full((len(ee), 1), hi)], axis=1), axis=1)
         obj = _objective(ee, cand, z, tau)
         best = obj.min(axis=1, keepdims=True)
-        tol = 64.0 * np.finfo(float).eps * (np.abs(ee)[:, None] + hi * np.abs(z).max())
+        s_best = np.take_along_axis(cand, obj.argmin(axis=1)[:, None], axis=1)
+        # rounding error of the objective near the minimizer (local, so a huge upper bound does not inflate it)
+        tol = 64.0 * np.finfo(float).eps * (np.abs(ee)[:, None] + s_best * np.abs(z).max() + np.abs(best))
         first = np.argmax(obj <= best + tol, axis=1)  # smallest minimizing scale
         rows = np.arange(len(ee))
         out[start:start + chunk] = cand[rows, first]
@@ -218,8 +220,13 @@ class PITRecalibrator:
 
     def fit(self, y, loc, scale) -> "PITRecalibrator":
         y = np.asarray(y, dtype=float)
-        s = np.asarray(scale, dtype=float)
+        if y.ndim != 1:
+            raise ValueError("y must be one-dimensional")
         m = np.asarray(loc, dtype=float)
+        s = np.asarray(scale, dtype=float)
+        for name, arr in (("loc", m), ("scale", s)):
+            if arr.ndim > 1 or (arr.ndim == 1 and arr.shape != y.shape):
+                raise ValueError(f"{name} must be a scalar or have one value per observation")
         if not (np.isfinite(y).all() and np.isfinite(m).all() and np.isfinite(s).all()):
             raise ValueError("y, loc and scale must be finite")
         if np.any(s <= 0):
