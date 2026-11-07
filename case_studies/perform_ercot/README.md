@@ -69,7 +69,7 @@ What the results show, within the limits below:
 - **Model choice and recalibration.** The surrogate is chosen with the same plant folds that are reported, which makes its scores slightly optimistic; the recalibration of the chosen surrogate is validated with nested plant folds. Quantiles of every method are clipped to [0, 1] per unit.
 - **Capacity.** Power is divided by the installed capacity of the PERFORM metadata; the largest simulated output reaches a median of 90% of it (`results/forecast_summary.csv`).
 
-## Reproduce
+## Rerun the case study
 
 Needs Python 3.10 or newer, about 3 GB of disk for the downloaded files and about 2 GB for the prepared inputs.
 

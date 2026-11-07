@@ -46,7 +46,7 @@ def _plant(capacity=50.0, n=60, seed=0):
 
 
 def test_per_unit_features_do_not_depend_on_capacity():
-    spec = w.FeatureSpec(window=6, pairs=(("forecast", "fcst_2da"),), pair_metrics=("nmae", "nrmse"),
+    spec = w.FeatureSpec(window=5, pairs=(("forecast", "fcst_2da"),), pair_metrics=("nmae", "nrmse"),
                          pair_normalizer=1.0, per_unit=("forecast", "fcst_2da"), member_prefix="ens_",
                          members_per_unit=True, si_relative=False, pi_history=4)
     small = _plant(capacity=50.0)
@@ -55,23 +55,23 @@ def test_per_unit_features_do_not_depend_on_capacity():
     pd.testing.assert_frame_equal(fa, fb)
     # per-unit pair metric with normalizer 1: the mean absolute per-unit difference
     d = (small.data["forecast"] - small.data["fcst_2da"]).abs() / 50.0
-    assert np.allclose(fa["forecast_vs_fcst_2da_nmae"].iloc[5:], d.rolling(6).mean().iloc[5:])
+    assert np.allclose(fa["forecast_vs_fcst_2da_nmae"].iloc[4:], d.rolling(5).mean().iloc[4:])
 
 
 def test_default_pairs_and_members_unchanged():
-    spec = w.FeatureSpec(window=6, pairs=(("forecast", "fcst_2da"),), pair_normalizer=1.0, member_prefix="ens_")
+    spec = w.FeatureSpec(window=5, pairs=(("forecast", "fcst_2da"),), pair_normalizer=1.0, member_prefix="ens_")
     p = _plant()
     f = w.build_features(p, spec)
     d = (p.data["forecast"] - p.data["fcst_2da"]).abs()  # in MW: the forecast is not per unit in pairs by default
-    assert np.allclose(f["forecast_vs_fcst_2da_nmae"].iloc[5:], d.rolling(6).mean().iloc[5:])
+    assert np.allclose(f["forecast_vs_fcst_2da_nmae"].iloc[4:], d.rolling(5).mean().iloc[4:])
     cols = [c for c in p.data if c.startswith("ens_")]
     assert np.allclose(f["ens_si_75_25"], spread_index(p.data[cols].to_numpy(), 75, 25), equal_nan=True)
 
 
 def test_per_unit_rejects_actual_and_unknown_columns():
     with pytest.raises(ValueError):
-        w.FeatureSpec(window=6, per_unit=("actual",))
-    spec = w.FeatureSpec(window=6, per_unit=("missing",))
+        w.FeatureSpec(window=5, per_unit=("actual",))
+    spec = w.FeatureSpec(window=5, per_unit=("missing",))
     with pytest.raises(ValueError):
         w.build_features(_plant(), spec)
 
@@ -79,7 +79,7 @@ def test_per_unit_rejects_actual_and_unknown_columns():
 # ---------------------------------------------------------------- per-surrogate caps and parameters
 
 def test_workflow_caps_and_params():
-    spec = w.FeatureSpec(window=6)
+    spec = w.FeatureSpec(window=5)
     cfg = w.WorkflowConfig(features=spec, models=("gpr", "random_forest", "constant"),
                            max_train={"random_forest": 50, "gpr": 40},
                            model_params={"random_forest": {"n_estimators": 7}})
