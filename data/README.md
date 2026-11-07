@@ -28,8 +28,9 @@ All under `case_studies/perform_ercot/`, derived from the PERFORM data and share
 | `data_manifest.csv` | the 793 PERFORM files used: key, size, SHA-256, access date |
 | `results/plants.csv` | plant id (`w001`–`w264`, in the alphabetical order of the normalized PERFORM site names), PERFORM site name, installed capacity, ERCOT weather zone, status (existing or proposed) |
 | `results/forecast_summary.csv`, `results/alignment.csv`, `results/prepare_summary.json` | per plant: mean simulated power and forecast, bias, error and correlation of the ensemble-mean forecast; the time-label check; preparation settings |
-| `results/scores_*.csv`, `results/reliability_*.csv`, `results/per_plant_*.csv`, `results/scale_scores_*.csv`, `results/feature_correlation_*.csv`, `results/design_*.json` | scores and settings of the three validation designs (see the case study's README) |
+| `results/scores_*.csv`, `results/reliability_*.csv`, `results/per_plant_*.csv`, `results/scale_scores_*.csv`, `results/feature_correlation_*.csv`, `results/design_*.json` | scores and settings of the three validation designs, with all features and (suffix `_level`) with the forecast level only (see the case study's README) |
 | `results/fig_*.png` | figures made from these tables by `figures.py` |
+| `results/README.md` | source, licence and changes, for readers of the results folder alone |
 
 No other data are used or included: no measured plant data, no data under a data-use agreement, and no data from the project in which the methods were developed.
 

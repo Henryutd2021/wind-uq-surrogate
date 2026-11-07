@@ -40,7 +40,7 @@ Can UQ metrics of the inputs of a wind power model serve as the inputs of a surr
 | [`examples/`](examples/) | `minimal.py` (end-to-end, about half a minute), `metrics_tour.py` (every metric family), `calibration_targets.py` (Step A in detail), `validation_design.py` (target choice and a negative control, about a minute); all on synthetic data |
 | [`case_studies/perform_ercot/`](case_studies/perform_ercot/) | the workflow on public data: download, preparation, three validation designs, result tables and figures |
 | [`data/README.md`](data/README.md) | data used by the case study: sources, licence, attribution |
-| [`tests/`](tests/) | 74 tests: metrics against direct formulas, scores against numerical integration, exact optimization against brute force, features without look-ahead, leakage guards, workflow, input files, command line, the PERFORM reader on small files in the PERFORM layout |
+| [`tests/`](tests/) | 75 tests: metrics against direct formulas, scores against numerical integration, exact optimization against brute force, features without look-ahead, leakage guards, workflow, input files, command line, the PERFORM reader on small files in the PERFORM layout |
 
 ## Quick start
 

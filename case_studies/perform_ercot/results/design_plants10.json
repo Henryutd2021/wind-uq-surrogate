@@ -1,5 +1,7 @@
 {
   "design": "plants10",
+  "features_set": "all",
+  "fingerprint": "77a2e272c4f381ccd36228e991236281ff5e35db1ff032f193f34b698a2ee104",
   "train_plants": 264,
   "test_plants": 264,
   "training_rows": 2299968,
@@ -14,7 +16,7 @@
     "level"
   ],
   "cv_pinball_unclipped": {
-    "gpr": 0.046273115028057955,
+    "gpr": 0.04627311502791456,
     "random_forest": 0.04593468078895683,
     "svr": 0.0460889215723167,
     "ridge": 0.046889443336270216,
@@ -56,6 +58,6 @@
     "inner_n_splits": 3,
     "random_state": 0
   },
-  "runtime_s": 390,
+  "runtime_s": 1086,
   "package_version": "1.1.0"
 }

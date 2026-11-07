@@ -1,5 +1,7 @@
 {
   "design": "proposed",
+  "features_set": "all",
+  "fingerprint": "2a5131e04d993163e80dbf57686b69616f7080da903eea8bb49b85c63bed5b42",
   "train_plants": 125,
   "test_plants": 139,
   "training_rows": 1089000,
@@ -14,7 +16,7 @@
     "level"
   ],
   "cv_pinball_unclipped": {
-    "gpr": 0.04249378295043694,
+    "gpr": 0.042493782953241264,
     "random_forest": 0.042274811876736595,
     "svr": 0.04223739178929481,
     "ridge": 0.04324931567543485,
@@ -56,6 +58,6 @@
     "inner_n_splits": 3,
     "random_state": 0
   },
-  "runtime_s": 242,
+  "runtime_s": 623,
   "package_version": "1.1.0"
 }

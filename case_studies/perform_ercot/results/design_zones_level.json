@@ -1,0 +1,57 @@
+{
+  "design": "zones",
+  "features_set": "level",
+  "fingerprint": "9c70dbca72311de6e7c9e7b786b90fb08ad011e7404a0668d15351bef4668b0f",
+  "train_plants": 264,
+  "test_plants": 264,
+  "training_rows": 2299968,
+  "folds": 8,
+  "features": [
+    "level"
+  ],
+  "cv_pinball_unclipped": {
+    "gpr": 0.04599112009016398,
+    "random_forest": 0.046266962356312405,
+    "svr": 0.04586241201321228,
+    "ridge": 0.04750091263471148,
+    "constant": 0.048213948285226314
+  },
+  "chosen_model": "svr",
+  "target_scale_median": 0.11686833496755386,
+  "config": {
+    "window": 24,
+    "pi_history": 48,
+    "block": 24,
+    "dist": "laplace",
+    "levels_target": [
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7,
+      0.75,
+      0.8,
+      0.85,
+      0.9,
+      0.95
+    ],
+    "max_train": {
+      "gpr": 1000,
+      "svr": 5000,
+      "random_forest": 200000
+    },
+    "inner_n_splits": 3,
+    "random_state": 0
+  },
+  "runtime_s": 1898,
+  "package_version": "1.1.0"
+}

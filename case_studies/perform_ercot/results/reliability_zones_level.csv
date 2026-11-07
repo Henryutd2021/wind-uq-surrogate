@@ -1,0 +1,191 @@
+method,level,observed
+gpr,0.05,0.0776037
+gpr,0.1,0.0868256
+gpr,0.15,0.0997223
+gpr,0.2,0.117653
+gpr,0.25,0.141737
+gpr,0.3,0.1728
+gpr,0.35,0.210094
+gpr,0.4,0.250565
+gpr,0.45,0.292143
+gpr,0.5,0.333999
+gpr,0.55,0.379904
+gpr,0.6,0.425717
+gpr,0.65,0.474204
+gpr,0.7,0.526081
+gpr,0.75,0.583026
+gpr,0.8,0.6452
+gpr,0.85,0.713436
+gpr,0.9,0.79357
+gpr,0.95,0.896966
+random_forest,0.05,0.0788989
+random_forest,0.1,0.0880643
+random_forest,0.15,0.101289
+random_forest,0.2,0.119402
+random_forest,0.25,0.142829
+random_forest,0.3,0.17229
+random_forest,0.35,0.207482
+random_forest,0.4,0.24757
+random_forest,0.45,0.290387
+random_forest,0.5,0.333999
+random_forest,0.55,0.381048
+random_forest,0.6,0.428871
+random_forest,0.65,0.478793
+random_forest,0.7,0.531411
+random_forest,0.75,0.587692
+random_forest,0.8,0.648857
+random_forest,0.85,0.717322
+random_forest,0.9,0.797027
+random_forest,0.95,0.893552
+svr,0.05,0.0772332
+svr,0.1,0.0848894
+svr,0.15,0.09582
+svr,0.2,0.111139
+svr,0.25,0.133552
+svr,0.3,0.164564
+svr,0.35,0.202834
+svr,0.4,0.245584
+svr,0.45,0.289672
+svr,0.5,0.333999
+svr,0.55,0.38271
+svr,0.6,0.431352
+svr,0.65,0.482634
+svr,0.7,0.537004
+svr,0.75,0.5958
+svr,0.8,0.659317
+svr,0.85,0.730676
+svr,0.9,0.813675
+svr,0.95,0.915409
+ridge,0.05,0.0786846
+ridge,0.1,0.0929322
+ridge,0.15,0.110123
+ridge,0.2,0.130145
+ridge,0.25,0.15392
+ridge,0.3,0.181646
+ridge,0.35,0.213564
+ridge,0.4,0.249994
+ridge,0.45,0.289727
+ridge,0.5,0.333999
+ridge,0.55,0.385893
+ridge,0.6,0.434403
+ridge,0.65,0.483538
+ridge,0.7,0.533008
+ridge,0.75,0.583692
+ridge,0.8,0.637388
+ridge,0.85,0.69648
+ridge,0.9,0.766342
+ridge,0.95,0.856505
+constant,0.05,0.0825277
+constant,0.1,0.0938435
+constant,0.15,0.107168
+constant,0.2,0.122815
+constant,0.25,0.141476
+constant,0.3,0.164284
+constant,0.35,0.193305
+constant,0.4,0.230145
+constant,0.45,0.276446
+constant,0.5,0.333999
+constant,0.55,0.396598
+constant,0.6,0.453572
+constant,0.65,0.505894
+constant,0.7,0.555221
+constant,0.75,0.604648
+constant,0.8,0.657013
+constant,0.85,0.715005
+constant,0.9,0.785563
+constant,0.95,0.880962
+svr + recalibration,0.05,0.127099
+svr + recalibration,0.1,0.169429
+svr + recalibration,0.15,0.211071
+svr + recalibration,0.2,0.251648
+svr + recalibration,0.25,0.290693
+svr + recalibration,0.3,0.326116
+svr + recalibration,0.35,0.361061
+svr + recalibration,0.4,0.409447
+svr + recalibration,0.45,0.458276
+svr + recalibration,0.5,0.506785
+svr + recalibration,0.55,0.555542
+svr + recalibration,0.6,0.60458
+svr + recalibration,0.65,0.653665
+svr + recalibration,0.7,0.702848
+svr + recalibration,0.75,0.752526
+svr + recalibration,0.8,0.802342
+svr + recalibration,0.85,0.852383
+svr + recalibration,0.9,0.90241
+svr + recalibration,0.95,0.951714
+constant + recalibration,0.05,0.129016
+constant + recalibration,0.1,0.176198
+constant + recalibration,0.15,0.22006
+constant + recalibration,0.2,0.26035
+constant + recalibration,0.25,0.296607
+constant + recalibration,0.3,0.328126
+constant + recalibration,0.35,0.359785
+constant + recalibration,0.4,0.408033
+constant + recalibration,0.45,0.456995
+constant + recalibration,0.5,0.505836
+constant + recalibration,0.55,0.554854
+constant + recalibration,0.6,0.603897
+constant + recalibration,0.65,0.653309
+constant + recalibration,0.7,0.702929
+constant + recalibration,0.75,0.752827
+constant + recalibration,0.8,0.802552
+constant + recalibration,0.85,0.852563
+constant + recalibration,0.9,0.902583
+constant + recalibration,0.95,0.952674
+plant constant (in-sample),0.05,0.0851321
+plant constant (in-sample),0.1,0.0975296
+plant constant (in-sample),0.15,0.111233
+plant constant (in-sample),0.2,0.126827
+plant constant (in-sample),0.25,0.145359
+plant constant (in-sample),0.3,0.167694
+plant constant (in-sample),0.35,0.195871
+plant constant (in-sample),0.4,0.231425
+plant constant (in-sample),0.45,0.276527
+plant constant (in-sample),0.5,0.333999
+plant constant (in-sample),0.55,0.398059
+plant constant (in-sample),0.6,0.455744
+plant constant (in-sample),0.65,0.508346
+plant constant (in-sample),0.7,0.558369
+plant constant (in-sample),0.75,0.608662
+plant constant (in-sample),0.8,0.661837
+plant constant (in-sample),0.85,0.722539
+plant constant (in-sample),0.9,0.797082
+plant constant (in-sample),0.95,0.900745
+daily target (in-sample),0.05,0.0839446
+daily target (in-sample),0.1,0.103964
+daily target (in-sample),0.15,0.127428
+daily target (in-sample),0.2,0.151203
+daily target (in-sample),0.25,0.17548
+daily target (in-sample),0.3,0.200635
+daily target (in-sample),0.35,0.227563
+daily target (in-sample),0.4,0.257353
+daily target (in-sample),0.45,0.291793
+daily target (in-sample),0.5,0.333999
+daily target (in-sample),0.55,0.382895
+daily target (in-sample),0.6,0.42999
+daily target (in-sample),0.65,0.47678
+daily target (in-sample),0.7,0.526758
+daily target (in-sample),0.75,0.582836
+daily target (in-sample),0.8,0.650007
+daily target (in-sample),0.85,0.738113
+daily target (in-sample),0.9,0.853829
+daily target (in-sample),0.95,0.952722
+raw ensemble,0.05,0.129388
+raw ensemble,0.1,0.151494
+raw ensemble,0.15,0.171227
+raw ensemble,0.2,0.190579
+raw ensemble,0.25,0.209902
+raw ensemble,0.3,0.229183
+raw ensemble,0.35,0.248613
+raw ensemble,0.4,0.268815
+raw ensemble,0.45,0.289408
+raw ensemble,0.5,0.31082
+raw ensemble,0.55,0.332868
+raw ensemble,0.6,0.35624
+raw ensemble,0.65,0.381225
+raw ensemble,0.7,0.408477
+raw ensemble,0.75,0.437869
+raw ensemble,0.8,0.470621
+raw ensemble,0.85,0.507889
+raw ensemble,0.9,0.552241
+raw ensemble,0.95,0.611229

@@ -22,6 +22,24 @@
   },
   "hours_min": 8760,
   "hours_max": 8760,
+  "first_hour": [
+    "2018-01-01 00:00:00"
+  ],
+  "last_hour": [
+    "2018-12-31 23:00:00"
+  ],
+  "all_hourly_continuous": true,
+  "label_selected_by_training_subsets": {
+    "existing": "beginning",
+    "without Coast": "beginning",
+    "without East": "beginning",
+    "without Far West": "beginning",
+    "without North": "beginning",
+    "without North Central": "beginning",
+    "without South": "beginning",
+    "without South Central": "beginning",
+    "without West": "beginning"
+  },
   "median_over_plants": {
     "mean_actual_pu": 0.2944392316490544,
     "mean_forecast_pu": 0.21255961730813142,

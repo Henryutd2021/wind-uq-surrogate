@@ -22,7 +22,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 import pandas as pd  # noqa: E402
 
-CHOSEN = "chosen surrogate + recalibration"
+CHOSEN = "all features: chosen + recalibration"
 LEVEL = "level only: chosen + recalibration"
 
 DESIGNS = {"plants10": "held-out plants\n(10 plant folds)", "zones": "held-out weather zones",
