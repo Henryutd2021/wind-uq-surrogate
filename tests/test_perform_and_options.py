@@ -95,19 +95,27 @@ def test_workflow_caps_and_params():
         w.WorkflowConfig(features=spec, max_train={"svr": 1})
     with pytest.raises(ValueError):
         w.WorkflowConfig(features=spec, model_params={"lasso": {}})
+    seeded = w.WorkflowConfig(features=spec, models=("random_forest",), random_state=3,
+                              model_params={"random_forest": {"random_state": 11}}).factories()["random_forest"]()
+    assert seeded.random_state == 11 and "random_state" not in seeded.params
+    assert w.WorkflowConfig(features=spec, random_state=3).factories()["svr"]().random_state == 3
 
 
 # ---------------------------------------------------------------- PERFORM reader
 
-h5py = pytest.importorskip("h5py")
-from wind_uq_surrogate import perform  # noqa: E402
+from wind_uq_surrogate import perform  # noqa: E402  (h5py is imported only when a file is read)
+
+
+@pytest.fixture
+def h5py():
+    return pytest.importorskip("h5py")
 
 
 def _times(index):
     return np.array([t.strftime("%Y-%m-%d %H:%M:%S+00:00").encode() for t in index])
 
 
-def _write_actuals(path, values, start="2018-01-01", capacity=100.0, region="North"):
+def _write_actuals(h5py, path, values, start="2018-01-01", capacity=100.0, region="North"):
     t = pd.date_range(start, periods=len(values), freq="5min")
     text = h5py.string_dtype()  # variable-length strings, as in the PERFORM actuals files
     meta = np.array([(2018.0, b"site_a", capacity, region.encode(), b"Existing", 30.0, -100.0)],
@@ -119,7 +127,7 @@ def _write_actuals(path, values, start="2018-01-01", capacity=100.0, region="Nor
         f["meta"] = meta
 
 
-def _write_forecasts(path, values, start="2018-01-01", name=b"Site A"):
+def _write_forecasts(h5py, path, values, start="2018-01-01", name=b"Site A"):
     t = pd.date_range(start, periods=values.shape[0], freq="h")
     meta = np.array([(name, 100.0)], dtype=[("Facility.Name", "S16"), ("Capacity", "<f8")])
     with h5py.File(path, "w") as f:
@@ -155,6 +163,11 @@ def test_hourly_conventions():
     assert list(inst) == [0.0, 12.0, 24.0]
     with pytest.raises(ValueError):
         perform.hourly(s, "centre")
+    bad = s.copy()
+    bad.iloc[3] = np.inf
+    assert np.isnan(perform.hourly(bad, "beginning").iloc[0]) and perform.hourly(bad, "beginning").iloc[1] == 17.5
+    bad.iloc[12] = np.nan
+    assert np.isnan(perform.hourly(bad, "instant").iloc[1])
 
 
 def test_alignment_errors_find_the_convention():
@@ -167,17 +180,17 @@ def test_alignment_errors_find_the_convention():
     assert min(errs, key=errs.get) == "ending"
 
 
-def test_plant_from_files_and_percentiles(tmp_path):
+def test_plant_from_files_and_percentiles(tmp_path, h5py):
     hours = 48
     rng = np.random.default_rng(5)
     act = 100 * rng.random(12 * hours)
-    _write_actuals(tmp_path / "a.h5", act)
+    _write_actuals(h5py, tmp_path / "a.h5", act)
     ens = 100 * rng.random((hours, 51))
     ens2 = 100 * rng.random((hours, 51))
     pct = np.sort(100 * rng.random((hours, 99)), axis=1)
-    _write_forecasts(tmp_path / "e.h5", ens)
-    _write_forecasts(tmp_path / "e2.h5", ens2)
-    _write_forecasts(tmp_path / "p.h5", pct)
+    _write_forecasts(h5py, tmp_path / "e.h5", ens)
+    _write_forecasts(h5py, tmp_path / "e2.h5", ens2)
+    _write_forecasts(h5py, tmp_path / "p.h5", pct)
     plant, meta = perform.plant_from_files("w001", tmp_path / "a.h5", tmp_path / "e.h5", tmp_path / "e2.h5")
     assert meta["Region"] == "North" and plant.capacity == 100.0 and plant.observed
     assert list(plant.data.columns[:2]) == ["forecast", "fcst_2da"]
@@ -196,3 +209,20 @@ def test_plant_from_files_and_percentiles(tmp_path):
         perform.percentile_forecasts(tmp_path / "e.h5", [0.5])  # an ensemble file, not percentiles
     table, issue, fmeta = perform.read_forecasts(tmp_path / "p.h5")
     assert table.shape == (hours, 99) and fmeta["Facility.Name"] == "Site A" and issue.index.equals(table.index)
+
+
+def test_incomplete_hours_are_dropped(tmp_path, h5py):
+    hours = 6
+    rng = np.random.default_rng(7)
+    act = 100 * rng.random(12 * hours)
+    act[12 * 2 + 5] = np.nan                       # hour 2: one 5-minute value missing
+    ens = 100 * rng.random((hours, 51))
+    ens[4, 10] = np.nan                            # hour 4: one member missing
+    ens2 = 100 * rng.random((hours, 51))
+    ens2[1, 0] = np.inf                            # hour 1: one 2-day-ahead member not finite
+    _write_actuals(h5py, tmp_path / "a.h5", act)
+    _write_forecasts(h5py, tmp_path / "e.h5", ens)
+    _write_forecasts(h5py, tmp_path / "e2.h5", ens2)
+    plant, _ = perform.plant_from_files("w001", tmp_path / "a.h5", tmp_path / "e.h5", tmp_path / "e2.h5")
+    assert list(plant.data.index.hour) == [0, 3, 5]
+

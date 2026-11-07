@@ -124,7 +124,8 @@ def hourly(actuals: pd.Series, label: str = "beginning") -> pd.Series:
     s = actuals.astype(float)
     if label == "instant":
         out = s[s.index.minute == 0]
-        return out.rename("actual")
+        return out.where(np.isfinite(out)).rename("actual")
+    s = s.where(np.isfinite(s))  # infinities count as missing
     closed = "left" if label == "beginning" else "right"
     grouped = s.resample("h", closed=closed, label=closed)
     mean, count = grouped.mean(), grouped.count()
@@ -149,17 +150,20 @@ def plant_from_files(plant_id: str, actuals_path, ensemble_path, ensemble2_path=
     Columns: ``forecast`` = mean of the 51 day-ahead ensemble members (MW); ``ens_00`` ... ``ens_50`` = the
     members (MW); ``fcst_2da`` = mean of the 2-day-ahead members for the same hour (MW), if ``ensemble2_path``;
     ``actual`` = hourly simulated power (MW, convention ``label``), if ``with_actual``. The time index is the
-    hourly forecast time (naive UTC); hours without a complete set of values are dropped.
+    hourly forecast time (naive UTC); hours without a complete set of finite values (all 51 members of each
+    ensemble, twelve 5-minute actuals) are dropped.
     """
     act5, meta = read_actuals(actuals_path)
     ens, _, _ = read_forecasts(ensemble_path)
     if not all(c.startswith("m") for c in ens.columns):
         raise ValueError(f"{ensemble_path}: not an ensemble-member file")
+    ens = ens.where(np.isfinite(ens))
     data = pd.DataFrame(index=ens.index)
-    data["forecast"] = ens.mean(axis=1)
+    data["forecast"] = ens.mean(axis=1, skipna=False)  # NaN unless every member is finite
     if ensemble2_path is not None:
         ens2, _, _ = read_forecasts(ensemble2_path)
-        data["fcst_2da"] = ens2.mean(axis=1).reindex(data.index)
+        ens2 = ens2.where(np.isfinite(ens2))
+        data["fcst_2da"] = ens2.mean(axis=1, skipna=False).reindex(data.index)
     for c in ens.columns:
         data[f"ens_{c[1:]}"] = ens[c]
     if with_actual:

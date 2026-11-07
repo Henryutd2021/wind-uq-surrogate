@@ -23,6 +23,7 @@ import matplotlib.pyplot as plt  # noqa: E402
 import pandas as pd  # noqa: E402
 
 CHOSEN = "chosen surrogate + recalibration"
+LEVEL = "level only: chosen + recalibration"
 
 DESIGNS = {"plants10": "held-out plants\n(10 plant folds)", "zones": "held-out weather zones",
            "proposed": "existing -> proposed plants"}
@@ -34,6 +35,8 @@ COLORS = {"constant": "#9e9e9e", "ridge": "#bdbdbd", "svr": "#90a4ae", "random_f
 def color(method: str) -> str:
     if method == "constant + recalibration":
         return "#90caf9"
+    if method == LEVEL:
+        return "#5c6bc0"
     return COLORS["recal"] if method.endswith("+ recalibration") else COLORS.get(method, "#333333")
 
 
@@ -59,9 +62,16 @@ def main() -> int:
     for ax, d in zip(axes[0], designs):
         s = pd.read_csv(res / f"scores_{d}.csv").set_index("method")
         ms = order(s.index)
-        y = 100 * s.loc[ms, "skill_vs_constant"].to_numpy()
-        ax.barh(range(len(ms)), y, color=[color(m) for m in ms])
-        ax.set_yticks(range(len(ms)), relabel(ms, chosen[d]))
+        labels = relabel(ms, chosen[d])
+        y = list(100 * s.loc[ms, "skill_vs_constant"].to_numpy())
+        if (res / f"scores_{d}_level.csv").exists():  # level-only ablation, after the full-feature row
+            lv = pd.read_csv(res / f"scores_{d}_level.csv").set_index("method")
+            lc = json.loads((res / f"design_{d}_level.json").read_text())["chosen_model"]
+            k = labels.index(CHOSEN) + 1 if CHOSEN in labels else len(labels)
+            labels.insert(k, LEVEL)
+            y.insert(k, 100 * float(lv.loc[f"{lc} + recalibration", "skill_vs_constant"]))
+        ax.barh(range(len(labels)), y, color=[color(m) for m in labels])
+        ax.set_yticks(range(len(labels)), labels)
         ax.axvline(0, color="black", lw=0.6)
         ax.set_title(f"{DESIGNS[d]}\nchosen surrogate: {chosen[d]}", fontsize=8)
         ax.set_xlabel("pinball skill vs constant scale (%)")

@@ -53,10 +53,15 @@ def site_files(raw: Path) -> pd.DataFrame:
             if NAMES[kind] in slot:
                 raise ValueError(f"two files for site {info['key']} in {folder}")
             slot[NAMES[kind]] = path
-    table = pd.DataFrame.from_dict(rows, orient="index").sort_index()
+    for kind, folder in FOLDERS.items():
+        if not (raw / folder).is_dir():
+            raise FileNotFoundError(f"folder missing: {raw / folder} (run download.py first)")
+    table = pd.DataFrame.from_dict(rows, orient="index").reindex(columns=list(NAMES.values())).sort_index()
     complete = table.dropna()
     if len(complete) < len(table):
         print(f"sites without all three files (skipped): {sorted(set(table.index) - set(complete.index))}")
+    if complete.empty:
+        raise ValueError("no site has all three files")
     return complete
 
 
@@ -77,10 +82,13 @@ def build(args) -> dict:
     f = plant.data["forecast"] / plant.capacity
     stats = {"mean_actual_pu": a.mean(), "mean_forecast_pu": f.mean(), "bias_pu": (f - a).mean(),
              "mae_pu": (f - a).abs().mean(), "corr": float(np.corrcoef(f, a)[0, 1]), "max_actual_pu": a.max()}
+    idx = plant.data.index
+    continuous = bool(len(idx) > 1 and (idx[1:] - idx[:-1] == pd.Timedelta(hours=1)).all())
     return {"plant_id": pid, "capacity_mw": plant.capacity, "group": act_meta.get("Region", ""),
             "status": act_meta.get("Group", ""), "latitude": act_meta.get("latitude"),
             "longitude": act_meta.get("longitude"), "perform_site": fmeta.get("Facility.Name", ""),
-            "hours": len(plant.data), **stats}
+            "hours": len(plant.data), "first": str(idx[0]), "last": str(idx[-1]), "continuous": continuous,
+            **stats}
 
 
 def main() -> int:
@@ -110,10 +118,22 @@ def main() -> int:
     stats = ["mean_actual_pu", "mean_forecast_pu", "bias_pu", "mae_pu", "corr", "max_actual_pu"]
     plants[["plant_id", "status", "group"] + stats].to_csv(out / "forecast_summary.csv", index=False,
                                                            float_format="%.5g")
-    plants.drop(columns=["hours"] + stats).to_csv(out / "inputs" / "plants.csv", index=False)
+    plants.drop(columns=["hours", "first", "last", "continuous"] + stats).to_csv(out / "inputs" / "plants.csv",
+                                                                                  index=False)
+    # the label diagnostic uses every plant's actuals; check that the plants observed in each validation design
+    # (existing plants; all plants but one zone) select the same convention
+    a = align.merge(plants[["plant_id", "status", "group"]], on="plant_id")
+    subsets = {"existing": a[a["status"] == "Existing"]}
+    subsets.update({f"without {z}": a[a["group"] != z] for z in sorted(a["group"].unique())})
+    by_subset = {k: min(LABELS, key=lambda c: v[c].median()) for k, v in subsets.items()}
+    if set(by_subset.values()) != {label}:
+        print(f"warning: training subsets select other conventions: {by_subset}")
     summary = {"label": label, "median_alignment_mw": medians, "plants": len(plants),
                "status": plants["status"].value_counts().to_dict(), "groups": plants["group"].value_counts().to_dict(),
                "hours_min": int(plants["hours"].min()), "hours_max": int(plants["hours"].max()),
+               "first_hour": sorted(plants["first"].unique()), "last_hour": sorted(plants["last"].unique()),
+               "all_hourly_continuous": bool(plants["continuous"].all()),
+               "label_selected_by_training_subsets": by_subset,
                "median_over_plants": {k: float(plants[k].median()) for k in stats}}
     (out / "prepare_summary.json").write_text(json.dumps(summary, indent=2))
     print(json.dumps(summary, indent=2))

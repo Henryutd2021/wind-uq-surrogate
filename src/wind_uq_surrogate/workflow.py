@@ -34,7 +34,8 @@ class WorkflowConfig:
     that step alone. ``models``: surrogates to compare. ``gpr_max_train``: row cap for the GP surrogate.
     ``max_train``: optional row caps per surrogate (e.g. ``{"svr": 20000}``; a ``"gpr"`` entry replaces
     ``gpr_max_train``), for large tables. ``model_params``: optional keyword arguments per surrogate, passed to
-    the scikit-learn estimator (e.g. ``{"random_forest": {"n_jobs": 8}}``).
+    the scikit-learn estimator (e.g. ``{"random_forest": {"n_jobs": 8}}``); a ``random_state`` given there replaces
+    ``random_state`` for that surrogate (row subset and estimator).
     ``n_splits``: plant folds (``None``: leave one plant out). ``split_groups``: optional mapping plant id ->
     group (e.g. region) so that whole groups are held out. ``recalibrate``: PIT recalibration of the chosen
     surrogate's predictive distributions, validated with nested plant folds (``inner_n_splits``).
@@ -85,9 +86,8 @@ class WorkflowConfig:
         params = dict(self.model_params or {})
         for name in self.models:
             cap = caps.get(name, self.gpr_max_train if name == "gpr" else None)
-            kw = dict(params.get(name, {}))
-            out[name] = (lambda n=name, c=cap, k=kw: Surrogate(n, max_train_samples=c,
-                                                                random_state=self.random_state, **k))
+            kw = {"random_state": self.random_state, **params.get(name, {})}  # a model's own seed wins
+            out[name] = (lambda n=name, c=cap, k=kw: Surrogate(n, max_train_samples=c, **k))
         return out
 
 

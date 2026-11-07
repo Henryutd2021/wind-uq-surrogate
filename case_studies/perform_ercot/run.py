@@ -19,20 +19,26 @@ Methods, scored on the same rows (per unit of capacity; every method's quantiles
 
 References that need the held-out plant's own power (not options at an unobserved plant):
 
-- ``plant constant (in-sample)``: one pinball-loss-optimal scale per plant, fitted on that plant's whole year;
-- ``daily target (in-sample)``: the daily target scales themselves (the best daily scales around this forecast).
+- ``plant constant (in-sample)``: one scale per plant, fitted on that plant's whole year;
+- ``daily target (in-sample)``: the daily target scales themselves.
+Both keep the forecast as the centre and are pinball-loss optimal for the unclipped distribution; after the
+clipping below they are references, not bounds.
 
 Scores: mean pinball loss over the levels 0.05, ..., 0.95 (``pinball``) and over 0.01, ..., 0.99 (``crps_q`` =
 twice that mean, a quantile approximation of the CRPS), mean absolute error of the median (``mae_median``), mean
 absolute deviation of the reliability curve, coverage and mean width of the central 50% and 90% intervals; and
 the pinball loss per plant.
 
-Usage:  python run.py PREPARED_DIR OUT_DIR --design plants10|zones|proposed [--jobs 16] [--folds 10] [--cache DIR]
+Usage:  python run.py PREPARED_DIR OUT_DIR --design plants10|zones|proposed [--features all|level] [--jobs 16]
+                [--folds 10] [--cache DIR]
+
+Outputs are named by design (``scores_plants10.csv``, ...); with ``--features level`` by design and ``_level``.
 """
 
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import shutil
 import sys
@@ -55,13 +61,46 @@ MODELS = ("gpr", "random_forest", "svr", "ridge", "constant")
 
 
 def feature_spec() -> w.FeatureSpec:
-    """UQ metrics that exist at every plant: variability of the forecast, revision between the 2-day-ahead and
-    day-ahead forecasts, spread of the 51 members (absolute, per unit), predictability index, forecast level."""
+    """UQ metrics that exist at every plant (variability of the forecast, revision between the 2-day-ahead and
+    day-ahead forecasts, spread of the 51 members, absolute and per unit, predictability index) and the forecast
+    level."""
     return w.FeatureSpec(window=24, single_series=("forecast",), single_metrics=("std",),
                          pairs=(("forecast", "fcst_2da"),), pair_metrics=("nmae",), pair_normalizer=1.0,
                          per_unit=("forecast", "fcst_2da"), member_prefix="ens_", members_per_unit=True,
                          si_pairs=((75.0, 25.0), (95.0, 5.0)), si_relative=False, pi_history=48,
                          include_level=True)
+
+
+def keep_features(table: pd.DataFrame, kind: str) -> pd.DataFrame:
+    """``all``: the table as built. ``level``: every feature but the forecast level dropped, the ablation that
+    isolates what the UQ metrics add (the level is the only input of the surrogate in Sun et al., 2019). The rows
+    stay the same as with all features (after the 48-hour warm-up of the metrics)."""
+    if kind not in ("all", "level"):
+        raise ValueError("feature set must be 'all' or 'level'")
+    if kind == "all":
+        return table
+    return table.drop(columns=[c for c in feature_columns(table) if c != "level"])
+
+
+def check_daily_blocks(plants) -> None:
+    """Block targets of 24 rows are UTC days only if every series starts at 00:00 and is hourly without gaps."""
+    for p in plants:
+        idx = p.data.index
+        if idx[0].hour != 0 or not (idx[1:] - idx[:-1] == pd.Timedelta(hours=1)).all():
+            raise ValueError(f"plant {p.plant_id}: series must start at 00:00 UTC and be hourly without gaps")
+
+
+def fingerprint(table: pd.DataFrame, config: w.WorkflowConfig, splits) -> str:
+    """Hash of everything the cross-validated predictions depend on: the training table (rows, features,
+    targets), the configuration and the folds, and the package version."""
+    h = hashlib.sha256()
+    h.update(pd.util.hash_pandas_object(table, index=False).to_numpy().tobytes())
+    h.update(repr(sorted((k, repr(v)) for k, v in vars(config).items() if k != "features")).encode())
+    h.update(repr(vars(config.features)).encode())
+    for tr, te in splits:
+        h.update(np.asarray(te, dtype=np.int64).tobytes())
+    h.update(w.__version__.encode())
+    return h.hexdigest()
 
 
 def workflow_config(jobs: int, n_splits=10, groups=None) -> w.WorkflowConfig:
@@ -174,7 +213,10 @@ def main() -> int:
     ap.add_argument("--design", required=True, choices=("plants10", "zones", "proposed"))
     ap.add_argument("--jobs", type=int, default=16)
     ap.add_argument("--folds", type=int, default=10, help="plant folds of plants10 and proposed (default 10)")
-    ap.add_argument("--cache", help="directory for the cross-validated predictions (reused when present)")
+    ap.add_argument("--cache", help="directory for the cross-validated predictions (reused only when their "
+                                     "fingerprint matches)")
+    ap.add_argument("--features", default="all", choices=("all", "level"),
+                    help="all UQ-metric features (default) or the forecast level only (ablation)")
     args = ap.parse_args()
     t0 = time.time()
     root, out = Path(args.prepared_dir), Path(args.out_dir)
@@ -199,14 +241,18 @@ def main() -> int:
         groups = zone if args.design == "zones" else None
         config = workflow_config(args.jobs, n_splits=None if groups else args.folds, groups=groups)
     spec = config.features
+    check_daily_blocks(plants.values())
     table = w.training_table([plants[p] for p in train_ids], spec, LEVELS, dist=DIST, block=config.block)
+    table = keep_features(table, args.features)
     feats = feature_columns(table)
     print(f"training table: {len(table)} rows, {table['plant_id'].nunique()} plants, features {feats} "
           f"({time.time() - t0:.0f} s)", flush=True)
     splits = w.plant_splits(table["plant_id"].to_numpy(), config.n_splits, config.split_groups)
     factories = config.factories()
-    cache = Path(args.cache) / f"cv_{args.design}_{args.folds}.pkl" if args.cache else None
-    if cache is not None and cache.exists():
+    tag = args.design if args.features == "all" else f"{args.design}_level"
+    key = fingerprint(table, config, splits)
+    cache = Path(args.cache) / f"cv_{tag}_{key[:16]}.pkl" if args.cache else None
+    if cache is not None and cache.exists() and json.loads(cache.with_suffix(".json").read_text()).get("key") == key:
         cv = pd.read_pickle(cache)
         print(f"cross-validated predictions read from {cache}", flush=True)
     else:
@@ -214,6 +260,8 @@ def main() -> int:
         if cache is not None:
             cache.parent.mkdir(parents=True, exist_ok=True)
             cv.to_pickle(cache)
+            cache.with_suffix(".json").write_text(json.dumps({"key": key, "design": args.design,
+                                                              "features": args.features}))
     print(f"cross-validation done ({time.time() - t0:.0f} s)", flush=True)
     choice = pinball19(cv)
     chosen = str(choice.idxmin())
@@ -238,7 +286,7 @@ def main() -> int:
     else:
         test = [plants[p] for p in test_ids]
         unobs = [w.PlantSeries(p.plant_id, p.data.drop(columns="actual"), p.capacity) for p in test]
-        ptab = w.prediction_table(unobs, spec)
+        ptab = keep_features(w.prediction_table(unobs, spec), args.features)
         actual = pd.concat([pd.DataFrame({"plant_id": p.plant_id, "time": p.data.index,
                                           "actual_pu": p.data["actual"].to_numpy() / p.capacity}) for p in test])
         ptab = ptab.merge(actual, on=["plant_id", "time"], how="inner", validate="one_to_one")
@@ -260,7 +308,6 @@ def main() -> int:
         score_ensemble(scores, ptab[["plant_id", "time", "actual_pu"]], plants)
     print(f"scoring done ({time.time() - t0:.0f} s)", flush=True)
 
-    tag = args.design
     summary = scores.summary()
     base = float(summary.loc[summary["method"] == "constant", "pinball"].iloc[0])
     summary["skill_vs_constant"] = 1.0 - summary["pinball"] / base
@@ -274,7 +321,8 @@ def main() -> int:
     corr = table[feats].corrwith(np.log(table["target_scale"]), method="spearman")
     corr.rename("spearman_with_log_target").rename_axis("feature").reset_index().to_csv(
         out / f"feature_correlation_{tag}.csv", index=False, float_format="%.4g")
-    info = {"design": tag, "train_plants": len(train_ids), "test_plants": len(test_ids) or len(train_ids),
+    info = {"design": args.design, "features_set": args.features, "fingerprint": key,
+            "train_plants": len(train_ids), "test_plants": len(test_ids) or len(train_ids),
             "training_rows": int(len(table)), "folds": len(splits), "features": feats,
             "cv_pinball_unclipped": choice.to_dict(), "chosen_model": chosen,
             "target_scale_median": float(table["target_scale"].median()),
