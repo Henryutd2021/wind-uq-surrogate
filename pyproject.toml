@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "wind-uq-surrogate"
-version = "1.0.0"
+version = "1.1.0"
 description = "UQ metrics for wind time series and surrogate models that map them to calibrated plant-level wind power uncertainty, including at unobserved plants (framework)"
 readme = "README.md"
 license = {text = "MIT"}
@@ -21,6 +21,9 @@ classifiers = [
 
 [project.optional-dependencies]
 test = ["pytest"]
+# reader of the public PERFORM files (case_studies/perform_ercot); figures of the case study need matplotlib
+perform = ["h5py>=3.7"]
+case-study = ["h5py>=3.7", "matplotlib>=3.7"]
 
 [project.scripts]
 wind-uq-surrogate = "wind_uq_surrogate.cli:main"

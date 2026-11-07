@@ -92,6 +92,12 @@ class FeatureSpec:
     ``pi_history``: history (steps) of the predictability index; ``None`` leaves it out.
     ``spatial``: :class:`SpatialSpec` for plants with a turbine field; ``None`` leaves the spatial metrics out.
     ``include_level``: add the per-unit forecast itself as a feature.
+    ``per_unit``: covariate columns (power in MW, e.g. a second forecast) divided by the installed capacity before
+    their metrics are computed, in single-series metrics and in pairs; ``"forecast"`` listed here is also per unit
+    in pairs (in single-series metrics it always is).
+    ``members_per_unit``: divide the ensemble members by the installed capacity (power ensembles in MW).
+    ``si_relative``: spread indices relative to the ensemble mean (in %, the definition for wind-speed ensembles);
+    ``False`` gives widths in the members' unit, for power ensembles whose mean is often zero.
     """
 
     window: int
@@ -107,9 +113,12 @@ class FeatureSpec:
     spatial: SpatialSpec | None = None
     include_level: bool = True
     min_mean: float = 0.0
+    per_unit: tuple = ()
+    members_per_unit: bool = False
+    si_relative: bool = True
 
     def __post_init__(self):
-        used = set(self.single_series) | {c for pair in self.pairs for c in pair}
+        used = set(self.single_series) | {c for pair in self.pairs for c in pair} | set(self.per_unit)
         if self.member_prefix is not None and "actual".startswith(self.member_prefix):
             raise ValueError("member_prefix must not select the 'actual' column")
         bad = used & set(RESERVED)
@@ -132,24 +141,35 @@ def member_columns(plant: PlantSeries, prefix: str) -> list[str]:
 def build_features(plant: PlantSeries, spec: FeatureSpec) -> pd.DataFrame:
     """Feature table of one plant (index = time). Rows inside the warm-up of a window are ``NaN``."""
     df = plant.data
+    for col in spec.per_unit:
+        if col not in df.columns:
+            raise ValueError(f"plant {plant.plant_id}: column {col!r} not found")
+
+    def values(col: str, in_pair: bool = False) -> np.ndarray:
+        if (col == "forecast" and not in_pair) or col in spec.per_unit:
+            return per_unit(plant, col).to_numpy()
+        return df[col].to_numpy(dtype=float)
+
     parts = []
     for col in spec.single_series:
         if col not in df.columns:
             raise ValueError(f"plant {plant.plant_id}: column {col!r} not found")
-        x = per_unit(plant, col) if col == "forecast" else df[col].astype(float)
-        parts.append(single_series_metrics(x.to_numpy(), spec.window, prefix=f"{col}_",
+        parts.append(single_series_metrics(values(col), spec.window, prefix=f"{col}_",
                                            metrics=spec.single_metrics, min_mean=spec.min_mean, index=df.index))
     for ref, src in spec.pairs:
         for c in (ref, src):
             if c not in df.columns:
                 raise ValueError(f"plant {plant.plant_id}: column {c!r} not found")
-        parts.append(agreement_metrics(df[ref].to_numpy(dtype=float), df[src].to_numpy(dtype=float), spec.window,
+        parts.append(agreement_metrics(values(ref, True), values(src, True), spec.window,
                                        normalizer=spec.pair_normalizer, min_reference=spec.pair_min_reference,
                                        prefix=f"{ref}_vs_{src}_", metrics=spec.pair_metrics, index=df.index))
     if spec.member_prefix is not None:
         cols = member_columns(plant, spec.member_prefix)
-        ens = ensemble_metrics(df[cols].to_numpy(dtype=float), si_pairs=spec.si_pairs, history=spec.pi_history,
-                               prefix="ens_", index=df.index)
+        members = df[cols].to_numpy(dtype=float)
+        if spec.members_per_unit:
+            members = members / plant.capacity
+        ens = ensemble_metrics(members, si_pairs=spec.si_pairs, history=spec.pi_history, prefix="ens_",
+                               index=df.index, relative=spec.si_relative)
         parts.append(ens.drop(columns=["ens_mean"]))
     if spec.spatial is not None:
         if plant.turbine_field is None:

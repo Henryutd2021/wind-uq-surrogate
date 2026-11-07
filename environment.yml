@@ -9,6 +9,8 @@ dependencies:
   - pip:
       - numpy==2.5.4
       - scipy==1.18.1
-      - pandas==3.1.0
+      - pandas==3.1.1
       - scikit-learn==1.9.1
       - pytest==9.2.0
+      - h5py==3.16.0         # case study only (PERFORM reader)
+      - matplotlib==3.11.2   # case study only (figures)

@@ -32,6 +32,9 @@ class WorkflowConfig:
     ``dist``: predictive distribution family. ``block``: one target scale per block of consecutive steps;
     ``target_window``: one target per step from a centred window (odd length); neither: one target per step from
     that step alone. ``models``: surrogates to compare. ``gpr_max_train``: row cap for the GP surrogate.
+    ``max_train``: optional row caps per surrogate (e.g. ``{"svr": 20000}``; a ``"gpr"`` entry replaces
+    ``gpr_max_train``), for large tables. ``model_params``: optional keyword arguments per surrogate, passed to
+    the scikit-learn estimator (e.g. ``{"random_forest": {"n_jobs": 8}}``).
     ``n_splits``: plant folds (``None``: leave one plant out). ``split_groups``: optional mapping plant id ->
     group (e.g. region) so that whole groups are held out. ``recalibrate``: PIT recalibration of the chosen
     surrogate's predictive distributions, validated with nested plant folds (``inner_n_splits``).
@@ -55,6 +58,8 @@ class WorkflowConfig:
     coverages: tuple = (0.5, 0.9)
     final_model: str | None = None
     random_state: int = 0
+    max_train: dict | None = None
+    model_params: dict | None = None
 
     def __post_init__(self):
         check_levels(self.levels)
@@ -66,12 +71,23 @@ class WorkflowConfig:
             raise ValueError(f"unknown surrogates: {sorted(unknown)}")
         if self.final_model is not None and self.final_model not in self.models:
             raise ValueError("final_model must be one of the compared models")
+        for label, mapping in (("max_train", self.max_train), ("model_params", self.model_params)):
+            extra = set(mapping or {}) - set(self.models)
+            if extra:
+                raise ValueError(f"{label} names surrogates that are not compared: {sorted(extra)}")
+        for name, cap in (self.max_train or {}).items():
+            if cap is not None and (isinstance(cap, bool) or not isinstance(cap, (int, np.integer)) or cap < 2):
+                raise ValueError(f"max_train[{name!r}] must be an integer of at least 2 or None")
 
     def factories(self) -> dict:
         out = {}
+        caps = dict(self.max_train or {})
+        params = dict(self.model_params or {})
         for name in self.models:
-            cap = self.gpr_max_train if name == "gpr" else None
-            out[name] = (lambda n=name, c=cap: Surrogate(n, max_train_samples=c, random_state=self.random_state))
+            cap = caps.get(name, self.gpr_max_train if name == "gpr" else None)
+            kw = dict(params.get(name, {}))
+            out[name] = (lambda n=name, c=cap, k=kw: Surrogate(n, max_train_samples=c,
+                                                                random_state=self.random_state, **k))
         return out
 
 

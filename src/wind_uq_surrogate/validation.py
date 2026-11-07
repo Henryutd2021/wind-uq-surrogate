@@ -179,8 +179,7 @@ def nested_recalibrated_quantiles(table: pd.DataFrame, factory, splits, levels, 
         q = rec.quantiles(test["forecast_pu"].to_numpy(), scale, tau)
         part = test[["plant_id", "time", "actual_pu"]].copy().reset_index(drop=True)
         part.insert(0, "fold", fold)
-        for j in range(len(tau)):
-            part[f"q_{j}"] = q[:, j]
+        part = pd.concat([part, pd.DataFrame(q, columns=[f"q_{j}" for j in range(len(tau))])], axis=1)
         out.append(part)
     return pd.concat(out, ignore_index=True)
 

@@ -34,11 +34,14 @@ def _relative_to_mean(width: np.ndarray, mean: np.ndarray) -> np.ndarray:
     return out
 
 
-def spread_index(members, upper: float = 75.0, lower: float = 25.0, method: str = "linear") -> np.ndarray:
+def spread_index(members, upper: float = 75.0, lower: float = 25.0, method: str = "linear",
+                 relative: bool = True) -> np.ndarray:
     """Spread index SI(upper-lower): (q_upper - q_lower) / ensemble mean x 100, per time step.
 
     ``upper`` and ``lower`` are percentiles of the members at each time step (``numpy.percentile`` with the given
     ``method``). A non-positive ensemble mean gives ``NaN``. Rows with a missing member give ``NaN``.
+    ``relative=False`` returns the width ``q_upper - q_lower`` itself, in the unit of the members: the form for
+    power ensembles (for example in per unit of capacity), whose mean is often zero at low wind.
     """
     arr = as_members(members)
     upper = _check_percentile(upper, "upper")
@@ -46,13 +49,16 @@ def spread_index(members, upper: float = 75.0, lower: float = 25.0, method: str 
     if upper <= lower:
         raise ValueError("upper must be larger than lower")
     q = np.percentile(arr, [lower, upper], axis=1, method=method)
-    return _relative_to_mean(q[1] - q[0], arr.mean(axis=1))
+    width = q[1] - q[0]
+    return _relative_to_mean(width, arr.mean(axis=1)) if relative else width
 
 
-def total_spread_index(members) -> np.ndarray:
-    """Total spread index: (maximum member - minimum member) / ensemble mean x 100, per time step."""
+def total_spread_index(members, relative: bool = True) -> np.ndarray:
+    """Total spread index: (maximum member - minimum member) / ensemble mean x 100, per time step
+    (``relative=False``: the range itself, in the unit of the members)."""
     arr = as_members(members)
-    return _relative_to_mean(arr.max(axis=1) - arr.min(axis=1), arr.mean(axis=1))
+    width = arr.max(axis=1) - arr.min(axis=1)
+    return _relative_to_mean(width, arr.mean(axis=1)) if relative else width
 
 
 def predictability_index(si, history: int) -> np.ndarray:
@@ -144,27 +150,28 @@ def rank_histogram_summary(counts) -> dict:
 
 def ensemble_metrics(members, obs=None, si_pairs=((75.0, 25.0),), total_spread: bool = True,
                      history: int | None = None, pi_pair=None, fair_crps: bool = False, prefix: str = "",
-                     index=None) -> pd.DataFrame:
+                     index=None, relative: bool = True) -> pd.DataFrame:
     """Ensemble metrics per time step as a table.
 
     Columns: ``<prefix>mean``, ``<prefix>si_<u>_<l>`` for each pair in ``si_pairs``, ``<prefix>si_total``; with
     ``history``, ``<prefix>pi_<u>_<l>`` for ``pi_pair`` (default: the first pair); with ``obs``, ``<prefix>crps``.
-    Only ``mean``, ``si_*`` and ``pi_*`` can be computed where no observation exists.
+    Only ``mean``, ``si_*`` and ``pi_*`` can be computed where no observation exists. ``relative=False``: spread
+    indices (and hence the predictability index) as widths in the unit of the members (see :func:`spread_index`).
     """
     arr = as_members(members)
     data = {f"{prefix}mean": arr.mean(axis=1)}
     names = {}
     for upper, lower in si_pairs:
         name = f"{prefix}si_{_fmt(upper)}_{_fmt(lower)}"
-        data[name] = spread_index(arr, upper, lower)
+        data[name] = spread_index(arr, upper, lower, relative=relative)
         names[(float(upper), float(lower))] = name
     if total_spread:
-        data[f"{prefix}si_total"] = total_spread_index(arr)
+        data[f"{prefix}si_total"] = total_spread_index(arr, relative=relative)
     if history is not None:
         if not si_pairs and pi_pair is None:
             raise ValueError("the predictability index needs a spread-index pair")
         pair = tuple(float(v) for v in (pi_pair if pi_pair is not None else si_pairs[0]))
-        si = data[names[pair]] if pair in names else spread_index(arr, *pair)
+        si = data[names[pair]] if pair in names else spread_index(arr, *pair, relative=relative)
         data[f"{prefix}pi_{_fmt(pair[0])}_{_fmt(pair[1])}"] = predictability_index(si, history)
     if obs is not None:
         data[f"{prefix}crps"] = crps_ensemble(arr, obs, fair=fair_crps)

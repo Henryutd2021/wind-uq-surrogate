@@ -3,7 +3,8 @@
 Modules: ``metrics_single``, ``metrics_pair``, ``metrics_ensemble``, ``metrics_spatial`` (UQ metrics);
 ``probabilistic`` (predictive distributions and scores); ``calibration`` (Step A); ``features`` (Step B);
 ``surrogate`` (Step C); ``validation`` (Step D); ``workflow`` (Steps A-D end to end); ``synthetic``, ``io``,
-``cli``. See README.md and docs/.
+``cli``; ``perform`` (reader of the public PERFORM wind data; import it explicitly, it needs h5py). See README.md
+and docs/.
 """
 
 from .calibration import (PITRecalibrator, block_labels, crps_optimal_scale, optimal_scale,
@@ -25,7 +26,7 @@ from .validation import (cross_validate, nested_recalibrated_quantiles, plant_sp
                          score_predictive, score_scale, time_split)
 from .workflow import WorkflowConfig, run_workflow, save_result
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 
 __all__ = [
     "FeatureSpec",

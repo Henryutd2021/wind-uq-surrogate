@@ -75,6 +75,16 @@ At each time step the ensemble is $`x_{t,1}, \dots, x_{t,M}`$ (`members`, shape 
 
 Percentile-based spreads are used instead of the standard deviation because wind data are skewed. The default pair is the interquartile range (75–25), the index selected in that study; any pair can be given. Percentiles use linear interpolation between order statistics (`numpy.percentile`, method `"linear"`). A non-positive ensemble mean gives a missing value.
 
+**Absolute spread** (`relative=False`; `FeatureSpec(si_relative=False)`). For ensembles of power, the ensemble mean is often zero at low wind, where the relative indices are undefined. The absolute form keeps the numerator in the unit of the members,
+
+```math
+\mathrm{SI}^{u\text{-}l}_{t,\mathrm{abs}} = q_{t,u} - q_{t,l},
+\qquad
+\mathrm{SI}^{\mathrm{total}}_{t,\mathrm{abs}} = \max_m x_{t,m} - \min_m x_{t,m},
+```
+
+and is per unit of installed capacity when the members are (`FeatureSpec(members_per_unit=True)`), so that it is comparable across plants. The predictability index below is then the difference of absolute widths.
+
 **Predictability index** (`predictability_index`; after Fernández-González et al., 2017, building on the relative measure of predictability of Toth et al., 2001). The current spread compared with its recent average over the previous $`L`$ steps (`history`):
 
 ```math
