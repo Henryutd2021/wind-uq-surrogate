@@ -2,8 +2,8 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it as below, and cite the methods it builds on (references in docs/)."
 type: software
 title: "Wind UQ surrogate framework: UQ metrics and surrogate models for plant-level wind power uncertainty"
-abstract: "UQ metrics for wind time series (temporal, data-source, ensemble and spatial) and a surrogate workflow that maps them to calibrated plant-level wind power uncertainty: pinball-loss-optimal scale targets at observed plants, Gaussian process and other surrogates, validation on held-out plants, and predictive quantiles at unobserved plants. Documented framework with synthetic examples and tests."
-version: "1.0.0"
+abstract: "UQ metrics for wind time series (temporal, data-source, ensemble and spatial) and a surrogate workflow that maps them to calibrated plant-level wind power uncertainty: pinball-loss-optimal scale targets at observed plants, Gaussian process and other surrogates, validation on held-out plants, and predictive quantiles at unobserved plants. Documented framework with synthetic examples and tests, and a case study on 264 ERCOT wind plants of the public ARPA-E PERFORM data sets."
+version: "1.1.0"
 repository-code: "https://github.com/Henryutd2021/wind-uq-surrogate"
 license: MIT
 authors:
@@ -19,3 +19,34 @@ keywords:
   - pinball loss
   - ensemble spread
   - variogram
+  - ensemble forecasting
+references:
+  - type: data
+    title: "ARPA-E PERFORM datasets"
+    authors:
+      - family-names: Sergi
+        given-names: Brian
+      - family-names: Feng
+        given-names: Cong
+      - family-names: Zhang
+        given-names: Flora
+      - family-names: Hodge
+        given-names: Bri-Mathias
+      - family-names: Ring-Jarvi
+        given-names: Ross
+      - family-names: Bryce
+        given-names: Richard
+      - family-names: Doubleday
+        given-names: Kate
+      - family-names: Rose
+        given-names: Megan
+      - family-names: Buster
+        given-names: Grant
+      - family-names: Rossol
+        given-names: Michael
+    year: 2022
+    doi: "10.25984/1891136"
+    url: "https://data.openei.org/submissions/5772"
+    license: CC-BY-3.0-US
+    publisher:
+      name: "National Renewable Energy Laboratory"

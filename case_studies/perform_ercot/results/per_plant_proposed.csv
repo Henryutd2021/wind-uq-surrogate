@@ -1,0 +1,1391 @@
+method,plant_id,n,pinball,crps_q,coverage_90,zone,status
+gpr,w001,8712,0.0548292,0.105564,0.766758,North Central,Proposed
+gpr,w002,8712,0.0491462,0.0946403,0.812213,North,Proposed
+gpr,w005,8712,0.0560222,0.107806,0.776286,Far West,Proposed
+gpr,w006,8712,0.0440448,0.0848613,0.834366,North Central,Proposed
+gpr,w007,8712,0.0440448,0.0848613,0.834366,North Central,Proposed
+gpr,w008,8712,0.0499047,0.096356,0.837006,North,Proposed
+gpr,w009,8712,0.054505,0.10496,0.77927,North Central,Proposed
+gpr,w010,8712,0.054505,0.10496,0.77927,North Central,Proposed
+gpr,w012,8712,0.0630362,0.121384,0.714302,North Central,Proposed
+gpr,w013,8712,0.0389062,0.0749331,0.887282,South,Proposed
+gpr,w014,8712,0.0389062,0.0749331,0.887282,South,Proposed
+gpr,w015,8712,0.0502195,0.096656,0.805441,Far West,Proposed
+gpr,w019,8712,0.0468491,0.0902042,0.837695,Far West,Proposed
+gpr,w021,8712,0.0443254,0.0853437,0.829201,South,Proposed
+gpr,w022,8712,0.0546959,0.105272,0.768595,North,Proposed
+gpr,w024,8712,0.0491462,0.0946403,0.812213,North,Proposed
+gpr,w025,8712,0.0491462,0.0946403,0.812213,North,Proposed
+gpr,w026,8712,0.0491462,0.0946403,0.812213,North,Proposed
+gpr,w028,8712,0.0452672,0.087163,0.838269,North,Proposed
+gpr,w034,8712,0.0397987,0.0766609,0.884871,South,Proposed
+gpr,w035,8712,0.0397987,0.0766609,0.884871,South,Proposed
+gpr,w036,8712,0.0613618,0.118095,0.727502,West,Proposed
+gpr,w039,8712,0.056457,0.108683,0.755854,South,Proposed
+gpr,w040,8712,0.0686512,0.132438,0.699036,West,Proposed
+gpr,w044,8712,0.0663798,0.12862,0.76607,North,Proposed
+gpr,w045,8712,0.0439726,0.0846892,0.856175,West,Proposed
+gpr,w046,8712,0.0483061,0.0930072,0.827594,Far West,Proposed
+gpr,w047,8712,0.0483061,0.0930072,0.827594,Far West,Proposed
+gpr,w049,8712,0.0399752,0.0770291,0.889348,North,Proposed
+gpr,w050,8712,0.0399752,0.0770291,0.889348,North,Proposed
+gpr,w052,8712,0.0630362,0.121384,0.714302,North Central,Proposed
+gpr,w053,8712,0.0370743,0.071417,0.911042,South,Proposed
+gpr,w055,8712,0.0399752,0.0770291,0.889348,North,Proposed
+gpr,w057,8712,0.0439541,0.0846522,0.78719,Coast,Proposed
+gpr,w060,8712,0.0439726,0.0846891,0.856175,West,Proposed
+gpr,w061,8712,0.0416574,0.080209,0.847452,South,Proposed
+gpr,w062,8712,0.0558603,0.107519,0.762626,Far West,Proposed
+gpr,w064,8712,0.100409,0.195519,0.652548,Far West,Proposed
+gpr,w066,8712,0.0613618,0.118095,0.727502,West,Proposed
+gpr,w067,8712,0.0468731,0.0902117,0.836777,South,Proposed
+gpr,w068,8712,0.0399752,0.0770292,0.889348,North,Proposed
+gpr,w069,8712,0.0556057,0.107035,0.772498,Far West,Proposed
+gpr,w070,8712,0.0441343,0.0849662,0.835744,South,Proposed
+gpr,w071,8712,0.0468731,0.0902117,0.836892,South,Proposed
+gpr,w074,8712,0.0590247,0.113646,0.710514,North,Proposed
+gpr,w075,8712,0.0370743,0.071417,0.911042,South,Proposed
+gpr,w080,8712,0.0511588,0.0985093,0.80062,North,Proposed
+gpr,w082,8712,0.0463191,0.0891927,0.810032,South Central,Proposed
+gpr,w087,8712,0.0499047,0.096356,0.837006,North,Proposed
+gpr,w088,8712,0.0394996,0.0760874,0.87741,Far West,Proposed
+gpr,w090,8712,0.0555412,0.107388,0.801423,North,Proposed
+gpr,w091,8712,0.0476096,0.0917254,0.831382,North,Proposed
+gpr,w092,8712,0.0493117,0.0951078,0.83253,West,Proposed
+gpr,w095,8712,0.0520138,0.100139,0.78742,North,Proposed
+gpr,w096,8712,0.0482859,0.0929359,0.818182,South,Proposed
+gpr,w097,8712,0.0482859,0.0929359,0.818182,South,Proposed
+gpr,w100,8712,0.0353005,0.0680945,0.904614,Far West,Proposed
+gpr,w102,8712,0.0448818,0.0864527,0.846419,North,Proposed
+gpr,w103,8712,0.0556057,0.107035,0.772498,Far West,Proposed
+gpr,w104,8712,0.0399752,0.0770292,0.889348,North,Proposed
+gpr,w107,8712,0.0397987,0.0766609,0.884871,South,Proposed
+gpr,w108,8712,0.0468491,0.0902042,0.837695,Far West,Proposed
+gpr,w109,8712,0.0468491,0.0902042,0.83758,Far West,Proposed
+gpr,w110,8712,0.0741924,0.143011,0.653466,West,Proposed
+gpr,w113,8712,0.0434857,0.0837356,0.862374,North,Proposed
+gpr,w119,8712,0.0630362,0.121384,0.714302,North Central,Proposed
+gpr,w120,8712,0.0441343,0.0849662,0.835744,South,Proposed
+gpr,w121,8712,0.0441343,0.0849662,0.835744,South,Proposed
+gpr,w122,8712,0.0441343,0.0849662,0.835744,South,Proposed
+gpr,w125,8712,0.0556057,0.107035,0.772498,Far West,Proposed
+gpr,w126,8712,0.0556057,0.107035,0.772498,Far West,Proposed
+gpr,w127,8712,0.0582767,0.112203,0.737489,North Central,Proposed
+gpr,w128,8712,0.0397987,0.0766609,0.884871,South,Proposed
+gpr,w129,8712,0.0397987,0.0766609,0.884871,South,Proposed
+gpr,w130,8712,0.0556057,0.107035,0.772498,Far West,Proposed
+gpr,w132,8712,0.056457,0.108683,0.755854,South,Proposed
+gpr,w133,8712,0.0468731,0.0902117,0.836892,South,Proposed
+gpr,w136,8712,0.0491461,0.0946402,0.812213,North,Proposed
+gpr,w138,8712,0.043461,0.0836817,0.8323,South,Proposed
+gpr,w139,8712,0.043461,0.0836817,0.832415,South,Proposed
+gpr,w143,8712,0.0390555,0.0752403,0.884183,West,Proposed
+gpr,w146,8712,0.0591943,0.113972,0.733815,North,Proposed
+gpr,w148,8712,0.0435252,0.0838029,0.812787,South Central,Proposed
+gpr,w150,8712,0.0382588,0.0737407,0.90668,North,Proposed
+gpr,w152,8712,0.0613618,0.118095,0.727502,West,Proposed
+gpr,w153,8712,0.0686512,0.132438,0.699036,West,Proposed
+gpr,w154,8712,0.0686512,0.132438,0.699036,West,Proposed
+gpr,w157,8712,0.056457,0.108683,0.755854,South,Proposed
+gpr,w159,8712,0.0441343,0.0849662,0.835744,South,Proposed
+gpr,w160,8712,0.0468731,0.0902118,0.836777,South,Proposed
+gpr,w161,8712,0.0468731,0.0902118,0.836892,South,Proposed
+gpr,w162,8712,0.0397987,0.0766609,0.884871,South,Proposed
+gpr,w163,8712,0.0397987,0.0766609,0.884871,South,Proposed
+gpr,w164,8712,0.0397987,0.0766609,0.884871,South,Proposed
+gpr,w165,8712,0.0511588,0.0985093,0.80062,North,Proposed
+gpr,w167,8712,0.0488563,0.094302,0.842516,North,Proposed
+gpr,w172,8712,0.0654336,0.126067,0.706152,Far West,Proposed
+gpr,w173,8712,0.0370743,0.0714171,0.911042,South,Proposed
+gpr,w176,8712,0.0555412,0.107388,0.801423,North,Proposed
+gpr,w183,8712,0.053881,0.103749,0.777778,North,Proposed
+gpr,w186,8712,0.0427408,0.0823069,0.818526,Coast,Proposed
+gpr,w187,8712,0.0427408,0.0823069,0.818526,Coast,Proposed
+gpr,w188,8712,0.0435252,0.0838029,0.812787,South Central,Proposed
+gpr,w190,8712,0.044169,0.0850565,0.82966,North Central,Proposed
+gpr,w191,8712,0.0548292,0.105564,0.766758,North Central,Proposed
+gpr,w192,8712,0.0456933,0.0880019,0.837466,North,Proposed
+gpr,w196,8712,0.0468491,0.0902042,0.83758,Far West,Proposed
+gpr,w199,8712,0.0394996,0.0760874,0.87741,Far West,Proposed
+gpr,w200,8712,0.0389062,0.0749331,0.887282,South,Proposed
+gpr,w201,8712,0.0590931,0.113753,0.730946,North Central,Proposed
+gpr,w205,8712,0.0479072,0.092229,0.828283,West,Proposed
+gpr,w206,8712,0.0592182,0.114036,0.735996,North,Proposed
+gpr,w207,8712,0.0434857,0.0837356,0.862374,North,Proposed
+gpr,w210,8712,0.0556057,0.107035,0.772498,Far West,Proposed
+gpr,w214,8712,0.0428079,0.082406,0.848255,South,Proposed
+gpr,w215,8712,0.0468491,0.0902042,0.837695,Far West,Proposed
+gpr,w216,8712,0.0468491,0.0902042,0.837695,Far West,Proposed
+gpr,w217,8712,0.0435252,0.0838029,0.812787,South Central,Proposed
+gpr,w226,8712,0.0482859,0.092936,0.818182,South,Proposed
+gpr,w230,8712,0.0613618,0.118095,0.727502,West,Proposed
+gpr,w231,8712,0.0613618,0.118095,0.727502,West,Proposed
+gpr,w232,8712,0.0696922,0.134564,0.703512,North,Proposed
+gpr,w233,8712,0.0696922,0.134564,0.703512,North,Proposed
+gpr,w234,8712,0.0502082,0.0966438,0.784435,East,Proposed
+gpr,w235,8712,0.0520138,0.100139,0.78742,North,Proposed
+gpr,w236,8712,0.0488563,0.094302,0.842516,North,Proposed
+gpr,w237,8712,0.0741924,0.143011,0.653466,West,Proposed
+gpr,w238,8712,0.0497298,0.0957519,0.799357,South,Proposed
+gpr,w240,8712,0.0613618,0.118095,0.727502,West,Proposed
+gpr,w244,8712,0.0389062,0.0749331,0.887282,South,Proposed
+gpr,w245,8712,0.0389062,0.0749331,0.887282,South,Proposed
+gpr,w246,8712,0.0520138,0.100139,0.78742,North,Proposed
+gpr,w248,8712,0.042758,0.0823925,0.858242,West,Proposed
+gpr,w250,8712,0.0468731,0.0902118,0.836777,South,Proposed
+gpr,w253,8712,0.0468491,0.0902042,0.83758,Far West,Proposed
+gpr,w255,8712,0.0469208,0.0903498,0.827135,West,Proposed
+gpr,w257,8712,0.0444344,0.0857142,0.861111,North,Proposed
+gpr,w259,8712,0.0558602,0.107519,0.762626,Far West,Proposed
+gpr,w262,8712,0.0469208,0.0903499,0.827135,West,Proposed
+random_forest,w001,8712,0.0545521,0.105037,0.774908,North Central,Proposed
+random_forest,w002,8712,0.048984,0.0943592,0.821166,North,Proposed
+random_forest,w005,8712,0.0556952,0.107233,0.796832,Far West,Proposed
+random_forest,w006,8712,0.0440595,0.0849311,0.837121,North Central,Proposed
+random_forest,w007,8712,0.0440594,0.0849309,0.837121,North Central,Proposed
+random_forest,w008,8712,0.0498797,0.0963226,0.840794,North,Proposed
+random_forest,w009,8712,0.0542765,0.104552,0.788453,North Central,Proposed
+random_forest,w010,8712,0.0542765,0.104552,0.788453,North Central,Proposed
+random_forest,w012,8712,0.0627401,0.120813,0.716483,North Central,Proposed
+random_forest,w013,8712,0.0388347,0.0748083,0.890725,South,Proposed
+random_forest,w014,8712,0.0388347,0.0748083,0.890725,South,Proposed
+random_forest,w015,8712,0.0501055,0.0964727,0.811065,Far West,Proposed
+random_forest,w019,8712,0.046722,0.0899811,0.842746,Far West,Proposed
+random_forest,w021,8712,0.0442335,0.0851884,0.828053,South,Proposed
+random_forest,w022,8712,0.0544924,0.104904,0.776171,North,Proposed
+random_forest,w024,8712,0.048984,0.0943592,0.821166,North,Proposed
+random_forest,w025,8712,0.048984,0.0943592,0.821166,North,Proposed
+random_forest,w026,8712,0.048984,0.0943592,0.821166,North,Proposed
+random_forest,w028,8712,0.0450989,0.0868675,0.843205,North,Proposed
+random_forest,w034,8712,0.0397468,0.0765755,0.889807,South,Proposed
+random_forest,w035,8712,0.0397467,0.0765754,0.889807,South,Proposed
+random_forest,w036,8712,0.0610162,0.11745,0.73657,West,Proposed
+random_forest,w039,8712,0.0561196,0.108049,0.769972,South,Proposed
+random_forest,w040,8712,0.0682568,0.131615,0.699495,West,Proposed
+random_forest,w044,8712,0.0664154,0.12876,0.772153,North,Proposed
+random_forest,w045,8712,0.0439033,0.0845809,0.859504,West,Proposed
+random_forest,w046,8712,0.04815,0.09273,0.834826,Far West,Proposed
+random_forest,w047,8712,0.04815,0.0927301,0.834826,Far West,Proposed
+random_forest,w049,8712,0.0399293,0.0769492,0.894743,North,Proposed
+random_forest,w050,8712,0.0399293,0.0769492,0.894743,North,Proposed
+random_forest,w052,8712,0.0627401,0.120813,0.716483,North Central,Proposed
+random_forest,w053,8712,0.0371357,0.0715473,0.90955,South,Proposed
+random_forest,w055,8712,0.0399293,0.0769491,0.894743,North,Proposed
+random_forest,w057,8712,0.0438783,0.0845238,0.780877,Coast,Proposed
+random_forest,w060,8712,0.0439033,0.0845809,0.859504,West,Proposed
+random_forest,w061,8712,0.0416435,0.0802024,0.84573,South,Proposed
+random_forest,w062,8712,0.0555521,0.106943,0.774793,Far West,Proposed
+random_forest,w064,8712,0.100636,0.196181,0.663108,Far West,Proposed
+random_forest,w066,8712,0.0610162,0.11745,0.73657,West,Proposed
+random_forest,w067,8712,0.0467477,0.0899993,0.842172,South,Proposed
+random_forest,w068,8712,0.0399293,0.0769492,0.894743,North,Proposed
+random_forest,w069,8712,0.0553081,0.106482,0.781107,Far West,Proposed
+random_forest,w070,8712,0.043981,0.0846817,0.841598,South,Proposed
+random_forest,w071,8712,0.0467478,0.0899995,0.842172,South,Proposed
+random_forest,w074,8712,0.0586282,0.112901,0.720845,North,Proposed
+random_forest,w075,8712,0.0371357,0.0715472,0.90955,South,Proposed
+random_forest,w080,8712,0.0509715,0.0981795,0.809688,North,Proposed
+random_forest,w082,8712,0.0460657,0.0887232,0.823003,South Central,Proposed
+random_forest,w087,8712,0.0498798,0.0963227,0.840794,North,Proposed
+random_forest,w088,8712,0.0395462,0.0761971,0.879247,Far West,Proposed
+random_forest,w090,8712,0.0556935,0.107748,0.801653,North,Proposed
+random_forest,w091,8712,0.0475269,0.0915813,0.835744,North,Proposed
+random_forest,w092,8712,0.049281,0.0950649,0.835285,West,Proposed
+random_forest,w095,8712,0.0518041,0.0997642,0.798898,North,Proposed
+random_forest,w096,8712,0.048039,0.0924743,0.832759,South,Proposed
+random_forest,w097,8712,0.048039,0.0924743,0.832759,South,Proposed
+random_forest,w100,8712,0.0353737,0.0682546,0.901056,Far West,Proposed
+random_forest,w102,8712,0.0448722,0.0864604,0.851699,North,Proposed
+random_forest,w103,8712,0.055308,0.106482,0.781107,Far West,Proposed
+random_forest,w104,8712,0.0399293,0.0769492,0.894743,North,Proposed
+random_forest,w107,8712,0.0397468,0.0765755,0.889807,South,Proposed
+random_forest,w108,8712,0.0467219,0.089981,0.842746,Far West,Proposed
+random_forest,w109,8712,0.0467219,0.0899811,0.842746,Far West,Proposed
+random_forest,w110,8712,0.0737508,0.142102,0.655647,West,Proposed
+random_forest,w113,8712,0.0434875,0.0837677,0.866736,North,Proposed
+random_forest,w119,8712,0.06274,0.120813,0.716483,North Central,Proposed
+random_forest,w120,8712,0.043981,0.0846818,0.841598,South,Proposed
+random_forest,w121,8712,0.043981,0.0846818,0.841598,South,Proposed
+random_forest,w122,8712,0.043981,0.0846817,0.841598,South,Proposed
+random_forest,w125,8712,0.0553081,0.106482,0.781221,Far West,Proposed
+random_forest,w126,8712,0.0553081,0.106482,0.781221,Far West,Proposed
+random_forest,w127,8712,0.0579474,0.111597,0.747934,North Central,Proposed
+random_forest,w128,8712,0.0397467,0.0765754,0.889807,South,Proposed
+random_forest,w129,8712,0.0397467,0.0765754,0.889807,South,Proposed
+random_forest,w130,8712,0.0553081,0.106482,0.781107,Far West,Proposed
+random_forest,w132,8712,0.0561196,0.108049,0.770087,South,Proposed
+random_forest,w133,8712,0.0467477,0.0899994,0.842172,South,Proposed
+random_forest,w136,8712,0.048984,0.0943591,0.821166,North,Proposed
+random_forest,w138,8712,0.0432446,0.0832896,0.839073,South,Proposed
+random_forest,w139,8712,0.0432445,0.0832896,0.839073,South,Proposed
+random_forest,w143,8712,0.0390697,0.0752909,0.887167,West,Proposed
+random_forest,w146,8712,0.0588365,0.11332,0.743572,North,Proposed
+random_forest,w148,8712,0.04361,0.0839851,0.807163,South Central,Proposed
+random_forest,w150,8712,0.0382005,0.0736355,0.908173,North,Proposed
+random_forest,w152,8712,0.0610162,0.11745,0.73657,West,Proposed
+random_forest,w153,8712,0.0682568,0.131615,0.699495,West,Proposed
+random_forest,w154,8712,0.0682569,0.131615,0.699495,West,Proposed
+random_forest,w157,8712,0.0561195,0.108049,0.770087,South,Proposed
+random_forest,w159,8712,0.043981,0.0846817,0.841598,South,Proposed
+random_forest,w160,8712,0.0467477,0.0899995,0.842172,South,Proposed
+random_forest,w161,8712,0.0467477,0.0899995,0.842172,South,Proposed
+random_forest,w162,8712,0.0397468,0.0765755,0.889807,South,Proposed
+random_forest,w163,8712,0.0397467,0.0765754,0.889807,South,Proposed
+random_forest,w164,8712,0.0397467,0.0765754,0.889807,South,Proposed
+random_forest,w165,8712,0.0509714,0.0981794,0.809688,North,Proposed
+random_forest,w167,8712,0.0488366,0.0942805,0.848026,North,Proposed
+random_forest,w172,8712,0.0650372,0.125286,0.712351,Far West,Proposed
+random_forest,w173,8712,0.0371357,0.0715472,0.90955,South,Proposed
+random_forest,w176,8712,0.0556936,0.107748,0.801653,North,Proposed
+random_forest,w183,8712,0.053687,0.103404,0.783517,North,Proposed
+random_forest,w186,8712,0.0427256,0.0822913,0.813246,Coast,Proposed
+random_forest,w187,8712,0.0427256,0.0822913,0.813246,Coast,Proposed
+random_forest,w188,8712,0.0436099,0.083985,0.807163,South Central,Proposed
+random_forest,w190,8712,0.0440451,0.0848418,0.835973,North Central,Proposed
+random_forest,w191,8712,0.0545522,0.105038,0.774908,North Central,Proposed
+random_forest,w192,8712,0.0457072,0.0880461,0.839991,North,Proposed
+random_forest,w196,8712,0.046722,0.0899811,0.842746,Far West,Proposed
+random_forest,w199,8712,0.0395462,0.0761971,0.879247,Far West,Proposed
+random_forest,w200,8712,0.0388347,0.0748083,0.890725,South,Proposed
+random_forest,w201,8712,0.0587602,0.113124,0.738751,North Central,Proposed
+random_forest,w205,8712,0.0477009,0.0918515,0.836088,West,Proposed
+random_forest,w206,8712,0.0589444,0.113532,0.745983,North,Proposed
+random_forest,w207,8712,0.0434874,0.0837674,0.866736,North,Proposed
+random_forest,w210,8712,0.055308,0.106482,0.781107,Far West,Proposed
+random_forest,w214,8712,0.042683,0.0821774,0.854339,South,Proposed
+random_forest,w215,8712,0.046722,0.0899812,0.842746,Far West,Proposed
+random_forest,w216,8712,0.046722,0.0899812,0.842746,Far West,Proposed
+random_forest,w217,8712,0.04361,0.083985,0.807163,South Central,Proposed
+random_forest,w226,8712,0.048039,0.0924744,0.832759,South,Proposed
+random_forest,w230,8712,0.0610161,0.11745,0.73657,West,Proposed
+random_forest,w231,8712,0.0610162,0.11745,0.73657,West,Proposed
+random_forest,w232,8712,0.0696748,0.13457,0.702135,North,Proposed
+random_forest,w233,8712,0.0696748,0.13457,0.702135,North,Proposed
+random_forest,w234,8712,0.0500753,0.0964147,0.78983,East,Proposed
+random_forest,w235,8712,0.0518041,0.0997643,0.798898,North,Proposed
+random_forest,w236,8712,0.0488366,0.0942804,0.848026,North,Proposed
+random_forest,w237,8712,0.0737508,0.142102,0.655533,West,Proposed
+random_forest,w238,8712,0.0494988,0.0953239,0.807507,South,Proposed
+random_forest,w240,8712,0.0610162,0.11745,0.73657,West,Proposed
+random_forest,w244,8712,0.0388347,0.0748083,0.890725,South,Proposed
+random_forest,w245,8712,0.0388347,0.0748083,0.890725,South,Proposed
+random_forest,w246,8712,0.0518042,0.0997644,0.798898,North,Proposed
+random_forest,w248,8712,0.0426182,0.0821221,0.865129,West,Proposed
+random_forest,w250,8712,0.0467477,0.0899994,0.842172,South,Proposed
+random_forest,w253,8712,0.0467219,0.0899811,0.842746,Far West,Proposed
+random_forest,w255,8712,0.0468165,0.0901755,0.828168,West,Proposed
+random_forest,w257,8712,0.0444865,0.0858525,0.860996,North,Proposed
+random_forest,w259,8712,0.055552,0.106943,0.774793,Far West,Proposed
+random_forest,w262,8712,0.0468165,0.0901754,0.828168,West,Proposed
+svr,w001,8712,0.0540011,0.103957,0.80831,North Central,Proposed
+svr,w002,8712,0.0487205,0.0938717,0.846419,North,Proposed
+svr,w005,8712,0.0553481,0.106583,0.823806,Far West,Proposed
+svr,w006,8712,0.0437636,0.084355,0.859963,North Central,Proposed
+svr,w007,8712,0.0437636,0.084355,0.859963,North Central,Proposed
+svr,w008,8712,0.0496308,0.0958069,0.858127,North,Proposed
+svr,w009,8712,0.053826,0.103677,0.821281,North Central,Proposed
+svr,w010,8712,0.053826,0.103677,0.821281,North Central,Proposed
+svr,w012,8712,0.0619075,0.119175,0.763659,North Central,Proposed
+svr,w013,8712,0.038706,0.0745828,0.914141,South,Proposed
+svr,w014,8712,0.038706,0.0745828,0.914141,South,Proposed
+svr,w015,8712,0.0499326,0.0961623,0.832645,Far West,Proposed
+svr,w019,8712,0.0464486,0.0894625,0.875344,Far West,Proposed
+svr,w021,8712,0.0438066,0.0843691,0.856864,South,Proposed
+svr,w022,8712,0.0542174,0.104391,0.801194,North,Proposed
+svr,w024,8712,0.0487205,0.0938717,0.846419,North,Proposed
+svr,w025,8712,0.0487205,0.0938717,0.846419,North,Proposed
+svr,w026,8712,0.0487205,0.0938717,0.846419,North,Proposed
+svr,w028,8712,0.0448456,0.0863886,0.869949,North,Proposed
+svr,w034,8712,0.0395444,0.0762032,0.916781,South,Proposed
+svr,w035,8712,0.0395444,0.0762032,0.916781,South,Proposed
+svr,w036,8712,0.0603909,0.11626,0.781221,West,Proposed
+svr,w039,8712,0.0556027,0.107081,0.806244,South,Proposed
+svr,w040,8712,0.0675723,0.130217,0.734504,West,Proposed
+svr,w044,8712,0.0661782,0.128198,0.777319,North,Proposed
+svr,w045,8712,0.0437327,0.0842631,0.882805,West,Proposed
+svr,w046,8712,0.0479296,0.0923135,0.857782,Far West,Proposed
+svr,w047,8712,0.0479296,0.0923135,0.857782,Far West,Proposed
+svr,w049,8712,0.0398911,0.0768815,0.908517,North,Proposed
+svr,w050,8712,0.0398911,0.0768815,0.908517,North,Proposed
+svr,w052,8712,0.0619076,0.119175,0.763774,North Central,Proposed
+svr,w053,8712,0.036931,0.0711657,0.935147,South,Proposed
+svr,w055,8712,0.0398911,0.0768815,0.908517,North,Proposed
+svr,w057,8712,0.043649,0.084075,0.799357,Coast,Proposed
+svr,w060,8712,0.0437327,0.0842631,0.882805,West,Proposed
+svr,w061,8712,0.0412989,0.0795449,0.872475,South,Proposed
+svr,w062,8712,0.0550659,0.106003,0.810032,Far West,Proposed
+svr,w064,8712,0.100226,0.195235,0.67034,Far West,Proposed
+svr,w066,8712,0.0603909,0.11626,0.781221,West,Proposed
+svr,w067,8712,0.0462538,0.0890572,0.88051,South,Proposed
+svr,w068,8712,0.0398911,0.0768816,0.908517,North,Proposed
+svr,w069,8712,0.0548961,0.105705,0.81118,Far West,Proposed
+svr,w070,8712,0.0436338,0.0840269,0.867998,South,Proposed
+svr,w071,8712,0.0462538,0.0890572,0.88051,South,Proposed
+svr,w074,8712,0.0580974,0.111851,0.745179,North,Proposed
+svr,w075,8712,0.036931,0.0711657,0.935147,South,Proposed
+svr,w080,8712,0.0506599,0.0975952,0.834252,North,Proposed
+svr,w082,8712,0.0456839,0.0879923,0.848255,South Central,Proposed
+svr,w087,8712,0.0496308,0.0958069,0.858127,North,Proposed
+svr,w088,8712,0.0394867,0.0760905,0.894399,Far West,Proposed
+svr,w090,8712,0.0553401,0.106965,0.817149,North,Proposed
+svr,w091,8712,0.0472547,0.0910649,0.860882,North,Proposed
+svr,w092,8712,0.0489611,0.0944162,0.853421,West,Proposed
+svr,w095,8712,0.0514572,0.0991196,0.828742,North,Proposed
+svr,w096,8712,0.0475541,0.091556,0.864784,South,Proposed
+svr,w097,8712,0.0475541,0.091556,0.864784,South,Proposed
+svr,w100,8712,0.0352716,0.0680514,0.908517,Far West,Proposed
+svr,w102,8712,0.0447245,0.086171,0.869376,North,Proposed
+svr,w103,8712,0.0548961,0.105705,0.81118,Far West,Proposed
+svr,w104,8712,0.0398911,0.0768816,0.908517,North,Proposed
+svr,w107,8712,0.0395444,0.0762032,0.916781,South,Proposed
+svr,w108,8712,0.0464486,0.0894625,0.875344,Far West,Proposed
+svr,w109,8712,0.0464486,0.0894625,0.875344,Far West,Proposed
+svr,w110,8712,0.0728784,0.140347,0.695592,West,Proposed
+svr,w113,8712,0.0433402,0.0834925,0.888889,North,Proposed
+svr,w119,8712,0.0619075,0.119175,0.763774,North Central,Proposed
+svr,w120,8712,0.0436338,0.0840269,0.867998,South,Proposed
+svr,w121,8712,0.0436338,0.0840269,0.867998,South,Proposed
+svr,w122,8712,0.0436338,0.0840269,0.867998,South,Proposed
+svr,w125,8712,0.0548961,0.105705,0.81118,Far West,Proposed
+svr,w126,8712,0.0548961,0.105705,0.81118,Far West,Proposed
+svr,w127,8712,0.0573496,0.11042,0.788912,North Central,Proposed
+svr,w128,8712,0.0395444,0.0762032,0.916781,South,Proposed
+svr,w129,8712,0.0395444,0.0762032,0.916781,South,Proposed
+svr,w130,8712,0.0548961,0.105705,0.81118,Far West,Proposed
+svr,w132,8712,0.0556027,0.107081,0.806244,South,Proposed
+svr,w133,8712,0.0462538,0.0890572,0.88051,South,Proposed
+svr,w136,8712,0.0487205,0.0938717,0.846419,North,Proposed
+svr,w138,8712,0.0428973,0.0826299,0.869031,South,Proposed
+svr,w139,8712,0.0428973,0.0826299,0.869031,South,Proposed
+svr,w143,8712,0.0390068,0.0751913,0.903811,West,Proposed
+svr,w146,8712,0.0582597,0.112175,0.774334,North,Proposed
+svr,w148,8712,0.0432655,0.0833154,0.830579,South Central,Proposed
+svr,w150,8712,0.038149,0.0735442,0.92034,North,Proposed
+svr,w152,8712,0.060391,0.11626,0.781221,West,Proposed
+svr,w153,8712,0.0675722,0.130217,0.734504,West,Proposed
+svr,w154,8712,0.0675723,0.130217,0.734504,West,Proposed
+svr,w157,8712,0.0556027,0.107081,0.806244,South,Proposed
+svr,w159,8712,0.0436338,0.0840269,0.867998,South,Proposed
+svr,w160,8712,0.0462538,0.0890573,0.88051,South,Proposed
+svr,w161,8712,0.0462538,0.0890572,0.88051,South,Proposed
+svr,w162,8712,0.0395444,0.0762032,0.916781,South,Proposed
+svr,w163,8712,0.0395444,0.0762032,0.916781,South,Proposed
+svr,w164,8712,0.0395444,0.0762032,0.916781,South,Proposed
+svr,w165,8712,0.0506599,0.0975952,0.834252,North,Proposed
+svr,w167,8712,0.0487225,0.0940326,0.862603,North,Proposed
+svr,w172,8712,0.0644211,0.124072,0.746212,Far West,Proposed
+svr,w173,8712,0.036931,0.0711657,0.935147,South,Proposed
+svr,w176,8712,0.0553401,0.106965,0.817149,North,Proposed
+svr,w183,8712,0.0532509,0.102582,0.813935,North,Proposed
+svr,w186,8712,0.0424504,0.0817633,0.830234,Coast,Proposed
+svr,w187,8712,0.0424504,0.0817633,0.830234,Coast,Proposed
+svr,w188,8712,0.0432655,0.0833154,0.830464,South Central,Proposed
+svr,w190,8712,0.0436803,0.0841351,0.860078,North Central,Proposed
+svr,w191,8712,0.0540011,0.103957,0.80831,North Central,Proposed
+svr,w192,8712,0.0454856,0.0876386,0.862718,North,Proposed
+svr,w196,8712,0.0464486,0.0894625,0.875344,Far West,Proposed
+svr,w199,8712,0.0394867,0.0760905,0.894399,Far West,Proposed
+svr,w200,8712,0.038706,0.0745828,0.914141,South,Proposed
+svr,w201,8712,0.0581287,0.111875,0.781221,North Central,Proposed
+svr,w205,8712,0.0472156,0.0909165,0.86421,West,Proposed
+svr,w206,8712,0.0583831,0.112447,0.780418,North,Proposed
+svr,w207,8712,0.0433402,0.0834925,0.888889,North,Proposed
+svr,w210,8712,0.0548961,0.105705,0.81118,Far West,Proposed
+svr,w214,8712,0.0423425,0.0815394,0.881084,South,Proposed
+svr,w215,8712,0.0464486,0.0894625,0.875344,Far West,Proposed
+svr,w216,8712,0.0464486,0.0894625,0.875344,Far West,Proposed
+svr,w217,8712,0.0432655,0.0833154,0.830464,South Central,Proposed
+svr,w226,8712,0.0475541,0.091556,0.864784,South,Proposed
+svr,w230,8712,0.0603909,0.11626,0.781221,West,Proposed
+svr,w231,8712,0.0603909,0.11626,0.781221,West,Proposed
+svr,w232,8712,0.0691489,0.133523,0.730142,North,Proposed
+svr,w233,8712,0.0691489,0.133523,0.730142,North,Proposed
+svr,w234,8712,0.0495696,0.0954392,0.819789,East,Proposed
+svr,w235,8712,0.0514572,0.0991196,0.828742,North,Proposed
+svr,w236,8712,0.0487225,0.0940326,0.862603,North,Proposed
+svr,w237,8712,0.0728784,0.140347,0.695592,West,Proposed
+svr,w238,8712,0.0490936,0.0945449,0.835859,South,Proposed
+svr,w240,8712,0.0603909,0.11626,0.781221,West,Proposed
+svr,w244,8712,0.038706,0.0745828,0.914141,South,Proposed
+svr,w245,8712,0.038706,0.0745828,0.914141,South,Proposed
+svr,w246,8712,0.0514572,0.0991196,0.828742,North,Proposed
+svr,w248,8712,0.042462,0.0818202,0.88315,West,Proposed
+svr,w250,8712,0.0462538,0.0890573,0.88051,South,Proposed
+svr,w253,8712,0.0464486,0.0894625,0.875344,Far West,Proposed
+svr,w255,8712,0.046456,0.089475,0.854224,West,Proposed
+svr,w257,8712,0.0444206,0.0857045,0.869605,North,Proposed
+svr,w259,8712,0.0550659,0.106003,0.810032,Far West,Proposed
+svr,w262,8712,0.046456,0.089475,0.854224,West,Proposed
+svr + recalibration,w001,8712,0.0459404,0.0884965,0.848026,North Central,Proposed
+svr + recalibration,w002,8712,0.0414438,0.0798886,0.877181,North,Proposed
+svr + recalibration,w005,8712,0.0457661,0.0882069,0.867539,Far West,Proposed
+svr + recalibration,w006,8712,0.0380763,0.0734193,0.885904,North Central,Proposed
+svr + recalibration,w007,8712,0.0380763,0.0734193,0.885904,North Central,Proposed
+svr + recalibration,w008,8712,0.0559995,0.10847,0.741506,North,Proposed
+svr + recalibration,w009,8712,0.0451519,0.0870057,0.864096,North Central,Proposed
+svr + recalibration,w010,8712,0.0451519,0.0870057,0.864096,North Central,Proposed
+svr + recalibration,w012,8712,0.0505962,0.0974476,0.841368,North Central,Proposed
+svr + recalibration,w013,8712,0.0348024,0.0670916,0.913567,South,Proposed
+svr + recalibration,w014,8712,0.0348024,0.0670916,0.913567,South,Proposed
+svr + recalibration,w015,8712,0.0469278,0.0904548,0.823921,Far West,Proposed
+svr + recalibration,w019,8712,0.0414933,0.0799828,0.879706,Far West,Proposed
+svr + recalibration,w021,8712,0.0359578,0.0692992,0.899219,South,Proposed
+svr + recalibration,w022,8712,0.0468454,0.0902634,0.837006,North,Proposed
+svr + recalibration,w024,8712,0.0414438,0.0798886,0.877181,North,Proposed
+svr + recalibration,w025,8712,0.0414438,0.0798886,0.877181,North,Proposed
+svr + recalibration,w026,8712,0.0414438,0.0798886,0.877181,North,Proposed
+svr + recalibration,w028,8712,0.0391826,0.0755336,0.888889,North,Proposed
+svr + recalibration,w034,8712,0.0332241,0.0640841,0.927227,South,Proposed
+svr + recalibration,w035,8712,0.0332241,0.0640841,0.927227,South,Proposed
+svr + recalibration,w036,8712,0.0488647,0.0941355,0.846648,West,Proposed
+svr + recalibration,w039,8712,0.0477174,0.0919323,0.854798,South,Proposed
+svr + recalibration,w040,8712,0.0579593,0.111697,0.778007,West,Proposed
+svr + recalibration,w044,8712,0.0834822,0.162592,0.566345,North,Proposed
+svr + recalibration,w045,8712,0.037795,0.0728715,0.898186,West,Proposed
+svr + recalibration,w046,8712,0.0438451,0.0845118,0.847911,Far West,Proposed
+svr + recalibration,w047,8712,0.0438451,0.0845118,0.847911,Far West,Proposed
+svr + recalibration,w049,8712,0.038817,0.0748582,0.877066,North,Proposed
+svr + recalibration,w050,8712,0.038817,0.0748582,0.877066,North,Proposed
+svr + recalibration,w052,8712,0.0505962,0.0974476,0.841368,North Central,Proposed
+svr + recalibration,w053,8712,0.0312571,0.0603015,0.935262,South,Proposed
+svr + recalibration,w055,8712,0.038817,0.0748583,0.877066,North,Proposed
+svr + recalibration,w057,8712,0.0353264,0.0680912,0.851699,Coast,Proposed
+svr + recalibration,w060,8712,0.037795,0.0728715,0.898186,West,Proposed
+svr + recalibration,w061,8712,0.0340804,0.0656914,0.913567,South,Proposed
+svr + recalibration,w062,8712,0.0468077,0.0901772,0.858127,Far West,Proposed
+svr + recalibration,w064,8712,0.117757,0.230729,0.504017,Far West,Proposed
+svr + recalibration,w066,8712,0.0488647,0.0941355,0.846648,West,Proposed
+svr + recalibration,w067,8712,0.0363705,0.0700933,0.919651,South,Proposed
+svr + recalibration,w068,8712,0.0388171,0.0748583,0.877066,North,Proposed
+svr + recalibration,w069,8712,0.0469636,0.0904964,0.841713,Far West,Proposed
+svr + recalibration,w070,8712,0.0349591,0.0673782,0.912994,South,Proposed
+svr + recalibration,w071,8712,0.0363705,0.0700933,0.919651,South,Proposed
+svr + recalibration,w074,8712,0.0467667,0.090082,0.822658,North,Proposed
+svr + recalibration,w075,8712,0.0312571,0.0603015,0.935262,South,Proposed
+svr + recalibration,w080,8712,0.0424036,0.0817389,0.871901,North,Proposed
+svr + recalibration,w082,8712,0.0385435,0.0742822,0.89371,South Central,Proposed
+svr + recalibration,w087,8712,0.0559995,0.10847,0.741506,North,Proposed
+svr + recalibration,w088,8712,0.0361489,0.0697025,0.899219,Far West,Proposed
+svr + recalibration,w090,8712,0.0636541,0.123621,0.695937,North,Proposed
+svr + recalibration,w091,8712,0.0462579,0.0892269,0.827479,North,Proposed
+svr + recalibration,w092,8712,0.0540529,0.104399,0.760904,West,Proposed
+svr + recalibration,w095,8712,0.0438158,0.0844409,0.863981,North,Proposed
+svr + recalibration,w096,8712,0.0382099,0.0736224,0.915634,South,Proposed
+svr + recalibration,w097,8712,0.0382099,0.0736224,0.915634,South,Proposed
+svr + recalibration,w100,8712,0.0444585,0.0859635,0.763315,Far West,Proposed
+svr + recalibration,w102,8712,0.0443115,0.0854557,0.832185,North,Proposed
+svr + recalibration,w103,8712,0.0469636,0.0904964,0.841713,Far West,Proposed
+svr + recalibration,w104,8712,0.0388171,0.0748583,0.877066,North,Proposed
+svr + recalibration,w107,8712,0.0332241,0.0640841,0.927227,South,Proposed
+svr + recalibration,w108,8712,0.0414933,0.0799828,0.879706,Far West,Proposed
+svr + recalibration,w109,8712,0.0414933,0.0799828,0.879706,Far West,Proposed
+svr + recalibration,w110,8712,0.0603999,0.116319,0.768365,West,Proposed
+svr + recalibration,w113,8712,0.0396077,0.0763694,0.881084,North,Proposed
+svr + recalibration,w119,8712,0.0505962,0.0974476,0.841368,North Central,Proposed
+svr + recalibration,w120,8712,0.0349591,0.0673782,0.912994,South,Proposed
+svr + recalibration,w121,8712,0.0349591,0.0673782,0.912994,South,Proposed
+svr + recalibration,w122,8712,0.0349591,0.0673782,0.912994,South,Proposed
+svr + recalibration,w125,8712,0.0469636,0.0904965,0.841713,Far West,Proposed
+svr + recalibration,w126,8712,0.0469636,0.0904965,0.841713,Far West,Proposed
+svr + recalibration,w127,8712,0.0478148,0.0921156,0.844353,North Central,Proposed
+svr + recalibration,w128,8712,0.0332241,0.0640841,0.927227,South,Proposed
+svr + recalibration,w129,8712,0.0332241,0.0640841,0.927227,South,Proposed
+svr + recalibration,w130,8712,0.0469636,0.0904964,0.841713,Far West,Proposed
+svr + recalibration,w132,8712,0.0477174,0.0919323,0.854798,South,Proposed
+svr + recalibration,w133,8712,0.0363705,0.0700933,0.919651,South,Proposed
+svr + recalibration,w136,8712,0.0414438,0.0798886,0.877181,North,Proposed
+svr + recalibration,w138,8712,0.0379444,0.0731186,0.890611,South,Proposed
+svr + recalibration,w139,8712,0.0379444,0.0731186,0.890611,South,Proposed
+svr + recalibration,w143,8712,0.0364937,0.0703774,0.89084,West,Proposed
+svr + recalibration,w146,8712,0.0478734,0.0922173,0.838958,North,Proposed
+svr + recalibration,w148,8712,0.0356922,0.0687779,0.877296,South Central,Proposed
+svr + recalibration,w150,8712,0.042182,0.0813668,0.821166,North,Proposed
+svr + recalibration,w152,8712,0.0488647,0.0941356,0.846648,West,Proposed
+svr + recalibration,w153,8712,0.0579592,0.111697,0.778007,West,Proposed
+svr + recalibration,w154,8712,0.0579592,0.111697,0.778007,West,Proposed
+svr + recalibration,w157,8712,0.0477174,0.0919323,0.854798,South,Proposed
+svr + recalibration,w159,8712,0.0349591,0.0673782,0.912994,South,Proposed
+svr + recalibration,w160,8712,0.0363705,0.0700933,0.919651,South,Proposed
+svr + recalibration,w161,8712,0.0363705,0.0700933,0.919651,South,Proposed
+svr + recalibration,w162,8712,0.0332241,0.0640841,0.927227,South,Proposed
+svr + recalibration,w163,8712,0.0332241,0.0640841,0.927227,South,Proposed
+svr + recalibration,w164,8712,0.0332241,0.0640841,0.927227,South,Proposed
+svr + recalibration,w165,8712,0.0424036,0.0817389,0.871901,North,Proposed
+svr + recalibration,w167,8712,0.0634606,0.122942,0.652663,North,Proposed
+svr + recalibration,w172,8712,0.055436,0.106809,0.786272,Far West,Proposed
+svr + recalibration,w173,8712,0.0312571,0.0603015,0.935262,South,Proposed
+svr + recalibration,w176,8712,0.0636541,0.123621,0.695937,North,Proposed
+svr + recalibration,w183,8712,0.0446267,0.0860108,0.856635,North,Proposed
+svr + recalibration,w186,8712,0.0339103,0.0653666,0.885675,Coast,Proposed
+svr + recalibration,w187,8712,0.0339103,0.0653666,0.885675,Coast,Proposed
+svr + recalibration,w188,8712,0.0356922,0.0687779,0.877296,South Central,Proposed
+svr + recalibration,w190,8712,0.0382732,0.0737555,0.882461,North Central,Proposed
+svr + recalibration,w191,8712,0.0459404,0.0884965,0.848026,North Central,Proposed
+svr + recalibration,w192,8712,0.0411829,0.0793898,0.868687,North,Proposed
+svr + recalibration,w196,8712,0.0414933,0.0799828,0.879706,Far West,Proposed
+svr + recalibration,w199,8712,0.0361489,0.0697025,0.899219,Far West,Proposed
+svr + recalibration,w200,8712,0.0348024,0.0670916,0.913567,South,Proposed
+svr + recalibration,w201,8712,0.0480308,0.0924881,0.8455,North Central,Proposed
+svr + recalibration,w205,8712,0.0379253,0.0730783,0.904385,West,Proposed
+svr + recalibration,w206,8712,0.0487182,0.0938749,0.8323,North,Proposed
+svr + recalibration,w207,8712,0.0396077,0.0763694,0.881084,North,Proposed
+svr + recalibration,w210,8712,0.0469636,0.0904964,0.841713,Far West,Proposed
+svr + recalibration,w214,8712,0.034255,0.0660171,0.923898,South,Proposed
+svr + recalibration,w215,8712,0.0414933,0.0799828,0.879706,Far West,Proposed
+svr + recalibration,w216,8712,0.0414933,0.0799828,0.879706,Far West,Proposed
+svr + recalibration,w217,8712,0.0356922,0.0687779,0.877296,South Central,Proposed
+svr + recalibration,w226,8712,0.0382099,0.0736224,0.915634,South,Proposed
+svr + recalibration,w230,8712,0.0488647,0.0941355,0.846648,West,Proposed
+svr + recalibration,w231,8712,0.0488647,0.0941355,0.846648,West,Proposed
+svr + recalibration,w232,8712,0.0614861,0.118711,0.742654,North,Proposed
+svr + recalibration,w233,8712,0.0614861,0.118711,0.742654,North,Proposed
+svr + recalibration,w234,8712,0.0409408,0.0788772,0.873049,East,Proposed
+svr + recalibration,w235,8712,0.0438158,0.0844409,0.863981,North,Proposed
+svr + recalibration,w236,8712,0.0634606,0.122942,0.652663,North,Proposed
+svr + recalibration,w237,8712,0.0603999,0.116319,0.768365,West,Proposed
+svr + recalibration,w238,8712,0.0445516,0.085815,0.846763,South,Proposed
+svr + recalibration,w240,8712,0.0488647,0.0941355,0.846648,West,Proposed
+svr + recalibration,w244,8712,0.0348024,0.0670916,0.913567,South,Proposed
+svr + recalibration,w245,8712,0.0348024,0.0670916,0.913567,South,Proposed
+svr + recalibration,w246,8712,0.0438158,0.0844409,0.863981,North,Proposed
+svr + recalibration,w248,8712,0.0404785,0.0780566,0.871786,West,Proposed
+svr + recalibration,w250,8712,0.0363705,0.0700934,0.919651,South,Proposed
+svr + recalibration,w253,8712,0.0414933,0.0799828,0.879706,Far West,Proposed
+svr + recalibration,w255,8712,0.0413274,0.0796439,0.862603,West,Proposed
+svr + recalibration,w257,8712,0.0575558,0.111405,0.680556,North,Proposed
+svr + recalibration,w259,8712,0.0468077,0.0901772,0.858127,Far West,Proposed
+svr + recalibration,w262,8712,0.0413274,0.0796439,0.862603,West,Proposed
+ridge,w001,8712,0.0548417,0.105748,0.801768,North Central,Proposed
+ridge,w002,8712,0.0484695,0.0933772,0.866736,North,Proposed
+ridge,w005,8712,0.0543151,0.104563,0.882461,Far West,Proposed
+ridge,w006,8712,0.0440857,0.084986,0.859504,North Central,Proposed
+ridge,w007,8712,0.0440857,0.084986,0.859504,North Central,Proposed
+ridge,w008,8712,0.0483113,0.0930622,0.898072,North,Proposed
+ridge,w009,8712,0.0540848,0.104254,0.828283,North Central,Proposed
+ridge,w010,8712,0.0540848,0.104254,0.828283,North Central,Proposed
+ridge,w012,8712,0.0623803,0.120291,0.787075,North Central,Proposed
+ridge,w013,8712,0.0387848,0.074726,0.919995,South,Proposed
+ridge,w014,8712,0.0387848,0.074726,0.919995,South,Proposed
+ridge,w015,8712,0.0487768,0.0939218,0.897268,Far West,Proposed
+ridge,w019,8712,0.0461392,0.0888797,0.890496,Far West,Proposed
+ridge,w021,8712,0.045063,0.0868194,0.801423,South,Proposed
+ridge,w022,8712,0.0542791,0.10456,0.826676,North,Proposed
+ridge,w024,8712,0.0484695,0.0933772,0.866736,North,Proposed
+ridge,w025,8712,0.0484695,0.0933772,0.866736,North,Proposed
+ridge,w026,8712,0.0484695,0.0933772,0.866736,North,Proposed
+ridge,w028,8712,0.0448287,0.0863568,0.885331,North,Proposed
+ridge,w034,8712,0.0398064,0.0766547,0.886134,South,Proposed
+ridge,w035,8712,0.0398064,0.0766547,0.886134,South,Proposed
+ridge,w036,8712,0.0602843,0.116129,0.81382,West,Proposed
+ridge,w039,8712,0.0566426,0.109154,0.784206,South,Proposed
+ridge,w040,8712,0.0674352,0.130279,0.78191,West,Proposed
+ridge,w044,8712,0.0620036,0.11941,0.8882,North,Proposed
+ridge,w045,8712,0.0431741,0.0831685,0.919421,West,Proposed
+ridge,w046,8712,0.0474912,0.0914894,0.900826,Far West,Proposed
+ridge,w047,8712,0.0474912,0.0914894,0.900826,Far West,Proposed
+ridge,w049,8712,0.0391492,0.0754369,0.945937,North,Proposed
+ridge,w050,8712,0.0391492,0.0754369,0.945937,North,Proposed
+ridge,w052,8712,0.0623803,0.120291,0.787075,North Central,Proposed
+ridge,w053,8712,0.0373037,0.0718556,0.910239,South,Proposed
+ridge,w055,8712,0.0391492,0.075437,0.945937,North,Proposed
+ridge,w057,8712,0.0444848,0.085754,0.783517,Coast,Proposed
+ridge,w060,8712,0.0431741,0.0831685,0.919421,West,Proposed
+ridge,w061,8712,0.0418439,0.0805781,0.837236,South,Proposed
+ridge,w062,8712,0.0554171,0.106779,0.829775,Far West,Proposed
+ridge,w064,8712,0.0913057,0.175927,0.785124,Far West,Proposed
+ridge,w066,8712,0.0602843,0.116129,0.81382,West,Proposed
+ridge,w067,8712,0.047352,0.0911553,0.809458,South,Proposed
+ridge,w068,8712,0.0391492,0.075437,0.945937,North,Proposed
+ridge,w069,8712,0.0544061,0.104792,0.863751,Far West,Proposed
+ridge,w070,8712,0.0447746,0.086223,0.806129,South,Proposed
+ridge,w071,8712,0.047352,0.0911553,0.809458,South,Proposed
+ridge,w074,8712,0.0592586,0.114325,0.732553,North,Proposed
+ridge,w075,8712,0.0373037,0.0718556,0.910239,South,Proposed
+ridge,w080,8712,0.0501396,0.0965785,0.865243,North,Proposed
+ridge,w082,8712,0.0471316,0.0908637,0.793733,South Central,Proposed
+ridge,w087,8712,0.0483113,0.0930622,0.898072,North,Proposed
+ridge,w088,8712,0.0387368,0.0746247,0.927571,Far West,Proposed
+ridge,w090,8712,0.0528788,0.101821,0.912879,North,Proposed
+ridge,w091,8712,0.0468441,0.0902499,0.917929,North,Proposed
+ridge,w092,8712,0.0483809,0.0933148,0.888659,West,Proposed
+ridge,w095,8712,0.0512229,0.0986781,0.852961,North,Proposed
+ridge,w096,8712,0.0489847,0.0943627,0.797865,South,Proposed
+ridge,w097,8712,0.0489847,0.0943627,0.797865,South,Proposed
+ridge,w100,8712,0.0340749,0.0656328,0.956726,Far West,Proposed
+ridge,w102,8712,0.044091,0.0849347,0.915289,North,Proposed
+ridge,w103,8712,0.0544061,0.104792,0.863751,Far West,Proposed
+ridge,w104,8712,0.0391492,0.075437,0.945937,North,Proposed
+ridge,w107,8712,0.0398064,0.0766547,0.886134,South,Proposed
+ridge,w108,8712,0.0461391,0.0888797,0.890496,Far West,Proposed
+ridge,w109,8712,0.0461391,0.0888797,0.890496,Far West,Proposed
+ridge,w110,8712,0.0731195,0.141191,0.745868,West,Proposed
+ridge,w113,8712,0.0428626,0.0825502,0.911042,North,Proposed
+ridge,w119,8712,0.0623803,0.120291,0.787075,North Central,Proposed
+ridge,w120,8712,0.0447746,0.086223,0.806129,South,Proposed
+ridge,w121,8712,0.0447746,0.086223,0.806129,South,Proposed
+ridge,w122,8712,0.0447746,0.086223,0.806129,South,Proposed
+ridge,w125,8712,0.0544062,0.104792,0.863751,Far West,Proposed
+ridge,w126,8712,0.0544062,0.104792,0.863751,Far West,Proposed
+ridge,w127,8712,0.0576881,0.111203,0.806703,North Central,Proposed
+ridge,w128,8712,0.0398064,0.0766547,0.886134,South,Proposed
+ridge,w129,8712,0.0398064,0.0766547,0.886134,South,Proposed
+ridge,w130,8712,0.0544061,0.104792,0.863751,Far West,Proposed
+ridge,w132,8712,0.0566426,0.109154,0.784206,South,Proposed
+ridge,w133,8712,0.047352,0.0911553,0.809458,South,Proposed
+ridge,w136,8712,0.0484695,0.0933772,0.866736,North,Proposed
+ridge,w138,8712,0.0438345,0.0844552,0.825184,South,Proposed
+ridge,w139,8712,0.0438345,0.0844552,0.825184,South,Proposed
+ridge,w143,8712,0.0384299,0.0740491,0.941116,West,Proposed
+ridge,w146,8712,0.0589635,0.113721,0.778926,North,Proposed
+ridge,w148,8712,0.0442217,0.0852031,0.798324,South Central,Proposed
+ridge,w150,8712,0.0374528,0.0721649,0.9441,North,Proposed
+ridge,w152,8712,0.0602843,0.116129,0.81382,West,Proposed
+ridge,w153,8712,0.0674352,0.130279,0.78191,West,Proposed
+ridge,w154,8712,0.0674352,0.130279,0.78191,West,Proposed
+ridge,w157,8712,0.0566426,0.109154,0.784206,South,Proposed
+ridge,w159,8712,0.0447747,0.086223,0.806129,South,Proposed
+ridge,w160,8712,0.047352,0.0911553,0.809458,South,Proposed
+ridge,w161,8712,0.047352,0.0911553,0.809458,South,Proposed
+ridge,w162,8712,0.0398064,0.0766547,0.886134,South,Proposed
+ridge,w163,8712,0.0398064,0.0766547,0.886134,South,Proposed
+ridge,w164,8712,0.0398064,0.0766547,0.886134,South,Proposed
+ridge,w165,8712,0.0501396,0.0965785,0.865243,North,Proposed
+ridge,w167,8712,0.047432,0.0913383,0.924128,North,Proposed
+ridge,w172,8712,0.0636757,0.122761,0.818182,Far West,Proposed
+ridge,w173,8712,0.0373037,0.0718556,0.910239,South,Proposed
+ridge,w176,8712,0.0528788,0.101821,0.912879,North,Proposed
+ridge,w183,8712,0.0527779,0.101659,0.844812,North,Proposed
+ridge,w186,8712,0.0431742,0.0831788,0.809688,Coast,Proposed
+ridge,w187,8712,0.0431742,0.0831788,0.809688,Coast,Proposed
+ridge,w188,8712,0.0442217,0.0852031,0.798324,South Central,Proposed
+ridge,w190,8712,0.0444906,0.0857991,0.846074,North Central,Proposed
+ridge,w191,8712,0.0548417,0.105748,0.801768,North Central,Proposed
+ridge,w192,8712,0.0450234,0.0867408,0.9177,North,Proposed
+ridge,w196,8712,0.0461391,0.0888797,0.890496,Far West,Proposed
+ridge,w199,8712,0.0387368,0.0746247,0.927571,Far West,Proposed
+ridge,w200,8712,0.0387848,0.074726,0.919995,South,Proposed
+ridge,w201,8712,0.0588283,0.113446,0.790863,North Central,Proposed
+ridge,w205,8712,0.047817,0.0920982,0.847452,West,Proposed
+ridge,w206,8712,0.0581823,0.112143,0.813476,North,Proposed
+ridge,w207,8712,0.0428626,0.0825502,0.911042,North,Proposed
+ridge,w210,8712,0.0544061,0.104792,0.863751,Far West,Proposed
+ridge,w214,8712,0.043265,0.0833041,0.82966,South,Proposed
+ridge,w215,8712,0.0461391,0.0888797,0.890496,Far West,Proposed
+ridge,w216,8712,0.0461391,0.0888797,0.890496,Far West,Proposed
+ridge,w217,8712,0.0442217,0.0852031,0.798324,South Central,Proposed
+ridge,w226,8712,0.0489847,0.0943627,0.797865,South,Proposed
+ridge,w230,8712,0.0602843,0.116129,0.81382,West,Proposed
+ridge,w231,8712,0.0602843,0.116129,0.81382,West,Proposed
+ridge,w232,8712,0.067523,0.130428,0.814968,North,Proposed
+ridge,w233,8712,0.067523,0.130428,0.814968,North,Proposed
+ridge,w234,8712,0.0506285,0.0975949,0.800735,East,Proposed
+ridge,w235,8712,0.0512229,0.0986781,0.852961,North,Proposed
+ridge,w236,8712,0.047432,0.0913383,0.924128,North,Proposed
+ridge,w237,8712,0.0731195,0.141191,0.745868,West,Proposed
+ridge,w238,8712,0.0495374,0.0954867,0.836088,South,Proposed
+ridge,w240,8712,0.0602843,0.116129,0.81382,West,Proposed
+ridge,w244,8712,0.0387848,0.074726,0.919995,South,Proposed
+ridge,w245,8712,0.0387848,0.074726,0.919995,South,Proposed
+ridge,w246,8712,0.0512229,0.0986782,0.852961,North,Proposed
+ridge,w248,8712,0.0423833,0.0816859,0.908632,West,Proposed
+ridge,w250,8712,0.0473521,0.0911554,0.809458,South,Proposed
+ridge,w253,8712,0.0461391,0.0888797,0.890496,Far West,Proposed
+ridge,w255,8712,0.0461332,0.0888786,0.90186,West,Proposed
+ridge,w257,8712,0.04324,0.0832936,0.946281,North,Proposed
+ridge,w259,8712,0.0554171,0.106779,0.829775,Far West,Proposed
+ridge,w262,8712,0.0461332,0.0888786,0.90186,West,Proposed
+constant,w001,8712,0.0556285,0.107169,0.776974,North Central,Proposed
+constant,w002,8712,0.0501119,0.0965745,0.815886,North,Proposed
+constant,w005,8712,0.0569782,0.109715,0.772612,Far West,Proposed
+constant,w006,8712,0.0447366,0.0862046,0.848714,North Central,Proposed
+constant,w007,8712,0.0447366,0.0862046,0.848714,North Central,Proposed
+constant,w008,8712,0.0505414,0.0975115,0.832759,North,Proposed
+constant,w009,8712,0.0555537,0.107069,0.780533,North Central,Proposed
+constant,w010,8712,0.0555537,0.107069,0.780533,North Central,Proposed
+constant,w012,8712,0.0639945,0.123378,0.732897,North Central,Proposed
+constant,w013,8712,0.0396105,0.0763113,0.888659,South,Proposed
+constant,w014,8712,0.0396105,0.0763113,0.888659,South,Proposed
+constant,w015,8712,0.0512121,0.0986519,0.808196,Far West,Proposed
+constant,w019,8712,0.0475421,0.0915939,0.84022,Far West,Proposed
+constant,w021,8712,0.0445082,0.085701,0.85388,South,Proposed
+constant,w022,8712,0.0555989,0.107105,0.769628,North,Proposed
+constant,w024,8712,0.0501119,0.0965745,0.815886,North,Proposed
+constant,w025,8712,0.0501119,0.0965745,0.815886,North,Proposed
+constant,w026,8712,0.0501119,0.0965745,0.815886,North,Proposed
+constant,w028,8712,0.0462277,0.0890745,0.841942,North,Proposed
+constant,w034,8712,0.0401742,0.0773755,0.895661,South,Proposed
+constant,w035,8712,0.0401742,0.0773755,0.895661,South,Proposed
+constant,w036,8712,0.0620712,0.119562,0.747016,West,Proposed
+constant,w039,8712,0.057192,0.110145,0.765037,South,Proposed
+constant,w040,8712,0.0696687,0.134629,0.721419,West,Proposed
+constant,w044,8712,0.0666386,0.128814,0.758494,North,Proposed
+constant,w045,8712,0.0446468,0.0860068,0.854568,West,Proposed
+constant,w046,8712,0.0492218,0.0948524,0.8323,Far West,Proposed
+constant,w047,8712,0.0492218,0.0948524,0.8323,Far West,Proposed
+constant,w049,8712,0.0405352,0.0781116,0.889233,North,Proposed
+constant,w050,8712,0.0405352,0.0781116,0.889233,North,Proposed
+constant,w052,8712,0.0639945,0.123378,0.732897,North Central,Proposed
+constant,w053,8712,0.0372922,0.0718446,0.927801,South,Proposed
+constant,w055,8712,0.0405352,0.0781116,0.889233,North,Proposed
+constant,w057,8712,0.0438786,0.0844995,0.848255,Coast,Proposed
+constant,w060,8712,0.0446468,0.0860068,0.854568,West,Proposed
+constant,w061,8712,0.0418155,0.0805257,0.872819,South,Proposed
+constant,w062,8712,0.0566206,0.109058,0.773186,Far West,Proposed
+constant,w064,8712,0.100543,0.19528,0.63556,Far West,Proposed
+constant,w066,8712,0.0620712,0.119562,0.747016,West,Proposed
+constant,w067,8712,0.0471374,0.0907272,0.847911,South,Proposed
+constant,w068,8712,0.0405352,0.0781116,0.889233,North,Proposed
+constant,w069,8712,0.0564616,0.108789,0.780418,Far West,Proposed
+constant,w070,8712,0.0443793,0.0854404,0.857782,South,Proposed
+constant,w071,8712,0.0471374,0.0907272,0.847911,South,Proposed
+constant,w074,8712,0.0597846,0.115187,0.741736,North,Proposed
+constant,w075,8712,0.0372922,0.0718446,0.927801,South,Proposed
+constant,w080,8712,0.0520185,0.100212,0.801194,North,Proposed
+constant,w082,8712,0.0468084,0.090113,0.823003,South Central,Proposed
+constant,w087,8712,0.0505414,0.0975115,0.832759,North,Proposed
+constant,w088,8712,0.0403138,0.0776816,0.875,Far West,Proposed
+constant,w090,8712,0.0555655,0.107179,0.804637,North,Proposed
+constant,w091,8712,0.0482489,0.0929959,0.84309,North,Proposed
+constant,w092,8712,0.050278,0.0970124,0.830234,West,Proposed
+constant,w095,8712,0.0530587,0.102222,0.792241,North,Proposed
+constant,w096,8712,0.0485994,0.0935334,0.826217,South,Proposed
+constant,w097,8712,0.0485994,0.0935334,0.826217,South,Proposed
+constant,w100,8712,0.0365611,0.070509,0.898875,Far West,Proposed
+constant,w102,8712,0.0455227,0.0877191,0.852388,North,Proposed
+constant,w103,8712,0.0564616,0.108789,0.780418,Far West,Proposed
+constant,w104,8712,0.0405352,0.0781116,0.889233,North,Proposed
+constant,w107,8712,0.0401742,0.0773755,0.895661,South,Proposed
+constant,w108,8712,0.0475421,0.0915939,0.84022,Far West,Proposed
+constant,w109,8712,0.0475421,0.0915939,0.84022,Far West,Proposed
+constant,w110,8712,0.0750347,0.144888,0.689509,West,Proposed
+constant,w113,8712,0.0442931,0.0853223,0.859734,North,Proposed
+constant,w119,8712,0.0639945,0.123378,0.732897,North Central,Proposed
+constant,w120,8712,0.0443793,0.0854404,0.857782,South,Proposed
+constant,w121,8712,0.0443793,0.0854404,0.857782,South,Proposed
+constant,w122,8712,0.0443793,0.0854404,0.857782,South,Proposed
+constant,w125,8712,0.0564616,0.108789,0.780418,Far West,Proposed
+constant,w126,8712,0.0564616,0.108789,0.780418,Far West,Proposed
+constant,w127,8712,0.0593629,0.11443,0.753903,North Central,Proposed
+constant,w128,8712,0.0401742,0.0773755,0.895661,South,Proposed
+constant,w129,8712,0.0401742,0.0773755,0.895661,South,Proposed
+constant,w130,8712,0.0564616,0.108789,0.780418,Far West,Proposed
+constant,w132,8712,0.057192,0.110145,0.765037,South,Proposed
+constant,w133,8712,0.0471374,0.0907272,0.847911,South,Proposed
+constant,w136,8712,0.0501119,0.0965745,0.815886,North,Proposed
+constant,w138,8712,0.0442073,0.0851295,0.838958,South,Proposed
+constant,w139,8712,0.0442073,0.0851295,0.838958,South,Proposed
+constant,w143,8712,0.0398361,0.0767787,0.889922,West,Proposed
+constant,w146,8712,0.0602792,0.116215,0.751607,North,Proposed
+constant,w148,8712,0.0436304,0.0840184,0.860308,South Central,Proposed
+constant,w150,8712,0.0389625,0.0750969,0.9014,North,Proposed
+constant,w152,8712,0.0620713,0.119562,0.747016,West,Proposed
+constant,w153,8712,0.0696686,0.134629,0.721419,West,Proposed
+constant,w154,8712,0.0696686,0.134629,0.721419,West,Proposed
+constant,w157,8712,0.057192,0.110145,0.765037,South,Proposed
+constant,w159,8712,0.0443793,0.0854404,0.857782,South,Proposed
+constant,w160,8712,0.0471374,0.0907272,0.847911,South,Proposed
+constant,w161,8712,0.0471374,0.0907272,0.847911,South,Proposed
+constant,w162,8712,0.0401742,0.0773755,0.895661,South,Proposed
+constant,w163,8712,0.0401742,0.0773755,0.895661,South,Proposed
+constant,w164,8712,0.0401742,0.0773755,0.895661,South,Proposed
+constant,w165,8712,0.0520185,0.100212,0.801194,North,Proposed
+constant,w167,8712,0.0492005,0.0948253,0.839417,North,Proposed
+constant,w172,8712,0.0662945,0.127945,0.73152,Far West,Proposed
+constant,w173,8712,0.0372922,0.0718446,0.927801,South,Proposed
+constant,w176,8712,0.0555655,0.107179,0.804637,North,Proposed
+constant,w183,8712,0.0547254,0.10546,0.786042,North,Proposed
+constant,w186,8712,0.0429861,0.0827899,0.861226,Coast,Proposed
+constant,w187,8712,0.0429861,0.0827899,0.861226,Coast,Proposed
+constant,w188,8712,0.0436304,0.0840184,0.860308,South Central,Proposed
+constant,w190,8712,0.0453081,0.0873244,0.837466,North Central,Proposed
+constant,w191,8712,0.0556285,0.107169,0.776974,North Central,Proposed
+constant,w192,8712,0.0463481,0.0893157,0.847337,North,Proposed
+constant,w196,8712,0.0475421,0.0915939,0.84022,Far West,Proposed
+constant,w199,8712,0.0403138,0.0776816,0.875,Far West,Proposed
+constant,w200,8712,0.0396105,0.0763113,0.888659,South,Proposed
+constant,w201,8712,0.0600036,0.115637,0.755395,North Central,Proposed
+constant,w205,8712,0.0486355,0.0936288,0.830119,West,Proposed
+constant,w206,8712,0.0600817,0.115809,0.754132,North,Proposed
+constant,w207,8712,0.0442931,0.0853223,0.859734,North,Proposed
+constant,w210,8712,0.0564616,0.108789,0.780418,Far West,Proposed
+constant,w214,8712,0.0430288,0.082843,0.865588,South,Proposed
+constant,w215,8712,0.0475421,0.0915939,0.84022,Far West,Proposed
+constant,w216,8712,0.0475421,0.0915939,0.84022,Far West,Proposed
+constant,w217,8712,0.0436304,0.0840184,0.860308,South Central,Proposed
+constant,w226,8712,0.0485994,0.0935334,0.826217,South,Proposed
+constant,w230,8712,0.0620712,0.119562,0.747016,West,Proposed
+constant,w231,8712,0.0620712,0.119562,0.747016,West,Proposed
+constant,w232,8712,0.0704478,0.136245,0.72888,North,Proposed
+constant,w233,8712,0.0704478,0.136245,0.72888,North,Proposed
+constant,w234,8712,0.0509789,0.0981714,0.799702,East,Proposed
+constant,w235,8712,0.0530587,0.102222,0.792241,North,Proposed
+constant,w236,8712,0.0492005,0.0948253,0.839417,North,Proposed
+constant,w237,8712,0.0750347,0.144888,0.689509,West,Proposed
+constant,w238,8712,0.0505006,0.0972533,0.798439,South,Proposed
+constant,w240,8712,0.0620712,0.119562,0.747016,West,Proposed
+constant,w244,8712,0.0396105,0.0763113,0.888659,South,Proposed
+constant,w245,8712,0.0396105,0.0763113,0.888659,South,Proposed
+constant,w246,8712,0.0530587,0.102222,0.792241,North,Proposed
+constant,w248,8712,0.0436197,0.0840956,0.86421,West,Proposed
+constant,w250,8712,0.0471374,0.0907272,0.847911,South,Proposed
+constant,w253,8712,0.0475421,0.0915939,0.84022,Far West,Proposed
+constant,w255,8712,0.0478505,0.0922262,0.834022,West,Proposed
+constant,w257,8712,0.0445596,0.0858532,0.865014,North,Proposed
+constant,w259,8712,0.0566206,0.109058,0.773186,Far West,Proposed
+constant,w262,8712,0.0478505,0.0922262,0.834022,West,Proposed
+constant + recalibration,w001,8712,0.0485617,0.093569,0.840794,North Central,Proposed
+constant + recalibration,w002,8712,0.0438198,0.0844708,0.882231,North,Proposed
+constant + recalibration,w005,8712,0.0481427,0.0927516,0.862374,Far West,Proposed
+constant + recalibration,w006,8712,0.0401621,0.077405,0.904155,North Central,Proposed
+constant + recalibration,w007,8712,0.0401621,0.0774049,0.904155,North Central,Proposed
+constant + recalibration,w008,8712,0.0573902,0.111023,0.764922,North,Proposed
+constant + recalibration,w009,8712,0.0479006,0.0923367,0.855946,North Central,Proposed
+constant + recalibration,w010,8712,0.0479006,0.0923367,0.855946,North Central,Proposed
+constant + recalibration,w012,8712,0.0537534,0.103655,0.822658,North Central,Proposed
+constant + recalibration,w013,8712,0.036679,0.0706809,0.916208,South,Proposed
+constant + recalibration,w014,8712,0.036679,0.0706809,0.916208,South,Proposed
+constant + recalibration,w015,8712,0.0490083,0.0944208,0.822199,Far West,Proposed
+constant + recalibration,w019,8712,0.0433674,0.0835754,0.868113,Far West,Proposed
+constant + recalibration,w021,8712,0.0377469,0.0727223,0.931015,South,Proposed
+constant + recalibration,w022,8712,0.0489688,0.0943523,0.837351,North,Proposed
+constant + recalibration,w024,8712,0.0438198,0.0844708,0.882231,North,Proposed
+constant + recalibration,w025,8712,0.0438198,0.0844708,0.882231,North,Proposed
+constant + recalibration,w026,8712,0.0438198,0.0844708,0.882231,North,Proposed
+constant + recalibration,w028,8712,0.0416801,0.080335,0.893021,North,Proposed
+constant + recalibration,w034,8712,0.034827,0.0671242,0.947888,South,Proposed
+constant + recalibration,w035,8712,0.034827,0.0671242,0.947888,South,Proposed
+constant + recalibration,w036,8712,0.0511914,0.0986356,0.837466,West,Proposed
+constant + recalibration,w039,8712,0.0500118,0.0963375,0.833907,South,Proposed
+constant + recalibration,w040,8712,0.0611788,0.1182,0.77927,West,Proposed
+constant + recalibration,w044,8712,0.0848462,0.16473,0.589302,North,Proposed
+constant + recalibration,w045,8712,0.0394332,0.0759931,0.90978,West,Proposed
+constant + recalibration,w046,8712,0.0460054,0.0886596,0.8455,Far West,Proposed
+constant + recalibration,w047,8712,0.0460054,0.0886596,0.8455,Far West,Proposed
+constant + recalibration,w049,8712,0.0401832,0.0774405,0.88556,North,Proposed
+constant + recalibration,w050,8712,0.0401832,0.0774405,0.88556,North,Proposed
+constant + recalibration,w052,8712,0.0537535,0.103655,0.822658,North Central,Proposed
+constant + recalibration,w053,8712,0.0327021,0.063045,0.955349,South,Proposed
+constant + recalibration,w055,8712,0.0401832,0.0774405,0.88556,North,Proposed
+constant + recalibration,w057,8712,0.037138,0.0715591,0.924816,Coast,Proposed
+constant + recalibration,w060,8712,0.0394332,0.0759931,0.90978,West,Proposed
+constant + recalibration,w061,8712,0.0358138,0.0690082,0.944444,South,Proposed
+constant + recalibration,w062,8712,0.0491269,0.0946482,0.835399,Far West,Proposed
+constant + recalibration,w064,8712,0.119224,0.232818,0.523531,Far West,Proposed
+constant + recalibration,w066,8712,0.0511914,0.0986356,0.837466,West,Proposed
+constant + recalibration,w067,8712,0.0382034,0.0735945,0.946051,South,Proposed
+constant + recalibration,w068,8712,0.0401832,0.0774405,0.88556,North,Proposed
+constant + recalibration,w069,8712,0.0493316,0.0950673,0.833678,Far West,Proposed
+constant + recalibration,w070,8712,0.0368648,0.0710296,0.943756,South,Proposed
+constant + recalibration,w071,8712,0.0382034,0.0735945,0.946051,South,Proposed
+constant + recalibration,w074,8712,0.0498707,0.0960983,0.84068,North,Proposed
+constant + recalibration,w075,8712,0.0327021,0.063045,0.955349,South,Proposed
+constant + recalibration,w080,8712,0.0446114,0.0859739,0.882576,North,Proposed
+constant + recalibration,w082,8712,0.0407847,0.078557,0.903696,South Central,Proposed
+constant + recalibration,w087,8712,0.0573902,0.111023,0.764922,North,Proposed
+constant + recalibration,w088,8712,0.0378876,0.0730298,0.905992,Far West,Proposed
+constant + recalibration,w090,8712,0.0646307,0.125139,0.710859,North,Proposed
+constant + recalibration,w091,8712,0.0478638,0.0922706,0.831497,North,Proposed
+constant + recalibration,w092,8712,0.0561164,0.108368,0.765725,West,Proposed
+constant + recalibration,w095,8712,0.0463706,0.08936,0.862603,North,Proposed
+constant + recalibration,w096,8712,0.0401968,0.0774206,0.924013,South,Proposed
+constant + recalibration,w097,8712,0.0401968,0.0774206,0.924013,South,Proposed
+constant + recalibration,w100,8712,0.0474553,0.0916281,0.792241,Far West,Proposed
+constant + recalibration,w102,8712,0.0457754,0.0882111,0.838843,North,Proposed
+constant + recalibration,w103,8712,0.0493316,0.0950673,0.833678,Far West,Proposed
+constant + recalibration,w104,8712,0.0401832,0.0774405,0.88556,North,Proposed
+constant + recalibration,w107,8712,0.034827,0.0671242,0.947888,South,Proposed
+constant + recalibration,w108,8712,0.0433674,0.0835754,0.868113,Far West,Proposed
+constant + recalibration,w109,8712,0.0433674,0.0835754,0.868113,Far West,Proposed
+constant + recalibration,w110,8712,0.0634981,0.122585,0.760445,West,Proposed
+constant + recalibration,w113,8712,0.0413881,0.0797562,0.886478,North,Proposed
+constant + recalibration,w119,8712,0.0537534,0.103655,0.822658,North Central,Proposed
+constant + recalibration,w120,8712,0.0368648,0.0710296,0.943756,South,Proposed
+constant + recalibration,w121,8712,0.0368648,0.0710295,0.943756,South,Proposed
+constant + recalibration,w122,8712,0.0368648,0.0710295,0.943756,South,Proposed
+constant + recalibration,w125,8712,0.0493316,0.0950673,0.833678,Far West,Proposed
+constant + recalibration,w126,8712,0.0493316,0.0950673,0.833678,Far West,Proposed
+constant + recalibration,w127,8712,0.0510361,0.0984011,0.832989,North Central,Proposed
+constant + recalibration,w128,8712,0.034827,0.0671242,0.947888,South,Proposed
+constant + recalibration,w129,8712,0.034827,0.0671242,0.947888,South,Proposed
+constant + recalibration,w130,8712,0.0493316,0.0950673,0.833678,Far West,Proposed
+constant + recalibration,w132,8712,0.0500118,0.0963375,0.833907,South,Proposed
+constant + recalibration,w133,8712,0.0382034,0.0735945,0.946051,South,Proposed
+constant + recalibration,w136,8712,0.0438198,0.0844708,0.882231,North,Proposed
+constant + recalibration,w138,8712,0.0405237,0.0780595,0.89876,South,Proposed
+constant + recalibration,w139,8712,0.0405237,0.0780595,0.89876,South,Proposed
+constant + recalibration,w143,8712,0.0383096,0.0738409,0.899105,West,Proposed
+constant + recalibration,w146,8712,0.0512336,0.098783,0.828512,North,Proposed
+constant + recalibration,w148,8712,0.0373101,0.0718861,0.934114,South Central,Proposed
+constant + recalibration,w150,8712,0.0436324,0.0840974,0.829201,North,Proposed
+constant + recalibration,w152,8712,0.0511914,0.0986357,0.837466,West,Proposed
+constant + recalibration,w153,8712,0.0611788,0.1182,0.77927,West,Proposed
+constant + recalibration,w154,8712,0.0611788,0.1182,0.77927,West,Proposed
+constant + recalibration,w157,8712,0.0500118,0.0963375,0.833907,South,Proposed
+constant + recalibration,w159,8712,0.0368648,0.0710296,0.943756,South,Proposed
+constant + recalibration,w160,8712,0.0382034,0.0735945,0.946051,South,Proposed
+constant + recalibration,w161,8712,0.0382034,0.0735945,0.946051,South,Proposed
+constant + recalibration,w162,8712,0.034827,0.0671242,0.947888,South,Proposed
+constant + recalibration,w163,8712,0.034827,0.0671242,0.947888,South,Proposed
+constant + recalibration,w164,8712,0.034827,0.0671242,0.947888,South,Proposed
+constant + recalibration,w165,8712,0.0446114,0.0859739,0.882576,North,Proposed
+constant + recalibration,w167,8712,0.0642887,0.124248,0.667585,North,Proposed
+constant + recalibration,w172,8712,0.0581752,0.112267,0.78983,Far West,Proposed
+constant + recalibration,w173,8712,0.0327021,0.063045,0.955349,South,Proposed
+constant + recalibration,w176,8712,0.0646307,0.125139,0.710859,North,Proposed
+constant + recalibration,w183,8712,0.047013,0.0906135,0.858012,North,Proposed
+constant + recalibration,w186,8712,0.0360256,0.0694346,0.936524,Coast,Proposed
+constant + recalibration,w187,8712,0.0360256,0.0694346,0.936524,Coast,Proposed
+constant + recalibration,w188,8712,0.0373101,0.0718861,0.934114,South Central,Proposed
+constant + recalibration,w190,8712,0.0415105,0.0800017,0.886364,North Central,Proposed
+constant + recalibration,w191,8712,0.0485617,0.093569,0.840794,North Central,Proposed
+constant + recalibration,w192,8712,0.0425882,0.0820813,0.882691,North,Proposed
+constant + recalibration,w196,8712,0.0433674,0.0835754,0.868113,Far West,Proposed
+constant + recalibration,w199,8712,0.0378876,0.0730298,0.905992,Far West,Proposed
+constant + recalibration,w200,8712,0.036679,0.0706809,0.916208,South,Proposed
+constant + recalibration,w201,8712,0.0510102,0.0983056,0.833792,North Central,Proposed
+constant + recalibration,w205,8712,0.0404556,0.0779273,0.911616,West,Proposed
+constant + recalibration,w206,8712,0.0513027,0.0989028,0.828512,North,Proposed
+constant + recalibration,w207,8712,0.0413881,0.0797562,0.886478,North,Proposed
+constant + recalibration,w210,8712,0.0493316,0.0950673,0.833678,Far West,Proposed
+constant + recalibration,w214,8712,0.0360824,0.0695129,0.949839,South,Proposed
+constant + recalibration,w215,8712,0.0433674,0.0835754,0.868113,Far West,Proposed
+constant + recalibration,w216,8712,0.0433674,0.0835754,0.868113,Far West,Proposed
+constant + recalibration,w217,8712,0.0373101,0.0718861,0.934114,South Central,Proposed
+constant + recalibration,w226,8712,0.0401968,0.0774206,0.924013,South,Proposed
+constant + recalibration,w230,8712,0.0511914,0.0986356,0.837466,West,Proposed
+constant + recalibration,w231,8712,0.0511914,0.0986356,0.837466,West,Proposed
+constant + recalibration,w232,8712,0.0633521,0.122489,0.770087,North,Proposed
+constant + recalibration,w233,8712,0.0633521,0.122489,0.770087,North,Proposed
+constant + recalibration,w234,8712,0.0435795,0.0839511,0.881657,East,Proposed
+constant + recalibration,w235,8712,0.0463706,0.08936,0.862603,North,Proposed
+constant + recalibration,w236,8712,0.0642887,0.124248,0.667585,North,Proposed
+constant + recalibration,w237,8712,0.0634981,0.122585,0.760445,West,Proposed
+constant + recalibration,w238,8712,0.0467928,0.0901154,0.850436,South,Proposed
+constant + recalibration,w240,8712,0.0511914,0.0986356,0.837466,West,Proposed
+constant + recalibration,w244,8712,0.036679,0.0706809,0.916208,South,Proposed
+constant + recalibration,w245,8712,0.036679,0.0706809,0.916208,South,Proposed
+constant + recalibration,w246,8712,0.0463706,0.08936,0.862603,North,Proposed
+constant + recalibration,w248,8712,0.0427415,0.0824064,0.867883,West,Proposed
+constant + recalibration,w250,8712,0.0382034,0.0735945,0.946051,South,Proposed
+constant + recalibration,w253,8712,0.0433674,0.0835754,0.868113,Far West,Proposed
+constant + recalibration,w255,8712,0.0437381,0.0842991,0.865702,West,Proposed
+constant + recalibration,w257,8712,0.0584048,0.112723,0.69697,North,Proposed
+constant + recalibration,w259,8712,0.0491269,0.0946482,0.835399,Far West,Proposed
+constant + recalibration,w262,8712,0.0437381,0.0842991,0.865817,West,Proposed
+plant constant (in-sample),w001,8712,0.0540587,0.10405,0.872016,North Central,Proposed
+daily target (in-sample),w001,8712,0.0510786,0.0983718,0.93859,North Central,Proposed
+plant constant (in-sample),w002,8712,0.049383,0.0951128,0.873508,North,Proposed
+daily target (in-sample),w002,8712,0.0463719,0.0893369,0.929752,North,Proposed
+plant constant (in-sample),w005,8712,0.0548816,0.105671,0.918733,Far West,Proposed
+daily target (in-sample),w005,8712,0.0522309,0.1006,0.948003,Far West,Proposed
+plant constant (in-sample),w006,8712,0.0445696,0.0858697,0.863636,North Central,Proposed
+daily target (in-sample),w006,8712,0.0422077,0.0813338,0.915863,North Central,Proposed
+plant constant (in-sample),w007,8712,0.0445696,0.0858697,0.863636,North Central,Proposed
+daily target (in-sample),w007,8712,0.0422077,0.0813338,0.916208,North Central,Proposed
+plant constant (in-sample),w008,8712,0.0500203,0.0964281,0.868457,North,Proposed
+daily target (in-sample),w008,8712,0.0473865,0.0912908,0.919077,North,Proposed
+plant constant (in-sample),w009,8712,0.0540696,0.10411,0.87764,North Central,Proposed
+daily target (in-sample),w009,8712,0.0505065,0.0972712,0.938705,North Central,Proposed
+plant constant (in-sample),w010,8712,0.0540696,0.10411,0.87764,North Central,Proposed
+daily target (in-sample),w010,8712,0.0505065,0.0972712,0.938705,North Central,Proposed
+plant constant (in-sample),w012,8712,0.0609815,0.117364,0.894399,North Central,Proposed
+daily target (in-sample),w012,8712,0.0569902,0.109753,0.950298,North Central,Proposed
+plant constant (in-sample),w013,8712,0.0397052,0.0764954,0.876607,South,Proposed
+daily target (in-sample),w013,8712,0.0378258,0.0729079,0.924242,South,Proposed
+plant constant (in-sample),w014,8712,0.0397052,0.0764954,0.876607,South,Proposed
+daily target (in-sample),w014,8712,0.0378258,0.0729079,0.924242,South,Proposed
+plant constant (in-sample),w015,8712,0.0504037,0.0970413,0.862948,Far West,Proposed
+daily target (in-sample),w015,8712,0.0476749,0.0918536,0.93618,Far West,Proposed
+plant constant (in-sample),w019,8712,0.0471554,0.0908126,0.875459,Far West,Proposed
+daily target (in-sample),w019,8712,0.0445108,0.0857664,0.939853,Far West,Proposed
+plant constant (in-sample),w021,8712,0.0440598,0.0848372,0.890496,South,Proposed
+daily target (in-sample),w021,8712,0.0416208,0.0801688,0.942608,South,Proposed
+plant constant (in-sample),w022,8712,0.0540906,0.104129,0.874426,North,Proposed
+daily target (in-sample),w022,8712,0.0510311,0.0982935,0.937902,North,Proposed
+plant constant (in-sample),w024,8712,0.049383,0.0951128,0.873508,North,Proposed
+daily target (in-sample),w024,8712,0.0463719,0.0893369,0.929982,North,Proposed
+plant constant (in-sample),w025,8712,0.049383,0.0951128,0.873508,North,Proposed
+daily target (in-sample),w025,8712,0.0463719,0.0893369,0.929752,North,Proposed
+plant constant (in-sample),w026,8712,0.049383,0.0951129,0.873508,North,Proposed
+daily target (in-sample),w026,8712,0.0463719,0.0893369,0.929867,North,Proposed
+plant constant (in-sample),w028,8712,0.0459387,0.0884923,0.86708,North,Proposed
+daily target (in-sample),w028,8712,0.0430503,0.0829477,0.931129,North,Proposed
+plant constant (in-sample),w034,8712,0.0401088,0.0772538,0.903122,South,Proposed
+daily target (in-sample),w034,8712,0.0382176,0.0736446,0.941575,South,Proposed
+plant constant (in-sample),w035,8712,0.0401088,0.0772538,0.903122,South,Proposed
+daily target (in-sample),w035,8712,0.0382176,0.0736446,0.94169,South,Proposed
+plant constant (in-sample),w036,8712,0.0591437,0.113861,0.91483,West,Proposed
+daily target (in-sample),w036,8712,0.056368,0.108549,0.950298,West,Proposed
+plant constant (in-sample),w039,8712,0.0552673,0.106394,0.886593,South,Proposed
+daily target (in-sample),w039,8712,0.052353,0.100834,0.942493,South,Proposed
+plant constant (in-sample),w040,8712,0.0664533,0.127873,0.857094,West,Proposed
+daily target (in-sample),w040,8712,0.0612072,0.117844,0.94146,West,Proposed
+plant constant (in-sample),w044,8712,0.0641117,0.123465,0.866621,North,Proposed
+daily target (in-sample),w044,8712,0.0591711,0.113957,0.939738,North,Proposed
+plant constant (in-sample),w045,8712,0.0444202,0.0855624,0.879477,West,Proposed
+daily target (in-sample),w045,8712,0.0423898,0.0816875,0.92034,West,Proposed
+plant constant (in-sample),w046,8712,0.0486937,0.0937773,0.876263,Far West,Proposed
+daily target (in-sample),w046,8712,0.045991,0.088609,0.935606,Far West,Proposed
+plant constant (in-sample),w047,8712,0.0486937,0.0937773,0.876263,Far West,Proposed
+daily target (in-sample),w047,8712,0.045991,0.088609,0.935836,Far West,Proposed
+plant constant (in-sample),w049,8712,0.0405873,0.0782145,0.882002,North,Proposed
+daily target (in-sample),w049,8712,0.0385951,0.0743947,0.932507,North,Proposed
+plant constant (in-sample),w050,8712,0.0405873,0.0782145,0.882002,North,Proposed
+daily target (in-sample),w050,8712,0.0385951,0.0743947,0.932507,North,Proposed
+plant constant (in-sample),w052,8712,0.0609816,0.117364,0.894399,North Central,Proposed
+daily target (in-sample),w052,8712,0.0569902,0.109753,0.950298,North Central,Proposed
+plant constant (in-sample),w053,8712,0.0373571,0.0719654,0.919766,South,Proposed
+daily target (in-sample),w053,8712,0.0356621,0.0687284,0.962236,South,Proposed
+plant constant (in-sample),w055,8712,0.0405874,0.0782146,0.882002,North,Proposed
+daily target (in-sample),w055,8712,0.0385951,0.0743947,0.932392,North,Proposed
+plant constant (in-sample),w057,8712,0.0436055,0.0839604,0.867309,Coast,Proposed
+daily target (in-sample),w057,8712,0.0401181,0.0772813,0.94146,Coast,Proposed
+plant constant (in-sample),w060,8712,0.0444202,0.0855624,0.879477,West,Proposed
+daily target (in-sample),w060,8712,0.0423898,0.0816875,0.919651,West,Proposed
+plant constant (in-sample),w061,8712,0.0416478,0.0802068,0.889004,South,Proposed
+daily target (in-sample),w061,8712,0.0391205,0.0753583,0.945478,South,Proposed
+plant constant (in-sample),w062,8712,0.0549808,0.105844,0.883724,Far West,Proposed
+daily target (in-sample),w062,8712,0.0522199,0.100586,0.952365,Far West,Proposed
+plant constant (in-sample),w064,8712,0.0913917,0.175764,0.86444,Far West,Proposed
+daily target (in-sample),w064,8712,0.0832173,0.160114,0.960514,Far West,Proposed
+plant constant (in-sample),w066,8712,0.0591437,0.113861,0.91483,West,Proposed
+daily target (in-sample),w066,8712,0.056368,0.108549,0.950298,West,Proposed
+plant constant (in-sample),w067,8712,0.0460869,0.0887564,0.934343,South,Proposed
+daily target (in-sample),w067,8712,0.0436728,0.0841241,0.962351,South,Proposed
+plant constant (in-sample),w068,8712,0.0405873,0.0782145,0.882002,North,Proposed
+daily target (in-sample),w068,8712,0.0385951,0.0743947,0.932392,North,Proposed
+plant constant (in-sample),w069,8712,0.0548493,0.105581,0.881198,Far West,Proposed
+daily target (in-sample),w069,8712,0.051963,0.100106,0.948118,Far West,Proposed
+plant constant (in-sample),w070,8712,0.0438575,0.0844487,0.901286,South,Proposed
+daily target (in-sample),w070,8712,0.041336,0.0796353,0.947314,South,Proposed
+plant constant (in-sample),w071,8712,0.0460869,0.0887564,0.934343,South,Proposed
+daily target (in-sample),w071,8712,0.0436728,0.0841241,0.962466,South,Proposed
+plant constant (in-sample),w074,8712,0.0570718,0.109834,0.881198,North,Proposed
+daily target (in-sample),w074,8712,0.0528547,0.101801,0.932163,North,Proposed
+plant constant (in-sample),w075,8712,0.0373571,0.0719654,0.919766,South,Proposed
+daily target (in-sample),w075,8712,0.0356621,0.0687284,0.962351,South,Proposed
+plant constant (in-sample),w080,8712,0.0508728,0.0979572,0.887741,North,Proposed
+daily target (in-sample),w080,8712,0.0478746,0.092227,0.933196,North,Proposed
+plant constant (in-sample),w082,8712,0.0461949,0.0889247,0.868113,South Central,Proposed
+daily target (in-sample),w082,8712,0.0435125,0.0838261,0.932392,South Central,Proposed
+plant constant (in-sample),w087,8712,0.0500203,0.0964281,0.868457,North,Proposed
+daily target (in-sample),w087,8712,0.0473865,0.0912908,0.919307,North,Proposed
+plant constant (in-sample),w088,8712,0.0404804,0.0780277,0.85365,Far West,Proposed
+daily target (in-sample),w088,8712,0.0385259,0.0742581,0.90427,Far West,Proposed
+plant constant (in-sample),w090,8712,0.0544838,0.104934,0.875459,North,Proposed
+daily target (in-sample),w090,8712,0.0516803,0.0995499,0.933999,North,Proposed
+plant constant (in-sample),w091,8712,0.047848,0.0921808,0.879247,North,Proposed
+daily target (in-sample),w091,8712,0.0451124,0.0869387,0.936869,North,Proposed
+plant constant (in-sample),w092,8712,0.0498859,0.0961804,0.853994,West,Proposed
+daily target (in-sample),w092,8712,0.0462539,0.0891075,0.928489,West,Proposed
+plant constant (in-sample),w095,8712,0.0518828,0.0998889,0.87787,North,Proposed
+daily target (in-sample),w095,8712,0.0485568,0.0935369,0.932966,North,Proposed
+plant constant (in-sample),w096,8712,0.0475272,0.091513,0.912075,South,Proposed
+daily target (in-sample),w096,8712,0.0445949,0.0859025,0.957759,South,Proposed
+plant constant (in-sample),w097,8712,0.0475272,0.0915131,0.912075,South,Proposed
+daily target (in-sample),w097,8712,0.0445949,0.0859025,0.95753,South,Proposed
+plant constant (in-sample),w100,8712,0.037021,0.0714978,0.854454,Far West,Proposed
+daily target (in-sample),w100,8712,0.0341238,0.0657896,0.912764,Far West,Proposed
+plant constant (in-sample),w102,8712,0.0453262,0.08732,0.872704,North,Proposed
+daily target (in-sample),w102,8712,0.0430737,0.0829964,0.923669,North,Proposed
+plant constant (in-sample),w103,8712,0.0548493,0.105581,0.881198,Far West,Proposed
+daily target (in-sample),w103,8712,0.051963,0.100106,0.948347,Far West,Proposed
+plant constant (in-sample),w104,8712,0.0405874,0.0782146,0.882002,North,Proposed
+daily target (in-sample),w104,8712,0.0385951,0.0743947,0.931933,North,Proposed
+plant constant (in-sample),w107,8712,0.0401088,0.0772538,0.903122,South,Proposed
+daily target (in-sample),w107,8712,0.0382176,0.0736446,0.94169,South,Proposed
+plant constant (in-sample),w108,8712,0.0471554,0.0908126,0.875459,Far West,Proposed
+daily target (in-sample),w108,8712,0.0445108,0.0857664,0.939279,Far West,Proposed
+plant constant (in-sample),w109,8712,0.0471554,0.0908125,0.875459,Far West,Proposed
+daily target (in-sample),w109,8712,0.0445108,0.0857664,0.939394,Far West,Proposed
+plant constant (in-sample),w110,8712,0.0699226,0.134547,0.889463,West,Proposed
+daily target (in-sample),w110,8712,0.0645648,0.124281,0.956038,West,Proposed
+plant constant (in-sample),w113,8712,0.0440974,0.0849351,0.879017,North,Proposed
+daily target (in-sample),w113,8712,0.0420937,0.0811086,0.930096,North,Proposed
+plant constant (in-sample),w119,8712,0.0609815,0.117364,0.894399,North Central,Proposed
+daily target (in-sample),w119,8712,0.0569902,0.109753,0.950413,North Central,Proposed
+plant constant (in-sample),w120,8712,0.0438575,0.0844487,0.901171,South,Proposed
+daily target (in-sample),w120,8712,0.041336,0.0796353,0.947658,South,Proposed
+plant constant (in-sample),w121,8712,0.0438575,0.0844487,0.901286,South,Proposed
+daily target (in-sample),w121,8712,0.041336,0.0796353,0.947888,South,Proposed
+plant constant (in-sample),w122,8712,0.0438575,0.0844487,0.901286,South,Proposed
+daily target (in-sample),w122,8712,0.041336,0.0796353,0.947084,South,Proposed
+plant constant (in-sample),w125,8712,0.0548493,0.105581,0.881198,Far West,Proposed
+daily target (in-sample),w125,8712,0.0519631,0.100106,0.948691,Far West,Proposed
+plant constant (in-sample),w126,8712,0.0548493,0.105581,0.881198,Far West,Proposed
+daily target (in-sample),w126,8712,0.0519631,0.100106,0.948691,Far West,Proposed
+plant constant (in-sample),w127,8712,0.0572753,0.110251,0.874541,North Central,Proposed
+daily target (in-sample),w127,8712,0.0535484,0.103127,0.939394,North Central,Proposed
+plant constant (in-sample),w128,8712,0.0401088,0.0772538,0.903122,South,Proposed
+daily target (in-sample),w128,8712,0.0382176,0.0736446,0.94169,South,Proposed
+plant constant (in-sample),w129,8712,0.0401088,0.0772538,0.903122,South,Proposed
+daily target (in-sample),w129,8712,0.0382176,0.0736446,0.94169,South,Proposed
+plant constant (in-sample),w130,8712,0.0548493,0.105581,0.881198,Far West,Proposed
+daily target (in-sample),w130,8712,0.051963,0.100106,0.948577,Far West,Proposed
+plant constant (in-sample),w132,8712,0.0552673,0.106394,0.886593,South,Proposed
+daily target (in-sample),w132,8712,0.052353,0.100834,0.943182,South,Proposed
+plant constant (in-sample),w133,8712,0.0460869,0.0887563,0.934343,South,Proposed
+daily target (in-sample),w133,8712,0.0436728,0.0841241,0.962236,South,Proposed
+plant constant (in-sample),w136,8712,0.049383,0.0951129,0.873508,North,Proposed
+daily target (in-sample),w136,8712,0.0463719,0.0893368,0.929867,North,Proposed
+plant constant (in-sample),w138,8712,0.0439959,0.0847164,0.855142,South,Proposed
+daily target (in-sample),w138,8712,0.0415191,0.0799907,0.918733,South,Proposed
+plant constant (in-sample),w139,8712,0.0439959,0.0847164,0.855142,South,Proposed
+daily target (in-sample),w139,8712,0.0415191,0.0799907,0.918618,South,Proposed
+plant constant (in-sample),w143,8712,0.039981,0.0770738,0.870409,West,Proposed
+daily target (in-sample),w143,8712,0.0380795,0.0734245,0.913682,West,Proposed
+plant constant (in-sample),w146,8712,0.0579299,0.111507,0.870409,North,Proposed
+daily target (in-sample),w146,8712,0.053581,0.103181,0.94123,North,Proposed
+plant constant (in-sample),w148,8712,0.0432458,0.0832783,0.889922,South Central,Proposed
+daily target (in-sample),w148,8712,0.0407402,0.0784817,0.937557,South Central,Proposed
+plant constant (in-sample),w150,8712,0.0391079,0.0753927,0.879591,North,Proposed
+daily target (in-sample),w150,8712,0.0371543,0.0716316,0.926309,North,Proposed
+plant constant (in-sample),w152,8712,0.0591438,0.113861,0.91483,West,Proposed
+daily target (in-sample),w152,8712,0.0563681,0.108549,0.950298,West,Proposed
+plant constant (in-sample),w153,8712,0.0664533,0.127873,0.857094,West,Proposed
+daily target (in-sample),w153,8712,0.0612072,0.117844,0.941001,West,Proposed
+plant constant (in-sample),w154,8712,0.0664534,0.127873,0.857094,West,Proposed
+daily target (in-sample),w154,8712,0.0612072,0.117844,0.940886,West,Proposed
+plant constant (in-sample),w157,8712,0.0552673,0.106394,0.886593,South,Proposed
+daily target (in-sample),w157,8712,0.052353,0.100834,0.943182,South,Proposed
+plant constant (in-sample),w159,8712,0.0438575,0.0844487,0.901286,South,Proposed
+daily target (in-sample),w159,8712,0.041336,0.0796353,0.947658,South,Proposed
+plant constant (in-sample),w160,8712,0.0460869,0.0887564,0.934343,South,Proposed
+daily target (in-sample),w160,8712,0.0436728,0.0841241,0.962236,South,Proposed
+plant constant (in-sample),w161,8712,0.0460869,0.0887564,0.934343,South,Proposed
+daily target (in-sample),w161,8712,0.0436728,0.0841241,0.962351,South,Proposed
+plant constant (in-sample),w162,8712,0.0401088,0.0772538,0.903122,South,Proposed
+daily target (in-sample),w162,8712,0.0382176,0.0736446,0.94169,South,Proposed
+plant constant (in-sample),w163,8712,0.0401088,0.0772538,0.903122,South,Proposed
+daily target (in-sample),w163,8712,0.0382176,0.0736446,0.94169,South,Proposed
+plant constant (in-sample),w164,8712,0.0401088,0.0772538,0.903122,South,Proposed
+daily target (in-sample),w164,8712,0.0382176,0.0736446,0.94169,South,Proposed
+plant constant (in-sample),w165,8712,0.0508728,0.0979572,0.887741,North,Proposed
+daily target (in-sample),w165,8712,0.0478746,0.092227,0.932966,North,Proposed
+plant constant (in-sample),w167,8712,0.0486417,0.0936979,0.883609,North,Proposed
+daily target (in-sample),w167,8712,0.0459103,0.0884519,0.947544,North,Proposed
+plant constant (in-sample),w172,8712,0.0633823,0.121973,0.876263,Far West,Proposed
+daily target (in-sample),w172,8712,0.0588347,0.113281,0.94938,Far West,Proposed
+plant constant (in-sample),w173,8712,0.0373571,0.0719654,0.919766,South,Proposed
+daily target (in-sample),w173,8712,0.0356621,0.0687284,0.962236,South,Proposed
+plant constant (in-sample),w176,8712,0.0544839,0.104934,0.875459,North,Proposed
+daily target (in-sample),w176,8712,0.0516803,0.0995499,0.935032,North,Proposed
+plant constant (in-sample),w183,8712,0.0533262,0.102665,0.87741,North,Proposed
+daily target (in-sample),w183,8712,0.0502356,0.0967706,0.931933,North,Proposed
+plant constant (in-sample),w186,8712,0.042796,0.0824195,0.87523,Coast,Proposed
+daily target (in-sample),w186,8712,0.0395038,0.0760924,0.948921,Coast,Proposed
+plant constant (in-sample),w187,8712,0.042796,0.0824195,0.87523,Coast,Proposed
+daily target (in-sample),w187,8712,0.0395038,0.0760924,0.948232,Coast,Proposed
+plant constant (in-sample),w188,8712,0.0432458,0.0832783,0.889922,South Central,Proposed
+daily target (in-sample),w188,8712,0.0407402,0.0784817,0.936869,South Central,Proposed
+plant constant (in-sample),w190,8712,0.0452801,0.0872656,0.839761,North Central,Proposed
+daily target (in-sample),w190,8712,0.0416927,0.0803171,0.921602,North Central,Proposed
+plant constant (in-sample),w191,8712,0.0540587,0.10405,0.872016,North Central,Proposed
+daily target (in-sample),w191,8712,0.0510786,0.0983718,0.938131,North Central,Proposed
+plant constant (in-sample),w192,8712,0.0460762,0.0887666,0.876377,North,Proposed
+daily target (in-sample),w192,8712,0.0435874,0.0839872,0.931474,North,Proposed
+plant constant (in-sample),w196,8712,0.0471554,0.0908125,0.875459,Far West,Proposed
+daily target (in-sample),w196,8712,0.0445108,0.0857664,0.939853,Far West,Proposed
+plant constant (in-sample),w199,8712,0.0404804,0.0780277,0.85365,Far West,Proposed
+daily target (in-sample),w199,8712,0.0385259,0.0742581,0.904729,Far West,Proposed
+plant constant (in-sample),w200,8712,0.0397052,0.0764954,0.876607,South,Proposed
+daily target (in-sample),w200,8712,0.0378258,0.0729079,0.924816,South,Proposed
+plant constant (in-sample),w201,8712,0.0576515,0.110959,0.882461,North Central,Proposed
+daily target (in-sample),w201,8712,0.0538767,0.103746,0.948921,North Central,Proposed
+plant constant (in-sample),w205,8712,0.0476312,0.0917118,0.903926,West,Proposed
+daily target (in-sample),w205,8712,0.0453295,0.0873319,0.946625,West,Proposed
+plant constant (in-sample),w206,8712,0.0577899,0.111243,0.882346,North,Proposed
+daily target (in-sample),w206,8712,0.0542937,0.104568,0.940657,North,Proposed
+plant constant (in-sample),w207,8712,0.0440974,0.0849351,0.879017,North,Proposed
+daily target (in-sample),w207,8712,0.0420937,0.0811086,0.9309,North,Proposed
+plant constant (in-sample),w210,8712,0.0548493,0.105581,0.881198,Far West,Proposed
+daily target (in-sample),w210,8712,0.051963,0.100106,0.948232,Far West,Proposed
+plant constant (in-sample),w214,8712,0.042661,0.0821475,0.900023,South,Proposed
+daily target (in-sample),w214,8712,0.0402729,0.0775835,0.952365,South,Proposed
+plant constant (in-sample),w215,8712,0.0471554,0.0908125,0.875459,Far West,Proposed
+daily target (in-sample),w215,8712,0.0445108,0.0857664,0.939624,Far West,Proposed
+plant constant (in-sample),w216,8712,0.0471554,0.0908125,0.875459,Far West,Proposed
+daily target (in-sample),w216,8712,0.0445108,0.0857664,0.939624,Far West,Proposed
+plant constant (in-sample),w217,8712,0.0432458,0.0832783,0.889922,South Central,Proposed
+daily target (in-sample),w217,8712,0.0407402,0.0784817,0.937098,South Central,Proposed
+plant constant (in-sample),w226,8712,0.0475272,0.0915131,0.912075,South,Proposed
+daily target (in-sample),w226,8712,0.0445949,0.0859025,0.957645,South,Proposed
+plant constant (in-sample),w230,8712,0.0591438,0.113861,0.91483,West,Proposed
+daily target (in-sample),w230,8712,0.056368,0.108549,0.950184,West,Proposed
+plant constant (in-sample),w231,8712,0.0591437,0.113861,0.91483,West,Proposed
+daily target (in-sample),w231,8712,0.056368,0.108549,0.949725,West,Proposed
+plant constant (in-sample),w232,8712,0.0673207,0.129598,0.852502,North,Proposed
+daily target (in-sample),w232,8712,0.0613332,0.118083,0.931244,North,Proposed
+plant constant (in-sample),w233,8712,0.0673207,0.129598,0.852502,North,Proposed
+daily target (in-sample),w233,8712,0.0613332,0.118083,0.931244,North,Proposed
+plant constant (in-sample),w234,8712,0.0499018,0.0960567,0.873623,East,Proposed
+daily target (in-sample),w234,8712,0.0469992,0.090536,0.932163,East,Proposed
+plant constant (in-sample),w235,8712,0.0518828,0.0998889,0.87787,North,Proposed
+daily target (in-sample),w235,8712,0.0485568,0.0935369,0.932736,North,Proposed
+plant constant (in-sample),w236,8712,0.0486417,0.0936979,0.883609,North,Proposed
+daily target (in-sample),w236,8712,0.0459103,0.0884519,0.947199,North,Proposed
+plant constant (in-sample),w237,8712,0.0699226,0.134547,0.889463,West,Proposed
+daily target (in-sample),w237,8712,0.0645648,0.124281,0.956382,West,Proposed
+plant constant (in-sample),w238,8712,0.0496139,0.0955047,0.869835,South,Proposed
+daily target (in-sample),w238,8712,0.0465946,0.0897577,0.941804,South,Proposed
+plant constant (in-sample),w240,8712,0.0591437,0.113861,0.91483,West,Proposed
+daily target (in-sample),w240,8712,0.056368,0.108549,0.950413,West,Proposed
+plant constant (in-sample),w244,8712,0.0397052,0.0764954,0.876607,South,Proposed
+daily target (in-sample),w244,8712,0.0378258,0.0729079,0.924816,South,Proposed
+plant constant (in-sample),w245,8712,0.0397052,0.0764954,0.876607,South,Proposed
+daily target (in-sample),w245,8712,0.0378258,0.0729079,0.924242,South,Proposed
+plant constant (in-sample),w246,8712,0.0518828,0.0998889,0.87787,North,Proposed
+daily target (in-sample),w246,8712,0.0485569,0.0935369,0.932392,North,Proposed
+plant constant (in-sample),w248,8712,0.0436914,0.0842532,0.856061,West,Proposed
+daily target (in-sample),w248,8712,0.0408305,0.0786841,0.928719,West,Proposed
+plant constant (in-sample),w250,8712,0.046087,0.0887565,0.934343,South,Proposed
+daily target (in-sample),w250,8712,0.0436728,0.0841241,0.962121,South,Proposed
+plant constant (in-sample),w253,8712,0.0471554,0.0908125,0.875459,Far West,Proposed
+daily target (in-sample),w253,8712,0.0445108,0.0857664,0.939279,Far West,Proposed
+plant constant (in-sample),w255,8712,0.0475317,0.0915665,0.859848,West,Proposed
+daily target (in-sample),w255,8712,0.0445909,0.0859245,0.930556,West,Proposed
+plant constant (in-sample),w257,8712,0.0443321,0.0854076,0.891185,North,Proposed
+daily target (in-sample),w257,8712,0.0422561,0.0814309,0.936754,North,Proposed
+plant constant (in-sample),w259,8712,0.0549807,0.105844,0.883724,Far West,Proposed
+daily target (in-sample),w259,8712,0.0522199,0.100586,0.95202,Far West,Proposed
+plant constant (in-sample),w262,8712,0.0475317,0.0915666,0.859848,West,Proposed
+daily target (in-sample),w262,8712,0.0445909,0.0859245,0.930211,West,Proposed
+raw ensemble,w001,8712,0.0597537,0.116988,0.532254,North Central,Proposed
+raw ensemble,w002,8712,0.0522374,0.101802,0.574954,North,Proposed
+raw ensemble,w005,8712,0.0594604,0.115688,0.53168,Far West,Proposed
+raw ensemble,w006,8712,0.0476961,0.0931227,0.575298,North Central,Proposed
+raw ensemble,w007,8712,0.0476961,0.0931227,0.575184,North Central,Proposed
+raw ensemble,w008,8712,0.0520208,0.101389,0.578972,North,Proposed
+raw ensemble,w009,8712,0.0587194,0.114728,0.540174,North Central,Proposed
+raw ensemble,w010,8712,0.0587194,0.114728,0.540174,North Central,Proposed
+raw ensemble,w012,8712,0.068313,0.133791,0.476469,North Central,Proposed
+raw ensemble,w013,8712,0.0414224,0.0806181,0.621786,South,Proposed
+raw ensemble,w014,8712,0.0414224,0.0806181,0.621786,South,Proposed
+raw ensemble,w015,8712,0.0519737,0.101124,0.595271,Far West,Proposed
+raw ensemble,w019,8712,0.049194,0.0957001,0.617539,Far West,Proposed
+raw ensemble,w021,8712,0.050154,0.0982066,0.490014,South,Proposed
+raw ensemble,w022,8712,0.0584887,0.114199,0.563246,North,Proposed
+raw ensemble,w024,8712,0.0522374,0.101802,0.574839,North,Proposed
+raw ensemble,w025,8712,0.0522374,0.101802,0.574954,North,Proposed
+raw ensemble,w026,8712,0.0522374,0.101802,0.574839,North,Proposed
+raw ensemble,w028,8712,0.0480468,0.0936028,0.594812,North,Proposed
+raw ensemble,w034,8712,0.0437252,0.0851473,0.55303,South,Proposed
+raw ensemble,w035,8712,0.0437252,0.0851473,0.55303,South,Proposed
+raw ensemble,w036,8712,0.0659832,0.128909,0.487144,West,Proposed
+raw ensemble,w039,8712,0.0616784,0.120804,0.518365,South,Proposed
+raw ensemble,w040,8712,0.0727995,0.142696,0.516529,West,Proposed
+raw ensemble,w044,8712,0.066767,0.130363,0.578742,North,Proposed
+raw ensemble,w045,8712,0.0457446,0.0888642,0.623852,West,Proposed
+raw ensemble,w046,8712,0.0508318,0.0989559,0.597911,Far West,Proposed
+raw ensemble,w047,8712,0.0508318,0.0989559,0.597911,Far West,Proposed
+raw ensemble,w049,8712,0.0412053,0.0799348,0.646924,North,Proposed
+raw ensemble,w050,8712,0.0412053,0.0799348,0.646924,North,Proposed
+raw ensemble,w052,8712,0.068313,0.133791,0.476584,North Central,Proposed
+raw ensemble,w053,8712,0.0408683,0.0794554,0.551768,South,Proposed
+raw ensemble,w055,8712,0.0412053,0.0799349,0.647039,North,Proposed
+raw ensemble,w057,8712,0.0500331,0.0981274,0.440312,Coast,Proposed
+raw ensemble,w060,8712,0.0457446,0.0888642,0.623967,West,Proposed
+raw ensemble,w061,8712,0.0466078,0.091024,0.501492,South,Proposed
+raw ensemble,w062,8712,0.0600674,0.117393,0.544421,Far West,Proposed
+raw ensemble,w064,8712,0.102556,0.201214,0.453398,Far West,Proposed
+raw ensemble,w066,8712,0.0659832,0.128909,0.487144,West,Proposed
+raw ensemble,w067,8712,0.0531706,0.10384,0.466139,South,Proposed
+raw ensemble,w068,8712,0.0412053,0.0799349,0.647039,North,Proposed
+raw ensemble,w069,8712,0.0588912,0.114825,0.556703,Far West,Proposed
+raw ensemble,w070,8712,0.0501374,0.0980646,0.477043,South,Proposed
+raw ensemble,w071,8712,0.0531706,0.10384,0.466024,South,Proposed
+raw ensemble,w074,8712,0.066058,0.129691,0.425964,North,Proposed
+raw ensemble,w075,8712,0.0408683,0.0794554,0.551653,South,Proposed
+raw ensemble,w080,8712,0.0543479,0.105905,0.566345,North,Proposed
+raw ensemble,w082,8712,0.0517107,0.101303,0.523416,South Central,Proposed
+raw ensemble,w087,8712,0.0520207,0.101389,0.578857,North,Proposed
+raw ensemble,w088,8712,0.0407819,0.0791995,0.657484,Far West,Proposed
+raw ensemble,w090,8712,0.0565825,0.110208,0.629591,North,Proposed
+raw ensemble,w091,8712,0.0490193,0.0953838,0.623278,North,Proposed
+raw ensemble,w092,8712,0.0517301,0.101001,0.567493,West,Proposed
+raw ensemble,w095,8712,0.055304,0.107879,0.568067,North,Proposed
+raw ensemble,w096,8712,0.0543817,0.106395,0.482553,South,Proposed
+raw ensemble,w097,8712,0.0543817,0.106395,0.482553,South,Proposed
+raw ensemble,w100,8712,0.03564,0.0692552,0.662994,Far West,Proposed
+raw ensemble,w102,8712,0.0463217,0.0900592,0.632231,North,Proposed
+raw ensemble,w103,8712,0.0588911,0.114825,0.556589,Far West,Proposed
+raw ensemble,w104,8712,0.0412053,0.0799349,0.646924,North,Proposed
+raw ensemble,w107,8712,0.0437252,0.0851473,0.552916,South,Proposed
+raw ensemble,w108,8712,0.0491939,0.0957001,0.617539,Far West,Proposed
+raw ensemble,w109,8712,0.0491939,0.0957001,0.617424,Far West,Proposed
+raw ensemble,w110,8712,0.0797578,0.156525,0.446625,West,Proposed
+raw ensemble,w113,8712,0.0452464,0.0879379,0.621327,North,Proposed
+raw ensemble,w119,8712,0.068313,0.133791,0.476584,North Central,Proposed
+raw ensemble,w120,8712,0.0501374,0.0980646,0.477158,South,Proposed
+raw ensemble,w121,8712,0.0501374,0.0980646,0.477043,South,Proposed
+raw ensemble,w122,8712,0.0501374,0.0980646,0.477273,South,Proposed
+raw ensemble,w125,8712,0.0588912,0.114825,0.556703,Far West,Proposed
+raw ensemble,w126,8712,0.0588912,0.114825,0.556703,Far West,Proposed
+raw ensemble,w127,8712,0.0628059,0.122867,0.515955,North Central,Proposed
+raw ensemble,w128,8712,0.0437252,0.0851473,0.55303,South,Proposed
+raw ensemble,w129,8712,0.0437252,0.0851473,0.55303,South,Proposed
+raw ensemble,w130,8712,0.0588911,0.114825,0.557048,Far West,Proposed
+raw ensemble,w132,8712,0.0616784,0.120804,0.518251,South,Proposed
+raw ensemble,w133,8712,0.0531706,0.10384,0.466139,South,Proposed
+raw ensemble,w136,8712,0.0522374,0.101802,0.574954,North,Proposed
+raw ensemble,w138,8712,0.0480898,0.0941467,0.54511,South,Proposed
+raw ensemble,w139,8712,0.0480898,0.0941467,0.54511,South,Proposed
+raw ensemble,w143,8712,0.0404274,0.0784339,0.6545,West,Proposed
+raw ensemble,w146,8712,0.0647798,0.126873,0.488636,North,Proposed
+raw ensemble,w148,8712,0.049312,0.0965536,0.486341,South Central,Proposed
+raw ensemble,w150,8712,0.0397889,0.0772292,0.635331,North,Proposed
+raw ensemble,w152,8712,0.0659832,0.128909,0.487259,West,Proposed
+raw ensemble,w153,8712,0.0727994,0.142696,0.516414,West,Proposed
+raw ensemble,w154,8712,0.0727994,0.142696,0.516529,West,Proposed
+raw ensemble,w157,8712,0.0616784,0.120804,0.518251,South,Proposed
+raw ensemble,w159,8712,0.0501374,0.0980646,0.476814,South,Proposed
+raw ensemble,w160,8712,0.0531706,0.10384,0.466139,South,Proposed
+raw ensemble,w161,8712,0.0531706,0.10384,0.466024,South,Proposed
+raw ensemble,w162,8712,0.0437252,0.0851473,0.55303,South,Proposed
+raw ensemble,w163,8712,0.0437252,0.0851473,0.55303,South,Proposed
+raw ensemble,w164,8712,0.0437252,0.0851473,0.55303,South,Proposed
+raw ensemble,w165,8712,0.0543479,0.105905,0.566345,North,Proposed
+raw ensemble,w167,8712,0.0500312,0.0974209,0.625574,North,Proposed
+raw ensemble,w172,8712,0.0690741,0.135004,0.505395,Far West,Proposed
+raw ensemble,w173,8712,0.0408683,0.0794554,0.551882,South,Proposed
+raw ensemble,w176,8712,0.0565825,0.110208,0.629591,North,Proposed
+raw ensemble,w183,8712,0.0572079,0.111605,0.555556,North,Proposed
+raw ensemble,w186,8712,0.0484655,0.0948768,0.463728,Coast,Proposed
+raw ensemble,w187,8712,0.0484655,0.0948768,0.463843,Coast,Proposed
+raw ensemble,w188,8712,0.049312,0.0965536,0.486226,South Central,Proposed
+raw ensemble,w190,8712,0.0478998,0.0936689,0.589187,North Central,Proposed
+raw ensemble,w191,8712,0.0597537,0.116988,0.532369,North Central,Proposed
+raw ensemble,w192,8712,0.046968,0.0913205,0.632117,North,Proposed
+raw ensemble,w196,8712,0.0491939,0.0957001,0.617654,Far West,Proposed
+raw ensemble,w199,8712,0.0407818,0.0791995,0.657484,Far West,Proposed
+raw ensemble,w200,8712,0.0414224,0.0806181,0.622016,South,Proposed
+raw ensemble,w201,8712,0.0642258,0.125776,0.49736,North Central,Proposed
+raw ensemble,w205,8712,0.0529769,0.103325,0.506772,West,Proposed
+raw ensemble,w206,8712,0.0632754,0.123685,0.516414,North,Proposed
+raw ensemble,w207,8712,0.0452464,0.0879379,0.621442,North,Proposed
+raw ensemble,w210,8712,0.0588911,0.114825,0.556933,Far West,Proposed
+raw ensemble,w214,8712,0.0483659,0.0945042,0.492195,South,Proposed
+raw ensemble,w215,8712,0.0491939,0.0957001,0.617424,Far West,Proposed
+raw ensemble,w216,8712,0.0491939,0.0957001,0.617424,Far West,Proposed
+raw ensemble,w217,8712,0.049312,0.0965536,0.486226,South Central,Proposed
+raw ensemble,w226,8712,0.0543817,0.106395,0.482323,South,Proposed
+raw ensemble,w230,8712,0.0659832,0.128909,0.487144,West,Proposed
+raw ensemble,w231,8712,0.0659832,0.128909,0.487259,West,Proposed
+raw ensemble,w232,8712,0.0723185,0.141463,0.5264,North,Proposed
+raw ensemble,w233,8712,0.0723185,0.141463,0.5264,North,Proposed
+raw ensemble,w234,8712,0.0556799,0.109045,0.514463,East,Proposed
+raw ensemble,w235,8712,0.055304,0.107879,0.568067,North,Proposed
+raw ensemble,w236,8712,0.0500312,0.0974209,0.625574,North,Proposed
+raw ensemble,w237,8712,0.0797578,0.156525,0.446625,West,Proposed
+raw ensemble,w238,8712,0.0535192,0.104615,0.56405,South,Proposed
+raw ensemble,w240,8712,0.0659832,0.128909,0.487259,West,Proposed
+raw ensemble,w244,8712,0.0414224,0.0806181,0.622016,South,Proposed
+raw ensemble,w245,8712,0.0414224,0.0806181,0.621786,South,Proposed
+raw ensemble,w246,8712,0.055304,0.107879,0.568067,North,Proposed
+raw ensemble,w248,8712,0.0442062,0.0859588,0.660583,West,Proposed
+raw ensemble,w250,8712,0.0531706,0.10384,0.466139,South,Proposed
+raw ensemble,w253,8712,0.0491939,0.0957001,0.617654,Far West,Proposed
+raw ensemble,w255,8712,0.0485414,0.0944772,0.623049,West,Proposed
+raw ensemble,w257,8712,0.0457173,0.0888538,0.650941,North,Proposed
+raw ensemble,w259,8712,0.0600674,0.117393,0.544421,Far West,Proposed
+raw ensemble,w262,8712,0.0485414,0.0944772,0.623049,West,Proposed

@@ -1,6 +1,6 @@
 # Data pipeline
 
-What the framework needs, how to prepare it from typical wind data sources, the input-directory format and the checks applied when it is read. The repository ships no real data; the examples use the synthetic generator (Section 5).
+What the framework needs, how to prepare it from typical wind data sources, the input-directory format and the checks applied when it is read. The repository ships no raw data; the examples use the synthetic generator (Section 5), and the case study on public data (Section 7) downloads its inputs from the publisher.
 
 ## 1. Inputs
 
@@ -88,4 +88,18 @@ The generator also returns its ground truth (observed power and true error scale
 
 ## 6. Terms of use
 
-The framework is licensed under MIT (code) and CC BY 4.0 (documentation). Data used with it keep their own terms: check the license of every meteorological product and the data-use agreement of every measured series before sharing inputs, features or results derived from them.
+The framework is licensed under MIT (code) and CC BY 4.0 (documentation). Data used with it keep their own terms: check the license of every meteorological product and the data-use agreement of every measured series before sharing inputs, features or results derived from them. The data of the case study and their licence are listed in [`data/README.md`](../data/README.md).
+
+## 7. Example with public data: PERFORM (ERCOT 2018)
+
+`case_studies/perform_ercot/` builds the input directory from the ARPA-E PERFORM data sets (NREL; CC BY 3.0 US) with the reader `wind_uq_surrogate.perform`:
+
+| Input | From PERFORM | Preparation |
+|---|---|---|
+| `forecast` | day-ahead power forecasts of the 51 ECMWF ensemble members (hourly, issued daily at 18:00 UTC, lead times 12–35 h) | mean of the members, MW |
+| `ens_00` … `ens_50` | the same members | as given, MW; divided by capacity for the features (`members_per_unit=True`) |
+| `fcst_2da` | 2-day-ahead forecasts of the members for the same hours (lead times 36–59 h) | mean of the members, MW; per unit for the features |
+| `actual` | simulated plant power, 5-minute | hourly means; the time-label convention (period beginning, period ending or instantaneous) is chosen by the smallest median difference to the hourly forecasts over all plants |
+| `capacity_mw`, `group` | plant metadata (`Capacity`, `Region`) | the ERCOT weather zone is the validation group |
+
+Matching rules: file names of one plant differ in case and punctuation between folders (for example `Site_Aguayo_Wind_…` and `Site_aguayo_wind_…`, or with and without an apostrophe), so `perform.site_key` normalizes them; a plant enters only when all three files exist. PERFORM's percentile forecasts are not used: they are trained on each plant's own history (`perform.percentile_forecasts` reads them for other uses). All times are UTC. The simulated plant power is not metered output (see [`data/README.md`](../data/README.md)).

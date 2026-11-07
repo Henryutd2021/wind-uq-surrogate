@@ -1,0 +1,33 @@
+{
+  "label": "beginning",
+  "median_alignment_mw": {
+    "beginning": 24.99794193352569,
+    "ending": 26.249456181933816,
+    "instant": 26.021180692584327
+  },
+  "plants": 264,
+  "status": {
+    "Proposed": 139,
+    "Existing": 125
+  },
+  "groups": {
+    "North": 86,
+    "South": 55,
+    "Far West": 54,
+    "West": 39,
+    "North Central": 22,
+    "South Central": 4,
+    "Coast": 3,
+    "East": 1
+  },
+  "hours_min": 8760,
+  "hours_max": 8760,
+  "median_over_plants": {
+    "mean_actual_pu": 0.2944392316490544,
+    "mean_forecast_pu": 0.21255961730813142,
+    "bias_pu": -0.0915364985379733,
+    "mae_pu": 0.1166959473356639,
+    "corr": 0.8511954923395494,
+    "max_actual_pu": 0.9020000100135801
+  }
+}

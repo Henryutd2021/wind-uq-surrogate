@@ -18,8 +18,11 @@
 | `synthetic` | invented fleet of plants with ground truth |
 | `io` | input-directory reader and writer, observed/unobserved split |
 | `cli` | `wind-uq-surrogate synthetic | metrics | run` |
+| `perform` | reader of the public PERFORM wind files (HDF5): actuals, ensemble and percentile forecasts, hourly time-label conventions, `plant_from_files`; imported explicitly (`from wind_uq_surrogate import perform`), needs h5py |
 
-Dependencies: NumPy, SciPy, pandas, scikit-learn. No solver or GPU is needed.
+Dependencies: NumPy, SciPy, pandas, scikit-learn; h5py only for `perform` (`pip install ".[perform]"`). No solver or GPU is needed.
+
+The case study in `case_studies/perform_ercot/` (scripts `download.py`, `prepare.py`, `run.py`, `figures.py`) uses the package as a library; it is not part of the installed package.
 
 ## Data flow
 
@@ -43,8 +46,8 @@ observed plants ── calibration_targets (Step A) ──┐     unobserved pla
 ## Main types
 
 - `PlantSeries(plant_id, data, capacity, x, y, turbine_coords, turbine_field)`: `data` is a DataFrame indexed by time with `forecast`, optional `actual` and covariates.
-- `FeatureSpec(window, single_series, pairs, member_prefix, si_pairs, pi_history, spatial, include_level, ...)`: which metrics become features.
-- `WorkflowConfig(features, levels, dist, block, target_window, scale_bounds, models, gpr_max_train, n_splits, split_groups, recalibrate, inner_n_splits, coverages, final_model, random_state)`.
+- `FeatureSpec(window, single_series, pairs, member_prefix, si_pairs, pi_history, spatial, include_level, per_unit, members_per_unit, si_relative, ...)`: which metrics become features; `per_unit` and `members_per_unit` divide power columns by the installed capacity, `si_relative=False` gives absolute spread indices (for power ensembles).
+- `WorkflowConfig(features, levels, dist, block, target_window, scale_bounds, models, gpr_max_train, n_splits, split_groups, recalibrate, inner_n_splits, coverages, final_model, random_state, max_train, model_params)`; `max_train` and `model_params` set row caps and estimator arguments per surrogate for large tables.
 - `WorkflowResult`: every table below plus the chosen and fitted surrogate.
 
 ## Output tables (`save_result`)
@@ -79,7 +82,7 @@ Step A is exact and fast: single-step targets are vectorized; window and block t
 
 ## Tests
 
-`pytest` runs the suite in about ten seconds. It covers:
+`pytest` runs the suite in about twenty seconds. It covers:
 
 - the window convention and the absence of look-ahead;
 - every metric against direct formulas or hand-computed cases (spectral entropy limits, spread indices, predictability index, ensemble CRPS against numerical integration, flat rank histograms for exchangeable members, Matheron estimator, variogram models and fits);
@@ -88,3 +91,5 @@ Step A is exact and fast: single-step targets are vectorized; window and block t
 - feature construction (observed power never used, no look-ahead, spatial features), targets and tables; shift and scale invariance of entropy and correlation; input validation;
 - surrogate fitting and prediction, with features matched by column name; plant, group and purged time splits; leakage guards (a held-out plant's observations change neither its recalibrated quantiles nor, with the purge gap, the training targets of a time split); a surrogate beating the constant baseline when the synthetic error scale follows the regime, and no material gain in the negative control;
 - the end-to-end workflow (non-crossing quantiles, oracle lower bound for single-step targets), input-directory round trip and checks, and the command line.
+- absolute spread indices (defined where the ensemble mean is zero), per-unit features that do not change when power and capacity are scaled together, per-surrogate row caps and estimator arguments;
+- the PERFORM reader on small files written in the PERFORM layout: file-name parsing and site matching (case, punctuation, apostrophes), hourly time-label conventions, the alignment check, plant construction and percentile extraction.

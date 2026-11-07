@@ -1,0 +1,265 @@
+plant_id,perform_site,capacity_mw,zone,status
+w001,Aguayo Wind,196.0,North Central,Proposed
+w002,Ajax Wind,630.0,North,Proposed
+w003,Amazon Wind Farm Texas,330.0,West,Existing
+w004,Anacacho Wind Farm,129.0,West,Existing
+w005,Appaloosa Run Renewable Energy Project,175.0,Far West,Proposed
+w006,Aquilla Lake,202.0,North Central,Proposed
+w007,Aquilla Lake 2 Wind,100.0,North Central,Proposed
+w008,Armstrong Wind,253.0,North,Proposed
+w009,Azure Sky Wind 1,350.0,North Central,Proposed
+w010,Azure Sky Wind 2,350.0,North Central,Proposed
+w011,Baffin,264.0,South,Existing
+w012,Baird North Wind,293.55,North Central,Proposed
+w013,Barranca Wind,201.6,South,Proposed
+w014,Barranca Wind II,201.6,South,Proposed
+w015,Barrow Ranch,160.0,Far West,Proposed
+w016,Barton Chapel Wind Farm,157.0,North Central,Existing
+w017,Bearkat I,257.0,Far West,Existing
+w018,Bethel,360.0,North,Existing
+w019,Big Sampson Wind ,400.0,Far West,Proposed
+w020,Big Spring Wind Farm,45.0,Far West,Existing
+w021,Black Jack Creek Wind,239.8,South,Proposed
+w022,Blanco Canyon Wind,250.7,North,Proposed
+w023,Blue Summit,177.0,North,Existing
+w024,Blue Summit II,102.0,North,Proposed
+w025,Blue Summit repower,9.9,North,Proposed
+w026,Blue Summit Wind III,200.0,North,Proposed
+w027,Bobcat Bluff,196.0,North,Existing
+w028,Bobcat Bluff repower,12.0,North,Proposed
+w029,Brazos Wind Ranch,289.0,Far West,Existing
+w030,Briscoe,196.0,North,Existing
+w031,Broadview Energy JN LLC,108.0,North,Existing
+w032,Bruenning's Breeze,298.0,South,Existing
+w033,Buckthorn,117.0,North Central,Existing
+w034,Buenos Aires 1 Wind,222.5,South,Proposed
+w035,Buenos Aires 2 W,236.9,South,Proposed
+w036,Buffalo Gap 4,175.0,West,Proposed
+w037,Buffalo Gap Wind Farm,683.0,West,Existing
+w038,Bull Creek Wind Farm,235.0,Far West,Existing
+w039,Cabezon Wind,237.6,South,Proposed
+w040,Cactus Flats Wind ,148.4,West,Proposed
+w041,Callahan Divide Wind Energy Center,149.0,West,Existing
+w042,Cameron,215.0,South,Existing
+w043,Camp Springs II Wind Farm,327.0,West,Existing
+w044,Canadian Breaks Wind,210.0,North,Proposed
+w045,Canyon Wind,360.0,West,Proposed
+w046,Capricorn I & III repower,32.0,Far West,Proposed
+w047,Capricorn IV repower,9.0,Far West,Proposed
+w048,Capricorn Ridge,920.0,Far West,Existing
+w049,Cattleman Wind A,201.6,North,Proposed
+w050,Cattleman Wind B,201.6,North,Proposed
+w051,Cedro Hill,196.0,South,Existing
+w052,Century Oak Wind,126.0,North Central,Proposed
+w053,Chalupa Wind,174.0,South,Proposed
+w054,Champion (Roscoe II) Wind Farm,165.0,West,Existing
+w055,Changing Winds,289.0,North,Proposed
+w056,Chapman Ranch,325.0,South,Existing
+w057,Chocolate Bayou W,149.5,Coast,Proposed
+w058,Cirrus 1,80.0,North,Existing
+w059,Cotton Plains Wind,66.0,North,Existing
+w060,Coyote Wind,242.5,West,Proposed
+w061,Cranel Wind,220.0,South,Proposed
+w062,Darmstadt,200.9,Far West,Proposed
+w063,Delaware Mountain Wind Farm,37.0,Far West,Existing
+w064,Desert Sky repower,7.2,Far West,Proposed
+w065,Desert Sky Wind Farm,210.0,Far West,Existing
+w066,Dillon Gulch,175.0,West,Proposed
+w067,East Raymond Wind,201.6,South,Proposed
+w068,Easter Wind,307.5,North,Proposed
+w069,Edmondson Ranch Wind,292.5,Far West,Proposed
+w070,El Algodon Alto W,201.0,South,Proposed
+w071,El Suaz Ranch,301.74,South,Proposed
+w072,Elbow Creek Wind Farm,159.0,Far West,Existing
+w073,Electra Wind,300.0,North,Existing
+w074,ERAWIND,180.0,North,Proposed
+w075,Espiritu Wind,148.5,South,Proposed
+w076,Exelon Wind 11,13.0,North,Existing
+w077,Falvez Astra,213.0,North,Existing
+w078,Flat Top,261.0,North Central,Existing
+w079,Fluvanna I,203.0,Far West,Existing
+w080,Foard City Wind,350.0,North,Proposed
+w081,Forest Creek Wind Farm,162.0,Far West,Existing
+w082,Foxtrot Wind,504.0,South Central,Proposed
+w083,Frisco,26.0,North,Existing
+w084,Goat Mountain Phase Wind Farm,195.0,West,Existing
+w085,Golden Spread Panhandle Wind Ranch,102.0,North,Existing
+w086,Goldthwaite,184.0,North Central,Existing
+w087,Goodnight Wind,504.4,North,Proposed
+w088,Gopher Creek Wind,158.0,Far West,Proposed
+w089,Grandview,538.0,North,Existing
+w090,Grandview 4 Phase A Wind,200.5,North,Proposed
+w091,Grandview 5 W,249.0,North,Proposed
+w092,Grape Creek Wind,525.0,West,Proposed
+w093,Great Plains Wind Farm,149.0,North,Existing
+w094,Green Pastures,392.0,North,Existing
+w095,Griffin Trail Wind,201.6,North,Proposed
+w096,Gulf Wind 2,178.6,South,Proposed
+w097,Gulf Wind 2 Expansion,47.9,South,Proposed
+w098,Gulf Wind Farm,370.0,South,Existing
+w099,Gunsight,157.0,Far West,Existing
+w100,Gusty Hill Wind,350.0,Far West,Proposed
+w101,Hackberry Wind Project,216.0,North Central,Existing
+w102,Hale 1,322.0,North,Proposed
+w103,Harald (BearKat Wind B),162.1,Far West,Proposed
+w104,Hart Wind,150.0,North,Proposed
+w105,Hereford 1,131.0,North,Existing
+w106,Hidalgo,326.0,South,Existing
+w107,Hidalgo II Wind ,51.0,South,Proposed
+w108,High Lonesome W,449.5,Far West,Proposed
+w109,High Lonesome Wind Phase II,50.6,Far West,Proposed
+w110,Horse13 CallD repower,44.0,West,Proposed
+w111,Horse Creek Wind,300.0,North,Existing
+w112,Horse Hollow,960.0,West,Existing
+w113,Impala Flats Wind ,282.0,North,Proposed
+w114,Inadale (Roscoe IV) Wind Farm,257.0,West,Existing
+w115,Indian Mesa Wind Farm I,108.0,Far West,Existing
+w116,Javelina,263.0,South,Existing
+w117,JD Wind Farm,235.0,North,Existing
+w118,Jumbo Road,391.0,North,Existing
+w119,Kaiser Creek Wind,100.0,North Central,Proposed
+w120,Karankawa 2 Expansion,98.3,South,Proposed
+w121,Karankawa 2 Wind,101.0,South,Proposed
+w122,Karankawa Wind,206.64,South,Proposed
+w123,Keechi,144.0,North Central,Existing
+w124,King Mountain,373.0,Far West,Existing
+w125,Kontiki 1 Wind (ERIK),255.3,Far West,Proposed
+w126,Kontiki 2 Wind (ERNEST),255.3,Far West,Proposed
+w127,La Casa Wind,201.0,North Central,Proposed
+w128,La Joya I Wind,236.9,South,Proposed
+w129,La Joya II Wind,236.9,South,Proposed
+w130,Lacy Creek Wind Phase 1,200.0,Far West,Proposed
+w131,Langford Wind Farm,196.0,Far West,Existing
+w132,Las Lomas Wind ,200.0,South,Proposed
+w133,Las Majadas Wind ,272.8,South,Proposed
+w134,Little Pringle,26.0,North,Existing
+w135,Llano Estacado Wind Ranch at White Deer,104.0,North,Existing
+w136,Lockett Wind,184.0,North,Proposed
+w137,Logan's Gap Wind,261.0,North Central,Existing
+w138,Loma Pinta II,201.6,South,Proposed
+w139,Loma Pinta Wind ,200.0,South,Proposed
+w140,Lone Star I Wind Farm,522.0,North Central,Existing
+w141,Longhorn,261.0,North,Existing
+w142,Loraine,392.0,West,Existing
+w143,Loraine Windpark Phase III,100.0,West,Proposed
+w144,Los Vientos,1190.0,South,Existing
+w145,Lubbock Wind Ranch,16.0,North,Existing
+w146,Lutum,242.0,North,Proposed
+w147,Magic Valley,263.0,South,Existing
+w148,Magnet Wind,125.0,South Central,Proposed
+w149,Majestic,208.0,North,Existing
+w150,Mariah Del Este,152.5,North,Proposed
+w151,Mariah North Wind,301.0,North,Existing
+w152,Maryneal Windpower,182.4,West,Proposed
+w153,Maverick Creek I,268.5,West,Proposed
+w154,Maverick Creek II,255.9,West,Proposed
+w155,McAdoo Wind Farm,196.0,North,Existing
+w156,Mesquite Creek,276.0,Far West,Existing
+w157,Mesteno Windpower,201.6,South,Proposed
+w158,Miami Texas Wind,377.0,North,Existing
+w159,Midway Wind,162.9,South,Proposed
+w160,Monte Alto 2 Wind,236.9,South,Proposed
+w161,Monte Alto I,223.8,South,Proposed
+w162,Monte Bueno,201.1,South,Proposed
+w163,Monte Cristo 1 W,236.9,South,Proposed
+w164,Monte Cristo 2 Wind,236.9,South,Proposed
+w165,Montgomery Ranch Wind,200.2,North,Proposed
+w166,Mozart,39.0,West,Existing
+w167,Northdraw Wind,150.0,North,Proposed
+w168,Notrees,197.0,Far West,Existing
+w169,Ocotillo,76.0,Far West,Existing
+w170,Octotillo Wind Farm,77.0,Far West,Existing
+w171,Old Settler Wind,197.0,North,Existing
+w172,Oveja Wind,300.0,Far West,Proposed
+w173,Palmas Altas Wind,144.9,South,Proposed
+w174,Palo Duro,326.0,North,Existing
+w175,Panhandle Wind,522.0,North,Existing
+w176,Panhandle Wind 3,248.0,North,Proposed
+w177,Pantex Plant Wind Project,15.0,North,Existing
+w178,Panther Creek,653.0,North,Existing
+w179,Panther Creek I Wind Farm,186.0,Far West,Existing
+w180,Panther Creek II Wind Farm,151.0,Far West,Existing
+w181,Panther Creek III Wind Farm,260.0,West,Existing
+w182,Papalote Creek,496.0,South,Existing
+w183,Pease River Wind,301.4,North,Proposed
+w184,Penascal II,263.0,South,Existing
+w185,Penescal Wind Farm,528.0,South,Existing
+w186,Peyton Creek Wind,151.2,Coast,Proposed
+w187,Peyton Creek Wind II,242.0,Coast,Proposed
+w188,Pierce Wind,300.0,South Central,Proposed
+w189,Pleasant Hill,26.0,North,Existing
+w190,Prairie Hill Wind,300.0,North Central,Proposed
+w191,Priddy Wind ,300.0,North Central,Proposed
+w192,Pumpkin Farm Wind,280.9,North,Proposed
+w193,PYCO Soaring Wind Farm,13.0,North,Existing
+w194,Pyron (Roscoe III) Wind Farm,325.0,West,Existing
+w195,Ralls Wind Farm,13.0,North,Existing
+w196,Ranchero Wind,300.0,Far West,Proposed
+w197,Rattlesnake,270.0,Far West,Existing
+w198,Red Canyon Wind Farm,110.0,Far West,Existing
+w199,Red Mud Creek,201.0,Far West,Proposed
+w200,Reloj Del Sol Wind,202.0,South,Proposed
+w201,Roadrunner Crossing Wind 1,200.2,North Central,Proposed
+w202,Rocksprings,36.0,West,Existing
+w203,Roscoe Wind Farm,273.0,West,Existing
+w204,Route 66,196.0,North,Existing
+w205,RTS 2 Wind,179.91,West,Proposed
+w206,S_Hills Wind,30.24,North,Proposed
+w207,Sage Draw Wind,338.0,North,Proposed
+w208,Salt Fork,227.0,North,Existing
+w209,San Roman,121.0,South,Existing
+w210,Sand Bluff Repower,7.4,Far West,Proposed
+w211,Sand Bluff Wind Farm,118.0,Far West,Existing
+w212,Senate,196.0,North Central,Existing
+w213,Sendero,102.0,South,Existing
+w214,Shaffer,226.0,South,Proposed
+w215,Shamrock Wind,201.6,Far West,Proposed
+w216,Shamrock Wind II,201.6,Far West,Proposed
+w217,Shanghai Wind,153.3,South Central,Proposed
+w218,Shannon,266.0,North,Existing
+w219,Sherbino,392.0,Far West,Existing
+w220,Silver Star Wind Farm,78.0,North Central,Existing
+w221,Snyder Wind Project,82.0,West,Existing
+w222,South Trent Mesa Wind Farm,132.0,West,Existing
+w223,Southwest Mesa Wind Farm,98.0,Far West,Existing
+w224,Spinning Spur,674.0,North,Existing
+w225,Stanton Energy Center Wind Farm,157.0,Far West,Existing
+w226,Stella 2 Wind,201.0,South,Proposed
+w227,Stephens Ranch,491.0,Far West,Existing
+w228,Sunray Wind Farm,65.0,North,Existing
+w229,Sweetwater,764.0,West,Existing
+w230,Sweetwater 1 repower ,3.0,West,Proposed
+w231,Sweetwater 2 repower,7.3,West,Proposed
+w232,Tecovas 1 W,200.0,North,Proposed
+w233,Tecovas 2 W,200.0,North,Proposed
+w234,Tehuacana Wind,600.0,East,Proposed
+w235,TG East Wind,275.6,North,Proposed
+w236,Tierra Blanca W,200.0,North,Proposed
+w237,Tiger Wind,300.0,West,Proposed
+w238,Torrecillas Wind,300.5,South,Proposed
+w239,Trent Mesa Wind Farm,196.0,West,Existing
+w240,Trent repower,6.4,West,Proposed
+w241,Trinity Hills,294.0,North,Existing
+w242,Turkey Track Wind Farm,221.0,West,Existing
+w243,Tyler Bluff,164.0,North,Existing
+w244,Vaquero 1 Wind,400.0,South,Proposed
+w245,Vaquero 2 Wind,201.6,South,Proposed
+w246,Vera Wind,242.8,North,Proposed
+w247,Wake,336.0,North,Existing
+w248,Water Valley Wind Energy,150.0,West,Proposed
+w249,Wege Wind Farm,13.0,North,Existing
+w250,West Raymond Wind,239.8,South,Proposed
+w251,West Texas Windplant,50.0,Far West,Existing
+w252,Whirlwind Wind Farm,78.0,North,Existing
+w253,White Mesa Wind,500.0,Far West,Proposed
+w254,White Tail,119.0,South,Existing
+w255,Whitehorse Wind,418.9,West,Proposed
+w256,Wildorado Wind Farm,210.0,North,Existing
+w257,Wildrose Wind,302.5,North,Proposed
+w258,Willow Springs Wind Farm,326.0,North,Existing
+w259,Wilson Ranch,199.5,Far West,Proposed
+w260,Wind Power Partners '94 Wind Farm,52.0,Far West,Existing
+w261,Windthorst-2,89.0,North,Existing
+w262,WKN Amadeus Wind,245.9,West,Proposed
+w263,Wolf Ridge Wind Farm,147.0,North,Existing
+w264,Woodward Mountain I & II Wind Farm,209.0,Far West,Existing

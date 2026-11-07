@@ -25,7 +25,8 @@ Can UQ metrics of the inputs of a wind power model serve as the inputs of a surr
 | Surrogates | Gaussian process regression (with its own predictive uncertainty), support vector regression, random forest, ridge regression, constant baseline |
 | Validation | leave-one-plant-out (or plant or regional folds); scores of the scale and of the predictive distributions (pinball loss, CRPS, reliability, interval coverage and width); PIT recalibration validated with nested plant folds |
 | Output | per-unit scale and predictive quantiles in MW at unobserved plants |
-| Data | any plants in the input format of [docs/data_pipeline.md](docs/data_pipeline.md); synthetic generator for examples and tests |
+| Data | any plants in the input format of [docs/data_pipeline.md](docs/data_pipeline.md); synthetic generator for examples and tests; a reader for the public ARPA-E PERFORM wind data (`wind_uq_surrogate.perform`) |
+| Case study | 264 ERCOT wind plants of the PERFORM data (2018): three validation designs, compared with a constant scale, the raw ensemble and references fitted to the plant's own power ([case_studies/perform_ercot](case_studies/perform_ercot/)) |
 
 ## What is in this repository
 
@@ -37,7 +38,9 @@ Can UQ metrics of the inputs of a wind power model serve as the inputs of a surr
 | [`docs/architecture.md`](docs/architecture.md) | modules, data flow, output tables, run time, tests |
 | [`src/wind_uq_surrogate/`](src/wind_uq_surrogate/) | the implementation (NumPy, SciPy, pandas, scikit-learn) |
 | [`examples/`](examples/) | `minimal.py` (end-to-end, about half a minute), `metrics_tour.py` (every metric family), `calibration_targets.py` (Step A in detail), `validation_design.py` (target choice and a negative control, about a minute); all on synthetic data |
-| [`tests/`](tests/) | 64 tests: metrics against direct formulas, scores against numerical integration, exact optimization against brute force, features without look-ahead, leakage guards, workflow, input files, command line |
+| [`case_studies/perform_ercot/`](case_studies/perform_ercot/) | the workflow on public data: download, preparation, three validation designs, result tables and figures |
+| [`data/README.md`](data/README.md) | data used by the case study: sources, licence, attribution |
+| [`tests/`](tests/) | 74 tests: metrics against direct formulas, scores against numerical integration, exact optimization against brute force, features without look-ahead, leakage guards, workflow, input files, command line, the PERFORM reader on small files in the PERFORM layout |
 
 ## Quick start
 
@@ -49,6 +52,8 @@ pip install -e ".[test]"
 python examples/minimal.py                              # invented plants, about half a minute
 pytest
 ```
+
+For the case study on public data: `pip install -e ".[test,case-study]"`, then the steps in [case_studies/perform_ercot/README.md](case_studies/perform_ercot/README.md).
 
 With conda instead: `conda env create -f environment.yml && conda activate wind-uq-surrogate && pip install -e .`
 
@@ -96,20 +101,23 @@ The metrics can also be used on their own, for example `w.spread_index(members, 
 
 ## What this repository does not contain
 
-This repository presents the metrics and the surrogate workflow as a framework, implemented afresh and tested on synthetic data. It contains no data, code or results from the project in which the methods were developed.
+This repository presents the metrics and the surrogate workflow as a framework, implemented afresh and tested on synthetic data, with one case study on public data (PERFORM; see [data/README.md](data/README.md)). It contains no data, code or results from the project in which the methods were developed, and no measured plant data.
 
 ## Acknowledgment
 
 This work was developed based upon funding from the Alliance for Sustainable Energy, LLC, Managing and Operating Contractor for the National Renewable Energy Laboratory for the U.S. Department of Energy.
 
+The views expressed in this repository do not necessarily represent the views of the U.S. Department of Energy or the U.S. Government. The case study uses the ARPA-E PERFORM data sets (Sergi et al., 2022; CC BY 3.0 US); their publisher has not reviewed or endorsed this work.
+
 ## Citation
 
-If you use this framework, please cite it with the metadata in [`CITATION.cff`](CITATION.cff), and cite the methods it builds on (references in [docs/](docs/)).
+If you use this framework, please cite it with the metadata in [`CITATION.cff`](CITATION.cff), and cite the methods it builds on (references in [docs/](docs/)). If you use the case study, also cite the PERFORM data (citation in [data/README.md](data/README.md)).
 
 ## Licence
 
 - Code: [MIT](LICENSE).
-- Documentation (`README.md`, `docs/`): [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+- Documentation (`README.md`, `docs/`, the case study's README): [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+- Tables and figures derived from the PERFORM data (`case_studies/perform_ercot/results/`, `data_manifest.csv`): [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/), the licence of the source data, with the attribution in [data/README.md](data/README.md).
 
 ## Reference
 
